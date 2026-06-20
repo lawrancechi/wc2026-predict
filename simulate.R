@@ -167,6 +167,88 @@ value_tip <- function(sim, m) {
   sprintf('<div class="value-tip">💡 %s</div>', paste(tips, collapse="｜"))
 }
 
+expert_analysis <- function(m, sim) {
+  notes <- c()
+  ht <- m$home; at <- m$away
+  ratio <- sim$xg_h / max(0.1, sim$xg_a)
+  fav   <- if (sim$xg_h >= sim$xg_a) ht else at
+  dog   <- if (sim$xg_h >= sim$xg_a) at else ht
+  dog_pct <- if (sim$xg_h >= sim$xg_a) sim$aw else sim$hw
+  hp <- get_played_g(ht); ap <- get_played_g(at)
+
+  # 1. 實力分析（泊松+xG）
+  if (ratio >= 2.0)
+    notes <- c(notes, sprintf('📊 <b>實力懸殊</b>：%s xG 是對手 %.1f 倍，模擬主勝率 %.0f%%，強弱差距明顯。', ht, ratio, sim$hw))
+  else if (ratio >= 1.3)
+    notes <- c(notes, sprintf('📊 <b>主場佔優</b>：%s xG 優勢 %.0f%%，主勝率 %.0f%%，但未到壓倒性。', ht, (ratio-1)*100, sim$hw))
+  else if (ratio <= 0.5)
+    notes <- c(notes, sprintf('📊 <b>客隊壓制</b>：%s xG 是主場 %.1f 倍，模擬客勝率 %.0f%%。', at, 1/ratio, sim$aw))
+  else if (ratio <= 0.77)
+    notes <- c(notes, sprintf('📊 <b>客場佔優</b>：%s xG 優勢 %.0f%%，客勝率 %.0f%%。', at, (1/ratio-1)*100, sim$aw))
+  else
+    notes <- c(notes, sprintf('📊 <b>勢均力敵</b>：雙方 xG 差距僅 %.2f，平局率高達 %.0f%%，比賽走向難測。', abs(sim$xg_h - sim$xg_a), sim$dr))
+
+  # 2. 戰術相剋分析
+  ht_tac <- if (!is.na(TACTICAL[ht])) TACTICAL[[ht]] else "均衡型"
+  at_tac <- if (!is.na(TACTICAL[at])) TACTICAL[[at]] else "均衡型"
+  clash <- ""
+  if (grepl("控球|傳控|tiki", ht_tac) && grepl("防守|低位", at_tac))
+    clash <- sprintf('%s 控球型 vs %s 防守型，易演變為低比分膠著。', ht, at)
+  else if (grepl("壓迫|逼搶", ht_tac) && grepl("快速反擊|防反", at_tac))
+    clash <- sprintf('%s 高壓打法 vs %s 防反，空間反擊或令客隊受益。', ht, at)
+  else if (grepl("快速反擊|防反", ht_tac) && grepl("控球|傳控", at_tac))
+    clash <- sprintf('%s 防反 vs %s 控球，預計低節奏、%s 少輸即贏。', ht, at, ht)
+  if (nchar(clash) > 0)
+    notes <- c(notes, sprintf('⚔️ <b>戰術相剋</b>：%s（%s）vs（%s）%s', "", ht_tac, at_tac, clash))
+
+  # 3. 歷史爆冷 & 黑馬
+  if (dog %in% GIANT_KILLERS && dog_pct >= 20)
+    notes <- c(notes, sprintf('🔥 <b>爆冷警示</b>：%s 是世界盃傳統黑馬，歷史上多次爆冷擊敗強隊，本場勝率 %.0f%%，不可輕視。', dog, dog_pct))
+
+  # 4. 主辦國優勢
+  if (ht %in% HOST_TEAMS)
+    notes <- c(notes, sprintf('🏟 <b>主辦國主場</b>：%s 坐擁地利，現場球迷支持+熟悉場地，歷史數據顯示主辦國首輪勝率提升約 15%%。', ht))
+
+  # 5. 首戰不確定性
+  if (hp == 0 && ap == 0)
+    notes <- c(notes, '⚡ <b>首戰效應</b>：雙方均為本屆首場，世界盃首戰心理壓力大、技術狀態尚未磨合，爆冷機率比後續輪次高 20-30%%，模型已調整。')
+
+  # 6. 小組賽出線壓力
+  if (hp >= 2 || ap >= 2) {
+    who <- if (hp >= 2 && ap >= 2) "雙方" else if (hp >= 2) ht else at
+    notes <- c(notes, sprintf('🔑 <b>出線壓力</b>：%s 已踢完兩場，本場為生死戰，必勝壓力下戰術可能更激進、賠率水位易受情緒影響。', who))
+  } else if (hp >= 1 || ap >= 1)
+    notes <- c(notes, '📋 <b>積分關鍵場</b>：已踢過第一輪，本場積分直接影響小組排名，雙方戰意預計全開。')
+
+  # 7. 賠率分析（莊家心理 & 價值）
+  if (!is.null(m$odds_h) && !is.null(m$odds_a)) {
+    imp_h <- round(1/m$odds_h*100, 1); imp_a <- round(1/m$odds_a*100, 1)
+    vig   <- imp_h + if (!is.null(m$odds_d)) round(1/m$odds_d*100,1) else 0 + imp_a
+    if (sim$hw - imp_h > 8)
+      notes <- c(notes, sprintf('💰 <b>主勝具價值</b>：模型主勝 %.0f%% > 莊家隱含 %.0f%%，超額 %.0f%%，建議關注主勝或讓球盤。', sim$hw, imp_h, sim$hw-imp_h))
+    else if (sim$aw - imp_a > 8)
+      notes <- c(notes, sprintf('💰 <b>客勝具價值</b>：模型客勝 %.0f%% > 莊家隱含 %.0f%%，超額 %.0f%%，賠率偏低值得留意。', sim$aw, imp_a, sim$aw-imp_a))
+    else
+      notes <- c(notes, sprintf('⚖️ <b>賠率合理</b>：莊家賠率（主 %.2f / 客 %.2f）與模型機率吻合，無明顯套利空間。', m$odds_h, m$odds_a))
+  }
+
+  # 8. 前幾天賽果影響（根據 form）
+  hf <- recent_form[[ht]]; af <- recent_form[[at]]
+  if (length(hf) > 0 || length(af) > 0) {
+    hform <- if (length(hf) > 0) paste(hf, collapse="") else "–"
+    aform <- if (length(af) > 0) paste(af, collapse="") else "–"
+    h_hot <- sum(hf == "W") >= 2; a_hot <- sum(af == "W") >= 2
+    h_cold <- sum(hf == "L") >= 2; a_cold <- sum(af == "L") >= 2
+    if (h_hot) notes <- c(notes, sprintf('🔴 <b>近況火熱</b>：%s 近期 %s，士氣高昂，莊家可能調低主勝賠率，需確認是否已反映。', ht, hform))
+    if (a_hot) notes <- c(notes, sprintf('🔵 <b>黑馬狀態</b>：%s 近期 %s 表現亮眼，莊家可能尚未完全調整賠率。', at, aform))
+    if (h_cold && !a_cold) notes <- c(notes, sprintf('⚠️ <b>主場狀態堪憂</b>：%s 近期 %s，低迷狀態下主場優勢可能縮水。', ht, hform))
+  }
+
+  if (length(notes) == 0) return("")
+  items <- paste(sapply(notes, function(n) sprintf('<div class="ai-item">%s</div>', n)), collapse="")
+  sprintf('<div class="ai-box"><div class="ai-title">🧠 運彩投資專家分析</div>%s</div>', items)
+}
+
 match_html <- function(m, sim) {
   hf  <- FLAG_MAP[m$home]; af <- FLAG_MAP[m$away]
   tc  <- temp_class(m$temp)
@@ -176,6 +258,7 @@ match_html <- function(m, sim) {
   odds_a <- if (!is.null(m$odds_a)) sprintf("%.2f", m$odds_a) else "N/A"
   utag   <- upset_tag(sim, m$home, m$away)
   vtip   <- value_tip(sim, m)
+  analysis <- expert_analysis(m, sim)
 
   pills <- paste(sapply(seq_along(sim$top5), function(i) {
     s   <- sim$top5[[i]]
@@ -229,7 +312,7 @@ match_html <- function(m, sim) {
     <div class="scores-title">最可能比分（10萬次模擬）</div>
     <div class="scores-grid">%s</div>
   </div>
-  %s%s
+  %s%s%s
 </div>',
     m$venue, m$group, tc$cls, tc$label,
     hf, m$home, sim$xg_h, form_html(m$home),
@@ -239,8 +322,40 @@ match_html <- function(m, sim) {
     m$home, odds_h,
     "平", odds_d,
     m$away, odds_a,
-    pills, utag, vtip)
+    pills, utag, vtip, analysis)
 }
+
+# ── 戰術風格資料 ──────────────────────────────────────────
+TACTICAL <- c(
+  Germany="傳控壓迫", "Ivory Coast"="快速反擊", Ecuador="穩守反擊",
+  Curacao="防守型", Netherlands="全攻全守", Sweden="穩守反擊",
+  Japan="高壓逼搶", Tunisia="防守反擊", Spain="tiki-taka控球",
+  "Saudi Arabia"="防守型", Uruguay="強硬防反", "Cape Verde"="防守反擊",
+  Belgium="個人能力型", Iran="低位防守", "New Zealand"="穩守反擊",
+  Egypt="防反為主", Argentina="快速反擊+個人能力", Austria="積極壓迫",
+  Jordan="低位防守", Algeria="防守反擊", France="全能均衡型",
+  Iraq="防守反擊", Norway="高空球+直接打法", Senegal="快速反擊",
+  Portugal="控球+個人能力", Uzbekistan="穩守反擊",
+  Colombia="快速反擊", "DR Congo"="防守反擊",
+  England="直接打法", Ghana="快速反擊",
+  Panama="低位防守", Croatia="中場控制",
+  Mexico="快速反擊", "South Africa"="防守反擊",
+  "South Korea"="高壓逼搶", Czechia="穩守反擊",
+  Canada="積極壓迫", Switzerland="防守反擊",
+  Bosnia="直接打法", Qatar="控球型",
+  Brazil="技術控球", Morocco="低位防守",
+  Scotland="直接打法", Haiti="防守反擊",
+  USA="積極壓迫", Turkey="快速反擊", Australia="積極壓迫",
+  Paraguay="穩守反擊"
+)
+
+# ── 全域已踢場數（供分析函數使用）────────────────────────
+played_matches <- Filter(function(x) isTRUE(x$played), matches)
+played_count_g <- table(c(
+  sapply(played_matches, function(x) x$home),
+  sapply(played_matches, function(x) x$away)
+))
+get_played_g <- function(t) { v <- played_count_g[t]; if (!is.na(v)) as.integer(v) else 0L }
 
 # ── 執行模擬 ──────────────────────────────────────────────
 remaining <- Filter(function(m) !isTRUE(m$played), matches)
@@ -249,12 +364,11 @@ today     <- format(Sys.Date(), "%Y-%m-%d")
 dates     <- sort(unique(sapply(remaining, function(m) m$date)))
 cat(sprintf("[SIM] %d matches to simulate...\n", length(remaining)))
 
-# UPCOMING JS 陣列（使用 teams.json 內的 ko 開賽時間戳）
-upcoming_js <- paste0("[", paste(sapply(remaining, function(m) {
-  ko <- if (!is.null(m$ko)) as.numeric(m$ko) else {
-    as.integer(as.Date(m$date) - as.Date("1970-01-01")) * 86400 + 23 * 3600
-  }
-  ts_ms <- ko * 1000
+# UPCOMING JS 陣列（按 ko 時間排序）
+get_ko <- function(m) if (!is.null(m$ko)) as.numeric(m$ko) else as.integer(as.Date(m$date) - as.Date("1970-01-01")) * 86400 + 23*3600
+remaining_sorted <- remaining[order(sapply(remaining, get_ko))]
+upcoming_js <- paste0("[", paste(sapply(remaining_sorted, function(m) {
+  ts_ms <- get_ko(m) * 1000
   sprintf('{"date":"%s","home":"%s","away":"%s","ts":%s}',
           m$date, m$home, m$away, format(ts_ms, scientific=FALSE))
 }), collapse=","), "]")
@@ -268,16 +382,9 @@ tab_btns <- paste(sapply(seq_along(dates), function(i) {
 sections <- paste(sapply(seq_along(dates), function(i) {
   d  <- dates[i]; label <- DATE_LABELS[d]
   ms <- Filter(function(m) m$date == d, remaining)
-  # 計算各隊已踢場數
-  played_count <- table(c(
-    sapply(Filter(function(x) isTRUE(x$played), matches), function(x) x$home),
-    sapply(Filter(function(x) isTRUE(x$played), matches), function(x) x$away)
-  ))
-  get_played <- function(t) if (!is.null(played_count[t])) as.integer(played_count[t]) else 0L
-
   cards <- paste(sapply(ms, function(m) {
     heat <- ifelse(is.null(m$heat), 0, m$heat)
-    hp   <- get_played(m$home); ap <- get_played(m$away)
+    hp   <- get_played_g(m$home); ap <- get_played_g(m$away)
     sim  <- simulate_match(m$home, m$away, heat, isTRUE(m$altitude), hp, ap)
     cat(sprintf("  ✓ %s vs %s  xG[%.2f-%.2f]  %s%%-%s%%-%s%%\n",
                 m$home, m$away, sim$xg_h, sim$xg_a, sim$hw, sim$dr, sim$aw))
@@ -434,6 +541,11 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 .upset-high{display:block;margin:.1rem 1rem .3rem;padding:4px 10px;border-radius:6px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);font-size:11px;color:#f87171;font-weight:600}
 .upset-med{display:block;margin:.1rem 1rem .3rem;padding:4px 10px;border-radius:6px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);font-size:11px;color:#fcd34d;font-weight:600}
 .value-tip{margin:.1rem 1rem .3rem;padding:5px 10px;border-radius:6px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);font-size:11px;color:#34d399}
+.ai-box{margin:.3rem 1rem .8rem;padding:10px 12px;border-radius:10px;background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.15)}
+.ai-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#60a5fa;margin-bottom:6px}
+.ai-item{font-size:11px;color:#cbd5e1;line-height:1.6;padding:3px 0;border-bottom:.5px solid rgba(255,255,255,.05)}
+.ai-item:last-child{border-bottom:none}
+.ai-item b{color:#e2e8f0}
 .disc{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:8px 12px;font-size:11px;color:#fcd34d;margin:.4rem 0;display:flex;gap:6px}
 .footer{text-align:center;padding:2rem 1rem 1rem;font-size:11px;color:var(--muted);line-height:1.9;border-top:1px solid var(--border);margin-top:1.5rem}
 .footer strong{color:#60a5fa}
