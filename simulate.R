@@ -1,7 +1,7 @@
 library(jsonlite)
 
 set.seed(2026)
-N <- 1000000
+N <- 100000
 w <- 0.15   # Bayesian 更新權重（低權重避免單場極端結果扭曲）
 
 cfg      <- fromJSON("data/teams.json", simplifyVector = FALSE)
@@ -179,7 +179,7 @@ match_html <- function(m, sim) {
     <div class="odds-chip"><div class="odds-lbl">客勝 (%s)</div><div class="odds-val">%s</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
     <div class="scores-grid">%s</div>
   </div>
 </div>',
@@ -203,10 +203,10 @@ cat(sprintf("[SIM] %d matches to simulate...\n", length(remaining)))
 
 # UPCOMING JS 陣列（UTC 23:00 開賽估算）
 upcoming_js <- paste0("[", paste(sapply(remaining, function(m) {
-  # 各賽場約 19:00-21:00 當地時間開賽，換算 UTC 大約是 23:00-03:00
-  # 統一用當天 UTC 20:00（台灣時間隔天 04:00）作為估算基準
+  # 北美賽事約 UTC 00:00-04:00（台灣時間 08:00-12:00），
+  # 統一用當天 UTC 01:00（台灣時間當天 09:00）作為估算基準
   days_since_epoch <- as.integer(as.Date(m$date) - as.Date("1970-01-01"))
-  ts_ms <- (days_since_epoch * 86400L + 20L * 3600L) * 1000
+  ts_ms <- (days_since_epoch * 86400L + 1L * 3600L) * 1000
   sprintf('{"date":"%s","home":"%s","away":"%s","ts":%s}',
           m$date, m$home, m$away, format(ts_ms, scientific=FALSE))
 }), collapse=","), "]")
@@ -232,7 +232,7 @@ sections <- paste(sapply(seq_along(dates), function(i) {
           d, disp, label, cards)
 }), collapse="\n")
 
-# ── 倒數計時 JS（全用雙引號，避免 R 解析衝突）────────────────
+# ── 倒數計時 JS（台灣時間 UTC+8 顯示）───────────────────────
 cd_js <- paste(
   "const UPCOMING =", upcoming_js, ";",
   "function nextMs(){",
@@ -241,28 +241,34 @@ cd_js <- paste(
   "  var t=f[0].ts; return f.filter(function(m){return m.ts===t;});",
   "}",
   "function pad2(n){return String(n).padStart(2,'0');}",
+  "function toTW(ts){",
+  "  var d=new Date(ts+8*3600000);",
+  "  return (d.getUTCMonth()+1)+'/'+(d.getUTCDate())+' '+pad2(d.getUTCHours())+':'+pad2(d.getUTCMinutes());",
+  "}",
   "function renderCD(){",
   "  var w=document.getElementById('cd-wrap'); if(!w) return;",
   "  var ms=nextMs();",
   "  if(!ms){w.innerHTML='<div class=\"cd-done\">\U0001F3C6 小組賽已全部結束！</div>';return;}",
   "  var diff=ms[0].ts-Date.now();",
-  "  if(diff<0){w.innerHTML='<div class=\"cd-done\">比賽進行中... ⚙️</div>';return;}",
-  "  var d=Math.floor(diff/86400000);",
-  "  var h=Math.floor((diff%86400000)/3600000);",
-  "  var m=Math.floor((diff%3600000)/60000);",
-  "  var s=Math.floor((diff%60000)/1000);",
-  "  var list=ms.map(function(x){return x.home+' vs '+x.away;}).join(' · ');",
+  "  if(diff<0){w.innerHTML='<div class=\"cd-done\">⚽ 比賽進行中...</div>';return;}",
+  "  var dd=Math.floor(diff/86400000);",
+  "  var hh=Math.floor((diff%86400000)/3600000);",
+  "  var mm=Math.floor((diff%3600000)/60000);",
+  "  var ss=Math.floor((diff%60000)/1000);",
+  "  var list=ms.map(function(x){return x.home+' vs '+x.away;}).join(' &middot; ');",
+  "  var twt=toTW(ms[0].ts);",
   "  w.innerHTML=",
   "    '<div class=\"cd-label\">⏱ 下一場比賽倒數</div>'+",
   "    '<div class=\"cd-match\">'+list+'</div>'+",
+  "    '<div class=\"cd-twtime\">\U0001F1F9\U0001F1FC 台灣時間 '+twt+' 開賽（估）</div>'+",
   "    '<div class=\"cd-digits\">'+",
-  "    '<div class=\"cd-unit\"><div class=\"cd-num\">'+pad2(d)+'</div><div class=\"cd-lbl\">天</div></div>'+",
+  "    '<div class=\"cd-unit\"><div class=\"cd-num\">'+pad2(dd)+'</div><div class=\"cd-lbl\">天</div></div>'+",
   "    '<div class=\"cd-sep\">:</div>'+",
-  "    '<div class=\"cd-unit\"><div class=\"cd-num\">'+pad2(h)+'</div><div class=\"cd-lbl\">時</div></div>'+",
+  "    '<div class=\"cd-unit\"><div class=\"cd-num\">'+pad2(hh)+'</div><div class=\"cd-lbl\">時</div></div>'+",
   "    '<div class=\"cd-sep\">:</div>'+",
-  "    '<div class=\"cd-unit\"><div class=\"cd-num\">'+pad2(m)+'</div><div class=\"cd-lbl\">分</div></div>'+",
+  "    '<div class=\"cd-unit\"><div class=\"cd-num\">'+pad2(mm)+'</div><div class=\"cd-lbl\">分</div></div>'+",
   "    '<div class=\"cd-sep\">:</div>'+",
-  "    '<div class=\"cd-unit\"><div class=\"cd-num\">'+pad2(s)+'</div><div class=\"cd-lbl\">秒</div></div>'+",
+  "    '<div class=\"cd-unit\"><div class=\"cd-num\">'+pad2(ss)+'</div><div class=\"cd-lbl\">秒</div></div>'+",
   "    '</div>'+(ms.length>1?'<div class=\"cd-multi\">同時段共 '+ms.length+' 場比賽</div>':'');",
   "}",
   "renderCD(); setInterval(renderCD,1000);",
@@ -303,6 +309,7 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 .cd-sep{font-size:1.6rem;font-weight:700;color:rgba(139,92,246,.5);line-height:1.15}
 .cd-lbl{font-size:9px;color:var(--muted);margin-top:2px}
 .cd-done{font-size:1rem;font-weight:600;color:#34d399;padding:.5rem}
+.cd-twtime{font-size:11px;color:#34d399;margin-bottom:.6rem;font-weight:500}
 .cd-multi{font-size:11px;color:var(--muted);margin-top:.5rem}
 /* tabs */
 .tabs{display:flex;gap:6px;padding:1rem 0 .6rem;overflow-x:auto;scrollbar-width:none}
@@ -377,11 +384,11 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 <div class="hero">
   <div class="badge"><span class="dot"></span> 每日自動更新 · xG Poisson 模型</div>
   <h1>2026 FIFA 世界盃<br>小組賽比分預測 <em>AI</em></h1>
-  <p>以 xG 預期進球値為基礎，透過 Bayesian 將賽果動態更新各隊攻防係數，100萬次 Poisson 模擬導出比分機率分布。</p>
+  <p>以 xG 預期進球値為基礎，透過 Bayesian 將賽果動態更新各隊攻防係數，10萬次 Poisson 模擬導出比分機率分布。</p>
   <p class="update-info">最後更新：<strong>', today, '</strong>｜已完成 ', played_n, ' 場 · 剩餘 ', length(remaining), ' 場</p>
   <div class="stats-row">
     <div class="stat"><div class="n">', length(remaining), '</div><div class="l">場剩餘</div></div>
-    <div class="stat"><div class="n">100萬</div><div class="l">次/場模擬</div></div>
+    <div class="stat"><div class="n">10萬</div><div class="l">次/場模擬</div></div>
     <div class="stat"><div class="n">xG+</div><div class="l">防守修正版</div></div>
   </div>
 </div>

@@ -32,6 +32,7 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 .cd-sep{font-size:1.6rem;font-weight:700;color:rgba(139,92,246,.5);line-height:1.15}
 .cd-lbl{font-size:9px;color:var(--muted);margin-top:2px}
 .cd-done{font-size:1rem;font-weight:600;color:#34d399;padding:.5rem}
+.cd-twtime{font-size:11px;color:#34d399;margin-bottom:.6rem;font-weight:500}
 .cd-multi{font-size:11px;color:var(--muted);margin-top:.5rem}
 /* tabs */
 .tabs{display:flex;gap:6px;padding:1rem 0 .6rem;overflow-x:auto;scrollbar-width:none}
@@ -106,11 +107,11 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 <div class="hero">
   <div class="badge"><span class="dot"></span> 每日自動更新 · xG Poisson 模型</div>
   <h1>2026 FIFA 世界盃<br>小組賽比分預測 <em>AI</em></h1>
-  <p>以 xG 預期進球値為基礎，透過 Bayesian 將賽果動態更新各隊攻防係數，100萬次 Poisson 模擬導出比分機率分布。</p>
+  <p>以 xG 預期進球値為基礎，透過 Bayesian 將賽果動態更新各隊攻防係數，10萬次 Poisson 模擬導出比分機率分布。</p>
   <p class="update-info">最後更新：<strong>2026-06-20</strong>｜已完成 27 場 · 剩餘 40 場</p>
   <div class="stats-row">
     <div class="stat"><div class="n">40</div><div class="l">場剩餘</div></div>
-    <div class="stat"><div class="n">100萬</div><div class="l">次/場模擬</div></div>
+    <div class="stat"><div class="n">10萬</div><div class="l">次/場模擬</div></div>
     <div class="stat"><div class="n">xG+</div><div class="l">防守修正版</div></div>
   </div>
 </div>
@@ -151,13 +152,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:28.5%"></div>
-      <div class="prob-seg seg-draw" style="width:20.6%"></div>
+      <div class="prob-seg seg-home" style="width:28.8%"></div>
+      <div class="prob-seg seg-draw" style="width:20.3%"></div>
       <div class="prob-seg seg-away" style="width:50.9%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>28.5%</strong> Netherlands</span>
-      <span class="pl-draw"><strong>20.6%</strong> 平局</span>
+      <span class="pl-home"><strong>28.8%</strong> Netherlands</span>
+      <span class="pl-draw"><strong>20.3%</strong> 平局</span>
       <span class="pl-away"><strong>50.9%</strong> Sweden</span>
     </div>
   </div>
@@ -167,8 +168,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Sweden)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">8.65%</div><span class="sres ra">Sweden</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">7.89%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-2</div><div class="spct">6.99%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">6.32%</div><span class="sres rh">Netherlands</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-3</div><div class="spct">6.32%</div><span class="sres ra">Sweden</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">8.48%</div><span class="sres ra">Sweden</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">7.98%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-2</div><div class="spct">6.71%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">6.43%</div><span class="sres rh">Netherlands</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-3</div><div class="spct">6.4%</div><span class="sres ra">Sweden</span></div></div>
   </div>
 </div>
 
@@ -197,13 +198,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:39.1%"></div>
-      <div class="prob-seg seg-draw" style="width:28.5%"></div>
+      <div class="prob-seg seg-home" style="width:39.2%"></div>
+      <div class="prob-seg seg-draw" style="width:28.4%"></div>
       <div class="prob-seg seg-away" style="width:32.4%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>39.1%</strong> Germany</span>
-      <span class="pl-draw"><strong>28.5%</strong> 平局</span>
+      <span class="pl-home"><strong>39.2%</strong> Germany</span>
+      <span class="pl-draw"><strong>28.4%</strong> 平局</span>
       <span class="pl-away"><strong>32.4%</strong> Ivory Coast</span>
     </div>
   </div>
@@ -213,8 +214,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Ivory Coast)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">13.25%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">12.31%</div><span class="sres rh">Germany</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">10.94%</div><span class="sres ra">Ivory Coast</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">10.2%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-1</div><div class="spct">7.99%</div><span class="sres rh">Germany</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">13.28%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">12.29%</div><span class="sres rh">Germany</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">11.05%</div><span class="sres ra">Ivory Coast</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">10.21%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-1</div><div class="spct">8.01%</div><span class="sres rh">Germany</span></div></div>
   </div>
 </div>
 
@@ -243,14 +244,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:45%"></div>
-      <div class="prob-seg seg-draw" style="width:35.8%"></div>
-      <div class="prob-seg seg-away" style="width:19.2%"></div>
+      <div class="prob-seg seg-home" style="width:44.8%"></div>
+      <div class="prob-seg seg-draw" style="width:35.9%"></div>
+      <div class="prob-seg seg-away" style="width:19.4%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>45%</strong> Ecuador</span>
-      <span class="pl-draw"><strong>35.8%</strong> 平局</span>
-      <span class="pl-away"><strong>19.2%</strong> Curacao</span>
+      <span class="pl-home"><strong>44.8%</strong> Ecuador</span>
+      <span class="pl-draw"><strong>35.9%</strong> 平局</span>
+      <span class="pl-away"><strong>19.4%</strong> Curacao</span>
     </div>
   </div>
   <div class="odds-row">
@@ -259,8 +260,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Curacao)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">23.09%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">22.05%</div><span class="sres rh">Ecuador</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">11.84%</div><span class="sres ra">Curacao</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">11.29%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">10.49%</div><span class="sres rh">Ecuador</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">23.02%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">21.87%</div><span class="sres rh">Ecuador</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">11.79%</div><span class="sres ra">Curacao</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">11.39%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">10.48%</div><span class="sres rh">Ecuador</span></div></div>
   </div>
 </div>
 
@@ -290,12 +291,12 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="prob-section">
     <div class="prob-bar-wrap">
       <div class="prob-seg seg-home" style="width:65.1%"></div>
-      <div class="prob-seg seg-draw" style="width:22.1%"></div>
+      <div class="prob-seg seg-draw" style="width:22%"></div>
       <div class="prob-seg seg-away" style="width:12.8%"></div>
     </div>
     <div class="prob-labels">
       <span class="pl-home"><strong>65.1%</strong> Japan</span>
-      <span class="pl-draw"><strong>22.1%</strong> 平局</span>
+      <span class="pl-draw"><strong>22%</strong> 平局</span>
       <span class="pl-away"><strong>12.8%</strong> Tunisia</span>
     </div>
   </div>
@@ -305,8 +306,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Tunisia)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">15.55%</div><span class="sres rh">Japan</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">13.97%</div><span class="sres rh">Japan</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">10.11%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">9.08%</div><span class="sres rh">Japan</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-0</div><div class="spct">8.62%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">15.65%</div><span class="sres rh">Japan</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">14.05%</div><span class="sres rh">Japan</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">10.12%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">9.01%</div><span class="sres rh">Japan</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-0</div><div class="spct">8.54%</div><span class="sres rd">平局</span></div></div>
   </div>
 </div></div>
 <div id="day-2026-06-21" class="day-section" style="display:none"><div class="day-label">6月21日 — Group G,H 第二輪</div>
@@ -335,14 +336,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:60%"></div>
-      <div class="prob-seg seg-draw" style="width:27.2%"></div>
-      <div class="prob-seg seg-away" style="width:12.8%"></div>
+      <div class="prob-seg seg-home" style="width:59.9%"></div>
+      <div class="prob-seg seg-draw" style="width:27.1%"></div>
+      <div class="prob-seg seg-away" style="width:13%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>60%</strong> Spain</span>
-      <span class="pl-draw"><strong>27.2%</strong> 平局</span>
-      <span class="pl-away"><strong>12.8%</strong> Saudi Arabia</span>
+      <span class="pl-home"><strong>59.9%</strong> Spain</span>
+      <span class="pl-draw"><strong>27.1%</strong> 平局</span>
+      <span class="pl-away"><strong>13%</strong> Saudi Arabia</span>
     </div>
   </div>
   <div class="odds-row">
@@ -351,8 +352,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Saudi Arabia)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">21.11%</div><span class="sres rh">Spain</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">14.95%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-0</div><div class="spct">14.94%</div><span class="sres rh">Spain</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">10.31%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-1</div><div class="spct">7.34%</div><span class="sres ra">Saudi Arabia</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">21.26%</div><span class="sres rh">Spain</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">14.96%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-0</div><div class="spct">14.81%</div><span class="sres rh">Spain</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">10.25%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-1</div><div class="spct">7.43%</div><span class="sres ra">Saudi Arabia</span></div></div>
   </div>
 </div>
 
@@ -381,13 +382,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:46.1%"></div>
-      <div class="prob-seg seg-draw" style="width:25.7%"></div>
+      <div class="prob-seg seg-home" style="width:46%"></div>
+      <div class="prob-seg seg-draw" style="width:25.8%"></div>
       <div class="prob-seg seg-away" style="width:28.2%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>46.1%</strong> Belgium</span>
-      <span class="pl-draw"><strong>25.7%</strong> 平局</span>
+      <span class="pl-home"><strong>46%</strong> Belgium</span>
+      <span class="pl-draw"><strong>25.8%</strong> 平局</span>
       <span class="pl-away"><strong>28.2%</strong> Iran</span>
     </div>
   </div>
@@ -397,8 +398,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Iran)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">12.24%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">11.08%</div><span class="sres rh">Belgium</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-1</div><div class="spct">9.14%</div><span class="sres rh">Belgium</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-0</div><div class="spct">8.28%</div><span class="sres rh">Belgium</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-1</div><div class="spct">8.2%</div><span class="sres ra">Iran</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">12.32%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">10.74%</div><span class="sres rh">Belgium</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-1</div><div class="spct">9.21%</div><span class="sres rh">Belgium</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-0</div><div class="spct">8.45%</div><span class="sres rh">Belgium</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-1</div><div class="spct">8.16%</div><span class="sres ra">Iran</span></div></div>
   </div>
 </div>
 
@@ -427,14 +428,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:24.1%"></div>
-      <div class="prob-seg seg-draw" style="width:46.8%"></div>
-      <div class="prob-seg seg-away" style="width:29%"></div>
+      <div class="prob-seg seg-home" style="width:24.3%"></div>
+      <div class="prob-seg seg-draw" style="width:46.6%"></div>
+      <div class="prob-seg seg-away" style="width:29.2%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>24.1%</strong> Uruguay</span>
-      <span class="pl-draw"><strong>46.8%</strong> 平局</span>
-      <span class="pl-away"><strong>29%</strong> Cape Verde</span>
+      <span class="pl-home"><strong>24.3%</strong> Uruguay</span>
+      <span class="pl-draw"><strong>46.6%</strong> 平局</span>
+      <span class="pl-away"><strong>29.2%</strong> Cape Verde</span>
     </div>
   </div>
   <div class="odds-row">
@@ -443,8 +444,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Cape Verde)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">37.23%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">19.71%</div><span class="sres ra">Cape Verde</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">17.03%</div><span class="sres rh">Uruguay</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">9.03%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-2</div><div class="spct">5.25%</div><span class="sres ra">Cape Verde</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">36.89%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">19.76%</div><span class="sres ra">Cape Verde</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">17.15%</div><span class="sres rh">Uruguay</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">9.11%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-2</div><div class="spct">5.3%</div><span class="sres ra">Cape Verde</span></div></div>
   </div>
 </div>
 
@@ -473,14 +474,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:33.4%"></div>
-      <div class="prob-seg seg-draw" style="width:31.2%"></div>
-      <div class="prob-seg seg-away" style="width:35.4%"></div>
+      <div class="prob-seg seg-home" style="width:33.3%"></div>
+      <div class="prob-seg seg-draw" style="width:31.1%"></div>
+      <div class="prob-seg seg-away" style="width:35.6%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>33.4%</strong> New Zealand</span>
-      <span class="pl-draw"><strong>31.2%</strong> 平局</span>
-      <span class="pl-away"><strong>35.4%</strong> Egypt</span>
+      <span class="pl-home"><strong>33.3%</strong> New Zealand</span>
+      <span class="pl-draw"><strong>31.1%</strong> 平局</span>
+      <span class="pl-away"><strong>35.6%</strong> Egypt</span>
     </div>
   </div>
   <div class="odds-row">
@@ -489,8 +490,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Egypt)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">14.13%</div><span class="sres ra">Egypt</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">14.08%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">13.6%</div><span class="sres rh">New Zealand</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">13.52%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-2</div><div class="spct">7.04%</div><span class="sres ra">Egypt</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">14.18%</div><span class="sres ra">Egypt</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">13.99%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">13.66%</div><span class="sres rh">New Zealand</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">13.47%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-2</div><div class="spct">7.07%</div><span class="sres ra">Egypt</span></div></div>
   </div>
 </div></div>
 <div id="day-2026-06-22" class="day-section" style="display:none"><div class="day-label">6月22日 — Group I,J 第二輪</div>
@@ -519,13 +520,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:65.5%"></div>
-      <div class="prob-seg seg-draw" style="width:19.5%"></div>
+      <div class="prob-seg seg-home" style="width:65.3%"></div>
+      <div class="prob-seg seg-draw" style="width:19.7%"></div>
       <div class="prob-seg seg-away" style="width:15%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>65.5%</strong> Argentina</span>
-      <span class="pl-draw"><strong>19.5%</strong> 平局</span>
+      <span class="pl-home"><strong>65.3%</strong> Argentina</span>
+      <span class="pl-draw"><strong>19.7%</strong> 平局</span>
       <span class="pl-away"><strong>15%</strong> Austria</span>
     </div>
   </div>
@@ -535,8 +536,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Austria)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">10.73%</div><span class="sres rh">Argentina</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">9.99%</div><span class="sres rh">Argentina</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-1</div><div class="spct">9.84%</div><span class="sres rh">Argentina</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">9.17%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">3-0</div><div class="spct">7.68%</div><span class="sres rh">Argentina</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">10.61%</div><span class="sres rh">Argentina</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-1</div><div class="spct">10%</div><span class="sres rh">Argentina</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">9.97%</div><span class="sres rh">Argentina</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">9.21%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">3-0</div><div class="spct">7.62%</div><span class="sres rh">Argentina</span></div></div>
   </div>
 </div>
 
@@ -565,14 +566,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:74.5%"></div>
-      <div class="prob-seg seg-draw" style="width:16.8%"></div>
-      <div class="prob-seg seg-away" style="width:8.8%"></div>
+      <div class="prob-seg seg-home" style="width:74.4%"></div>
+      <div class="prob-seg seg-draw" style="width:16.9%"></div>
+      <div class="prob-seg seg-away" style="width:8.7%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>74.5%</strong> France</span>
-      <span class="pl-draw"><strong>16.8%</strong> 平局</span>
-      <span class="pl-away"><strong>8.8%</strong> Iraq</span>
+      <span class="pl-home"><strong>74.4%</strong> France</span>
+      <span class="pl-draw"><strong>16.9%</strong> 平局</span>
+      <span class="pl-away"><strong>8.7%</strong> Iraq</span>
     </div>
   </div>
   <div class="odds-row">
@@ -581,8 +582,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Iraq)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">14.14%</div><span class="sres rh">France</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">12.64%</div><span class="sres rh">France</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">3-0</div><div class="spct">10.7%</div><span class="sres rh">France</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">8.95%</div><span class="sres rh">France</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.91%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">14.18%</div><span class="sres rh">France</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">12.67%</div><span class="sres rh">France</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">3-0</div><div class="spct">10.85%</div><span class="sres rh">France</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">8.87%</div><span class="sres rh">France</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.84%</div><span class="sres rd">平局</span></div></div>
   </div>
 </div>
 
@@ -611,13 +612,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:66%"></div>
-      <div class="prob-seg seg-draw" style="width:18.4%"></div>
+      <div class="prob-seg seg-home" style="width:66.2%"></div>
+      <div class="prob-seg seg-draw" style="width:18.2%"></div>
       <div class="prob-seg seg-away" style="width:15.6%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>66%</strong> Norway</span>
-      <span class="pl-draw"><strong>18.4%</strong> 平局</span>
+      <span class="pl-home"><strong>66.2%</strong> Norway</span>
+      <span class="pl-draw"><strong>18.2%</strong> 平局</span>
       <span class="pl-away"><strong>15.6%</strong> Senegal</span>
     </div>
   </div>
@@ -627,8 +628,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Senegal)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-1</div><div class="spct">9.78%</div><span class="sres rh">Norway</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">9.36%</div><span class="sres rh">Norway</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">8.33%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-0</div><div class="spct">8.04%</div><span class="sres rh">Norway</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">3-1</div><div class="spct">7.53%</div><span class="sres rh">Norway</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-1</div><div class="spct">9.85%</div><span class="sres rh">Norway</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">9.44%</div><span class="sres rh">Norway</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">8.26%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-0</div><div class="spct">8.07%</div><span class="sres rh">Norway</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">3-1</div><div class="spct">7.44%</div><span class="sres rh">Norway</span></div></div>
   </div>
 </div>
 
@@ -658,13 +659,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="prob-section">
     <div class="prob-bar-wrap">
       <div class="prob-seg seg-home" style="width:35%"></div>
-      <div class="prob-seg seg-draw" style="width:39.1%"></div>
-      <div class="prob-seg seg-away" style="width:25.9%"></div>
+      <div class="prob-seg seg-draw" style="width:39.3%"></div>
+      <div class="prob-seg seg-away" style="width:25.7%"></div>
     </div>
     <div class="prob-labels">
       <span class="pl-home"><strong>35%</strong> Jordan</span>
-      <span class="pl-draw"><strong>39.1%</strong> 平局</span>
-      <span class="pl-away"><strong>25.9%</strong> Algeria</span>
+      <span class="pl-draw"><strong>39.3%</strong> 平局</span>
+      <span class="pl-away"><strong>25.7%</strong> Algeria</span>
     </div>
   </div>
   <div class="odds-row">
@@ -673,8 +674,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Algeria)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">26.19%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">19.46%</div><span class="sres rh">Jordan</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">15.55%</div><span class="sres ra">Algeria</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">11.58%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">7.27%</div><span class="sres rh">Jordan</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">26.35%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">19.56%</div><span class="sres rh">Jordan</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">15.63%</div><span class="sres ra">Algeria</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">11.63%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">7.27%</div><span class="sres rh">Jordan</span></div></div>
   </div>
 </div></div>
 <div id="day-2026-06-23" class="day-section" style="display:none"><div class="day-label">6月23日 — Group K,L 第二輪</div>
@@ -703,13 +704,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:58.9%"></div>
-      <div class="prob-seg seg-draw" style="width:25.2%"></div>
+      <div class="prob-seg seg-home" style="width:59%"></div>
+      <div class="prob-seg seg-draw" style="width:25.1%"></div>
       <div class="prob-seg seg-away" style="width:15.9%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>58.9%</strong> Portugal</span>
-      <span class="pl-draw"><strong>25.2%</strong> 平局</span>
+      <span class="pl-home"><strong>59%</strong> Portugal</span>
+      <span class="pl-draw"><strong>25.1%</strong> 平局</span>
       <span class="pl-away"><strong>15.9%</strong> Uzbekistan</span>
     </div>
   </div>
@@ -719,8 +720,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Uzbekistan)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">16.72%</div><span class="sres rh">Portugal</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">13.04%</div><span class="sres rh">Portugal</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">11.23%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">10.63%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-1</div><div class="spct">8.77%</div><span class="sres rh">Portugal</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">16.76%</div><span class="sres rh">Portugal</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">13.14%</div><span class="sres rh">Portugal</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">11.09%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">10.52%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-1</div><div class="spct">8.82%</div><span class="sres rh">Portugal</span></div></div>
   </div>
 </div>
 
@@ -749,14 +750,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:42.6%"></div>
-      <div class="prob-seg seg-draw" style="width:28.8%"></div>
-      <div class="prob-seg seg-away" style="width:28.6%"></div>
+      <div class="prob-seg seg-home" style="width:42.5%"></div>
+      <div class="prob-seg seg-draw" style="width:28.7%"></div>
+      <div class="prob-seg seg-away" style="width:28.8%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>42.6%</strong> England</span>
-      <span class="pl-draw"><strong>28.8%</strong> 平局</span>
-      <span class="pl-away"><strong>28.6%</strong> Ghana</span>
+      <span class="pl-home"><strong>42.5%</strong> England</span>
+      <span class="pl-draw"><strong>28.7%</strong> 平局</span>
+      <span class="pl-away"><strong>28.8%</strong> Ghana</span>
     </div>
   </div>
   <div class="odds-row">
@@ -765,8 +766,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Ghana)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">13.63%</div><span class="sres rh">England</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">13.24%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-0</div><div class="spct">11.05%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-1</div><div class="spct">10.57%</div><span class="sres ra">Ghana</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">8.48%</div><span class="sres rh">England</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">13.63%</div><span class="sres rh">England</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">13.17%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-0</div><div class="spct">11.09%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-1</div><div class="spct">10.65%</div><span class="sres ra">Ghana</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">8.49%</div><span class="sres rh">England</span></div></div>
   </div>
 </div>
 
@@ -795,13 +796,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:17.7%"></div>
-      <div class="prob-seg seg-draw" style="width:29.7%"></div>
+      <div class="prob-seg seg-home" style="width:17.5%"></div>
+      <div class="prob-seg seg-draw" style="width:29.9%"></div>
       <div class="prob-seg seg-away" style="width:52.6%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>17.7%</strong> Panama</span>
-      <span class="pl-draw"><strong>29.7%</strong> 平局</span>
+      <span class="pl-home"><strong>17.5%</strong> Panama</span>
+      <span class="pl-draw"><strong>29.9%</strong> 平局</span>
       <span class="pl-away"><strong>52.6%</strong> Croatia</span>
     </div>
   </div>
@@ -811,8 +812,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Croatia)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">19.64%</div><span class="sres ra">Croatia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">15.59%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-2</div><div class="spct">12.38%</div><span class="sres ra">Croatia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">11.76%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-0</div><div class="spct">9.36%</div><span class="sres rh">Panama</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">19.76%</div><span class="sres ra">Croatia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">15.74%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-2</div><div class="spct">12.34%</div><span class="sres ra">Croatia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">11.84%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-0</div><div class="spct">9.13%</div><span class="sres rh">Panama</span></div></div>
   </div>
 </div>
 
@@ -841,14 +842,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:56.7%"></div>
-      <div class="prob-seg seg-draw" style="width:23.9%"></div>
-      <div class="prob-seg seg-away" style="width:19.4%"></div>
+      <div class="prob-seg seg-home" style="width:56.6%"></div>
+      <div class="prob-seg seg-draw" style="width:23.8%"></div>
+      <div class="prob-seg seg-away" style="width:19.6%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>56.7%</strong> Colombia</span>
-      <span class="pl-draw"><strong>23.9%</strong> 平局</span>
-      <span class="pl-away"><strong>19.4%</strong> DR Congo</span>
+      <span class="pl-home"><strong>56.6%</strong> Colombia</span>
+      <span class="pl-draw"><strong>23.8%</strong> 平局</span>
+      <span class="pl-away"><strong>19.6%</strong> DR Congo</span>
     </div>
   </div>
   <div class="odds-row">
@@ -857,8 +858,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (DR Congo)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">12.84%</div><span class="sres rh">Colombia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">11.29%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-0</div><div class="spct">10.89%</div><span class="sres rh">Colombia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">9.62%</div><span class="sres rh">Colombia</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-0</div><div class="spct">7.57%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">12.72%</div><span class="sres rh">Colombia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">11.28%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-0</div><div class="spct">10.96%</div><span class="sres rh">Colombia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">9.55%</div><span class="sres rh">Colombia</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-0</div><div class="spct">7.52%</div><span class="sres rd">平局</span></div></div>
   </div>
 </div></div>
 <div id="day-2026-06-24" class="day-section" style="display:none"><div class="day-label">6月24日 — Group A,B,C 末輪</div>
@@ -887,14 +888,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:16%"></div>
-      <div class="prob-seg seg-draw" style="width:23.8%"></div>
-      <div class="prob-seg seg-away" style="width:60.1%"></div>
+      <div class="prob-seg seg-home" style="width:16.1%"></div>
+      <div class="prob-seg seg-draw" style="width:24%"></div>
+      <div class="prob-seg seg-away" style="width:59.9%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>16%</strong> Czechia</span>
-      <span class="pl-draw"><strong>23.8%</strong> 平局</span>
-      <span class="pl-away"><strong>60.1%</strong> Mexico</span>
+      <span class="pl-home"><strong>16.1%</strong> Czechia</span>
+      <span class="pl-draw"><strong>24%</strong> 平局</span>
+      <span class="pl-away"><strong>59.9%</strong> Mexico</span>
     </div>
   </div>
   <div class="odds-row">
@@ -903,8 +904,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Mexico)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">15.02%</div><span class="sres ra">Mexico</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">12.66%</div><span class="sres ra">Mexico</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">10.99%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-2</div><div class="spct">9.25%</div><span class="sres ra">Mexico</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-0</div><div class="spct">8.96%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">15%</div><span class="sres ra">Mexico</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">12.56%</div><span class="sres ra">Mexico</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">11.07%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-2</div><div class="spct">9.11%</div><span class="sres ra">Mexico</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-0</div><div class="spct">8.95%</div><span class="sres rd">平局</span></div></div>
   </div>
 </div>
 
@@ -934,13 +935,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="prob-section">
     <div class="prob-bar-wrap">
       <div class="prob-seg seg-home" style="width:13.3%"></div>
-      <div class="prob-seg seg-draw" style="width:25.3%"></div>
-      <div class="prob-seg seg-away" style="width:61.5%"></div>
+      <div class="prob-seg seg-draw" style="width:25.4%"></div>
+      <div class="prob-seg seg-away" style="width:61.3%"></div>
     </div>
     <div class="prob-labels">
       <span class="pl-home"><strong>13.3%</strong> South Africa</span>
-      <span class="pl-draw"><strong>25.3%</strong> 平局</span>
-      <span class="pl-away"><strong>61.5%</strong> South Korea</span>
+      <span class="pl-draw"><strong>25.4%</strong> 平局</span>
+      <span class="pl-away"><strong>61.3%</strong> South Korea</span>
     </div>
   </div>
   <div class="odds-row">
@@ -949,8 +950,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (South Korea)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">18.71%</div><span class="sres ra">South Korea</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">14.61%</div><span class="sres ra">South Korea</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-0</div><div class="spct">12.21%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">10.56%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-2</div><div class="spct">8.14%</div><span class="sres ra">South Korea</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">18.67%</div><span class="sres ra">South Korea</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">14.65%</div><span class="sres ra">South Korea</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-0</div><div class="spct">12.32%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">10.54%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-2</div><div class="spct">8.18%</div><span class="sres ra">South Korea</span></div></div>
   </div>
 </div>
 
@@ -980,13 +981,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="prob-section">
     <div class="prob-bar-wrap">
       <div class="prob-seg seg-home" style="width:16.5%"></div>
-      <div class="prob-seg seg-draw" style="width:17.9%"></div>
-      <div class="prob-seg seg-away" style="width:65.6%"></div>
+      <div class="prob-seg seg-draw" style="width:17.8%"></div>
+      <div class="prob-seg seg-away" style="width:65.7%"></div>
     </div>
     <div class="prob-labels">
       <span class="pl-home"><strong>16.5%</strong> Switzerland</span>
-      <span class="pl-draw"><strong>17.9%</strong> 平局</span>
-      <span class="pl-away"><strong>65.6%</strong> Canada</span>
+      <span class="pl-draw"><strong>17.8%</strong> 平局</span>
+      <span class="pl-away"><strong>65.7%</strong> Canada</span>
     </div>
   </div>
   <div class="odds-row">
@@ -995,8 +996,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Canada)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">9.38%</div><span class="sres ra">Canada</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">8.12%</div><span class="sres ra">Canada</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">7.7%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-3</div><div class="spct">7.69%</div><span class="sres ra">Canada</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-1</div><div class="spct">6.65%</div><span class="sres ra">Canada</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">9.49%</div><span class="sres ra">Canada</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">8.22%</div><span class="sres ra">Canada</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">7.75%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-3</div><div class="spct">7.7%</div><span class="sres ra">Canada</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-1</div><div class="spct">6.68%</div><span class="sres ra">Canada</span></div></div>
   </div>
 </div>
 
@@ -1025,13 +1026,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:43.3%"></div>
-      <div class="prob-seg seg-draw" style="width:37.7%"></div>
+      <div class="prob-seg seg-home" style="width:43.4%"></div>
+      <div class="prob-seg seg-draw" style="width:37.6%"></div>
       <div class="prob-seg seg-away" style="width:19%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>43.3%</strong> Bosnia</span>
-      <span class="pl-draw"><strong>37.7%</strong> 平局</span>
+      <span class="pl-home"><strong>43.4%</strong> Bosnia</span>
+      <span class="pl-draw"><strong>37.6%</strong> 平局</span>
       <span class="pl-away"><strong>19%</strong> Qatar</span>
     </div>
   </div>
@@ -1041,8 +1042,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Qatar)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">25.66%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">22.62%</div><span class="sres rh">Bosnia</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">12.26%</div><span class="sres ra">Qatar</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">10.82%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">9.97%</div><span class="sres rh">Bosnia</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">25.53%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">22.58%</div><span class="sres rh">Bosnia</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">12.29%</div><span class="sres ra">Qatar</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">10.84%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">10.14%</div><span class="sres rh">Bosnia</span></div></div>
   </div>
 </div>
 
@@ -1087,8 +1088,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Brazil)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">13.68%</div><span class="sres ra">Brazil</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">13.48%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-0</div><div class="spct">13.39%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-0</div><div class="spct">13.14%</div><span class="sres rh">Scotland</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-2</div><div class="spct">7%</div><span class="sres ra">Brazil</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">13.6%</div><span class="sres ra">Brazil</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">13.58%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-0</div><div class="spct">13.3%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-0</div><div class="spct">13.11%</div><span class="sres rh">Scotland</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-2</div><div class="spct">7.22%</div><span class="sres ra">Brazil</span></div></div>
   </div>
 </div>
 
@@ -1117,14 +1118,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:54.9%"></div>
-      <div class="prob-seg seg-draw" style="width:33%"></div>
-      <div class="prob-seg seg-away" style="width:12.1%"></div>
+      <div class="prob-seg seg-home" style="width:55%"></div>
+      <div class="prob-seg seg-draw" style="width:32.9%"></div>
+      <div class="prob-seg seg-away" style="width:12%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>54.9%</strong> Morocco</span>
-      <span class="pl-draw"><strong>33%</strong> 平局</span>
-      <span class="pl-away"><strong>12.1%</strong> Haiti</span>
+      <span class="pl-home"><strong>55%</strong> Morocco</span>
+      <span class="pl-draw"><strong>32.9%</strong> 平局</span>
+      <span class="pl-away"><strong>12%</strong> Haiti</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1133,8 +1134,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Haiti)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">25.26%</div><span class="sres rh">Morocco</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">22.72%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-0</div><div class="spct">14.13%</div><span class="sres rh">Morocco</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">9.28%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-1</div><div class="spct">8.32%</div><span class="sres ra">Haiti</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">25.36%</div><span class="sres rh">Morocco</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">22.7%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-0</div><div class="spct">14.14%</div><span class="sres rh">Morocco</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">9.25%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-1</div><div class="spct">8.22%</div><span class="sres ra">Haiti</span></div></div>
   </div>
 </div></div>
 <div id="day-2026-06-25" class="day-section" style="display:none"><div class="day-label">6月25日 — Group D,E,F 末輪</div>
@@ -1164,13 +1165,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="prob-section">
     <div class="prob-bar-wrap">
       <div class="prob-seg seg-home" style="width:3.7%"></div>
-      <div class="prob-seg seg-draw" style="width:12.3%"></div>
-      <div class="prob-seg seg-away" style="width:84%"></div>
+      <div class="prob-seg seg-draw" style="width:12.5%"></div>
+      <div class="prob-seg seg-away" style="width:83.8%"></div>
     </div>
     <div class="prob-labels">
       <span class="pl-home"><strong>3.7%</strong> Turkey</span>
-      <span class="pl-draw"><strong>12.3%</strong> 平局</span>
-      <span class="pl-away"><strong>84%</strong> USA</span>
+      <span class="pl-draw"><strong>12.5%</strong> 平局</span>
+      <span class="pl-away"><strong>83.8%</strong> USA</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1179,8 +1180,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (USA)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">18.07%</div><span class="sres ra">USA</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-3</div><div class="spct">14.94%</div><span class="sres ra">USA</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">14.52%</div><span class="sres ra">USA</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-4</div><div class="spct">9.25%</div><span class="sres ra">USA</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-2</div><div class="spct">6.43%</div><span class="sres ra">USA</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">17.95%</div><span class="sres ra">USA</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-3</div><div class="spct">14.97%</div><span class="sres ra">USA</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">14.36%</div><span class="sres ra">USA</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-4</div><div class="spct">9.35%</div><span class="sres ra">USA</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-2</div><div class="spct">6.39%</div><span class="sres ra">USA</span></div></div>
   </div>
 </div>
 
@@ -1210,13 +1211,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="prob-section">
     <div class="prob-bar-wrap">
       <div class="prob-seg seg-home" style="width:12.1%"></div>
-      <div class="prob-seg seg-draw" style="width:31.7%"></div>
-      <div class="prob-seg seg-away" style="width:56.2%"></div>
+      <div class="prob-seg seg-draw" style="width:31.8%"></div>
+      <div class="prob-seg seg-away" style="width:56.1%"></div>
     </div>
     <div class="prob-labels">
       <span class="pl-home"><strong>12.1%</strong> Paraguay</span>
-      <span class="pl-draw"><strong>31.7%</strong> 平局</span>
-      <span class="pl-away"><strong>56.2%</strong> Australia</span>
+      <span class="pl-draw"><strong>31.8%</strong> 平局</span>
+      <span class="pl-away"><strong>56.1%</strong> Australia</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1225,8 +1226,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Australia)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">24.7%</div><span class="sres ra">Australia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">21.1%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-2</div><div class="spct">14.45%</div><span class="sres ra">Australia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">9.46%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-0</div><div class="spct">8.12%</div><span class="sres rh">Paraguay</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">24.75%</div><span class="sres ra">Australia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">21.05%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-2</div><div class="spct">14.5%</div><span class="sres ra">Australia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">9.65%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-0</div><div class="spct">8.08%</div><span class="sres rh">Paraguay</span></div></div>
   </div>
 </div>
 
@@ -1255,14 +1256,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:9.8%"></div>
-      <div class="prob-seg seg-draw" style="width:13.9%"></div>
-      <div class="prob-seg seg-away" style="width:76.3%"></div>
+      <div class="prob-seg seg-home" style="width:10%"></div>
+      <div class="prob-seg seg-draw" style="width:14%"></div>
+      <div class="prob-seg seg-away" style="width:76%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>9.8%</strong> Ecuador</span>
-      <span class="pl-draw"><strong>13.9%</strong> 平局</span>
-      <span class="pl-away"><strong>76.3%</strong> Germany</span>
+      <span class="pl-home"><strong>10%</strong> Ecuador</span>
+      <span class="pl-draw"><strong>14%</strong> 平局</span>
+      <span class="pl-away"><strong>76%</strong> Germany</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1271,8 +1272,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Germany)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">8.97%</div><span class="sres ra">Germany</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-2</div><div class="spct">8.62%</div><span class="sres ra">Germany</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-3</div><div class="spct">8.53%</div><span class="sres ra">Germany</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-3</div><div class="spct">8.23%</div><span class="sres ra">Germany</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-1</div><div class="spct">6.22%</div><span class="sres ra">Germany</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">8.9%</div><span class="sres ra">Germany</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-2</div><div class="spct">8.65%</div><span class="sres ra">Germany</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-3</div><div class="spct">8.44%</div><span class="sres ra">Germany</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-3</div><div class="spct">8.26%</div><span class="sres ra">Germany</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-1</div><div class="spct">6.15%</div><span class="sres ra">Germany</span></div></div>
   </div>
 </div>
 
@@ -1301,14 +1302,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:6.9%"></div>
-      <div class="prob-seg seg-draw" style="width:35.1%"></div>
-      <div class="prob-seg seg-away" style="width:58%"></div>
+      <div class="prob-seg seg-home" style="width:6.7%"></div>
+      <div class="prob-seg seg-draw" style="width:35.2%"></div>
+      <div class="prob-seg seg-away" style="width:58.1%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>6.9%</strong> Curacao</span>
-      <span class="pl-draw"><strong>35.1%</strong> 平局</span>
-      <span class="pl-away"><strong>58%</strong> Ivory Coast</span>
+      <span class="pl-home"><strong>6.7%</strong> Curacao</span>
+      <span class="pl-draw"><strong>35.2%</strong> 平局</span>
+      <span class="pl-away"><strong>58.1%</strong> Ivory Coast</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1317,8 +1318,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Ivory Coast)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">30.25%</div><span class="sres ra">Ivory Coast</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">28.91%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-2</div><div class="spct">15.79%</div><span class="sres ra">Ivory Coast</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">5.9%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-0</div><div class="spct">5.66%</div><span class="sres rh">Curacao</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">30.52%</div><span class="sres ra">Ivory Coast</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">28.97%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-2</div><div class="spct">15.57%</div><span class="sres ra">Ivory Coast</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">5.91%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-0</div><div class="spct">5.56%</div><span class="sres rh">Curacao</span></div></div>
   </div>
 </div>
 
@@ -1348,13 +1349,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="prob-section">
     <div class="prob-bar-wrap">
       <div class="prob-seg seg-home" style="width:30.8%"></div>
-      <div class="prob-seg seg-draw" style="width:20.6%"></div>
-      <div class="prob-seg seg-away" style="width:48.6%"></div>
+      <div class="prob-seg seg-draw" style="width:20.7%"></div>
+      <div class="prob-seg seg-away" style="width:48.5%"></div>
     </div>
     <div class="prob-labels">
       <span class="pl-home"><strong>30.8%</strong> Japan</span>
-      <span class="pl-draw"><strong>20.6%</strong> 平局</span>
-      <span class="pl-away"><strong>48.6%</strong> Sweden</span>
+      <span class="pl-draw"><strong>20.7%</strong> 平局</span>
+      <span class="pl-away"><strong>48.5%</strong> Sweden</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1363,8 +1364,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Sweden)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">8.37%</div><span class="sres ra">Sweden</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">7.67%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-2</div><div class="spct">7.14%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">6.57%</div><span class="sres rh">Japan</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-3</div><div class="spct">5.99%</div><span class="sres ra">Sweden</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">8.28%</div><span class="sres ra">Sweden</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">7.78%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-2</div><div class="spct">7.14%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">6.52%</div><span class="sres rh">Japan</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-3</div><div class="spct">6.05%</div><span class="sres ra">Sweden</span></div></div>
   </div>
 </div>
 
@@ -1394,12 +1395,12 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="prob-section">
     <div class="prob-bar-wrap">
       <div class="prob-seg seg-home" style="width:15%"></div>
-      <div class="prob-seg seg-draw" style="width:23.2%"></div>
+      <div class="prob-seg seg-draw" style="width:23.1%"></div>
       <div class="prob-seg seg-away" style="width:61.9%"></div>
     </div>
     <div class="prob-labels">
       <span class="pl-home"><strong>15%</strong> Tunisia</span>
-      <span class="pl-draw"><strong>23.2%</strong> 平局</span>
+      <span class="pl-draw"><strong>23.1%</strong> 平局</span>
       <span class="pl-away"><strong>61.9%</strong> Netherlands</span>
     </div>
   </div>
@@ -1409,8 +1410,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Netherlands)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">15.05%</div><span class="sres ra">Netherlands</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">13.03%</div><span class="sres ra">Netherlands</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">10.67%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-2</div><div class="spct">9.24%</div><span class="sres ra">Netherlands</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-0</div><div class="spct">8.7%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">15.14%</div><span class="sres ra">Netherlands</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">12.9%</div><span class="sres ra">Netherlands</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">10.54%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-2</div><div class="spct">9.34%</div><span class="sres ra">Netherlands</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-0</div><div class="spct">8.75%</div><span class="sres rd">平局</span></div></div>
   </div>
 </div></div>
 <div id="day-2026-06-26" class="day-section" style="display:none"><div class="day-label">6月26日 — Group G,H,I 末輪</div>
@@ -1439,14 +1440,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:39.8%"></div>
-      <div class="prob-seg seg-draw" style="width:19.6%"></div>
-      <div class="prob-seg seg-away" style="width:40.6%"></div>
+      <div class="prob-seg seg-home" style="width:39.9%"></div>
+      <div class="prob-seg seg-draw" style="width:19.2%"></div>
+      <div class="prob-seg seg-away" style="width:40.9%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>39.8%</strong> Norway</span>
-      <span class="pl-draw"><strong>19.6%</strong> 平局</span>
-      <span class="pl-away"><strong>40.6%</strong> France</span>
+      <span class="pl-home"><strong>39.9%</strong> Norway</span>
+      <span class="pl-draw"><strong>19.2%</strong> 平局</span>
+      <span class="pl-away"><strong>40.9%</strong> France</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1455,8 +1456,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (France)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-2</div><div class="spct">7.15%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-2</div><div class="spct">6.47%</div><span class="sres ra">France</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-1</div><div class="spct">6.42%</div><span class="sres rh">Norway</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">5.8%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-3</div><div class="spct">5.32%</div><span class="sres ra">France</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-2</div><div class="spct">6.93%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-2</div><div class="spct">6.47%</div><span class="sres ra">France</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-1</div><div class="spct">6.4%</div><span class="sres rh">Norway</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">5.74%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">3-2</div><div class="spct">5.39%</div><span class="sres rh">Norway</span></div></div>
   </div>
 </div>
 
@@ -1485,14 +1486,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:44.6%"></div>
-      <div class="prob-seg seg-draw" style="width:32%"></div>
-      <div class="prob-seg seg-away" style="width:23.4%"></div>
+      <div class="prob-seg seg-home" style="width:44.5%"></div>
+      <div class="prob-seg seg-draw" style="width:32.2%"></div>
+      <div class="prob-seg seg-away" style="width:23.3%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>44.6%</strong> Senegal</span>
-      <span class="pl-draw"><strong>32%</strong> 平局</span>
-      <span class="pl-away"><strong>23.4%</strong> Iraq</span>
+      <span class="pl-home"><strong>44.5%</strong> Senegal</span>
+      <span class="pl-draw"><strong>32.2%</strong> 平局</span>
+      <span class="pl-away"><strong>23.3%</strong> Iraq</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1501,8 +1502,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Iraq)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">18.24%</div><span class="sres rh">Senegal</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">16.63%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">12.73%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-1</div><div class="spct">11.72%</div><span class="sres ra">Iraq</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">9.88%</div><span class="sres rh">Senegal</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">18.08%</div><span class="sres rh">Senegal</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">16.67%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">12.79%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-1</div><div class="spct">11.51%</div><span class="sres ra">Iraq</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">9.85%</div><span class="sres rh">Senegal</span></div></div>
   </div>
 </div>
 
@@ -1533,12 +1534,12 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="prob-bar-wrap">
       <div class="prob-seg seg-home" style="width:30.2%"></div>
       <div class="prob-seg seg-draw" style="width:53.9%"></div>
-      <div class="prob-seg seg-away" style="width:15.9%"></div>
+      <div class="prob-seg seg-away" style="width:15.8%"></div>
     </div>
     <div class="prob-labels">
       <span class="pl-home"><strong>30.2%</strong> Cape Verde</span>
       <span class="pl-draw"><strong>53.9%</strong> 平局</span>
-      <span class="pl-away"><strong>15.9%</strong> Saudi Arabia</span>
+      <span class="pl-away"><strong>15.8%</strong> Saudi Arabia</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1547,8 +1548,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Saudi Arabia)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">47.69%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">22.37%</div><span class="sres rh">Cape Verde</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">13.04%</div><span class="sres ra">Saudi Arabia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">6.04%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">5.2%</div><span class="sres rh">Cape Verde</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">47.63%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">22.43%</div><span class="sres rh">Cape Verde</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">12.95%</div><span class="sres ra">Saudi Arabia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">6.13%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">5.22%</div><span class="sres rh">Cape Verde</span></div></div>
   </div>
 </div>
 
@@ -1577,12 +1578,12 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:18.1%"></div>
+      <div class="prob-seg seg-home" style="width:18%"></div>
       <div class="prob-seg seg-draw" style="width:25.8%"></div>
       <div class="prob-seg seg-away" style="width:56.1%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>18.1%</strong> Uruguay</span>
+      <span class="pl-home"><strong>18%</strong> Uruguay</span>
       <span class="pl-draw"><strong>25.8%</strong> 平局</span>
       <span class="pl-away"><strong>56.1%</strong> Spain</span>
     </div>
@@ -1593,8 +1594,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Spain)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">15.75%</div><span class="sres ra">Spain</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">12.04%</div><span class="sres ra">Spain</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">11.68%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">10.28%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-2</div><div class="spct">8.92%</div><span class="sres ra">Spain</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">15.76%</div><span class="sres ra">Spain</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">12.1%</div><span class="sres ra">Spain</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">11.64%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">10.43%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-2</div><div class="spct">8.85%</div><span class="sres ra">Spain</span></div></div>
   </div>
 </div>
 
@@ -1623,14 +1624,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:33.9%"></div>
-      <div class="prob-seg seg-draw" style="width:30.4%"></div>
-      <div class="prob-seg seg-away" style="width:35.7%"></div>
+      <div class="prob-seg seg-home" style="width:33.6%"></div>
+      <div class="prob-seg seg-draw" style="width:30.5%"></div>
+      <div class="prob-seg seg-away" style="width:35.9%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>33.9%</strong> Egypt</span>
-      <span class="pl-draw"><strong>30.4%</strong> 平局</span>
-      <span class="pl-away"><strong>35.7%</strong> Iran</span>
+      <span class="pl-home"><strong>33.6%</strong> Egypt</span>
+      <span class="pl-draw"><strong>30.5%</strong> 平局</span>
+      <span class="pl-away"><strong>35.9%</strong> Iran</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1639,8 +1640,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Iran)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">13.52%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">13.41%</div><span class="sres ra">Iran</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">13%</div><span class="sres rh">Egypt</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">12.92%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-2</div><div class="spct">7.06%</div><span class="sres ra">Iran</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">13.55%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">13.45%</div><span class="sres ra">Iran</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">13.01%</div><span class="sres rh">Egypt</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">12.98%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-2</div><div class="spct">7.1%</div><span class="sres ra">Iran</span></div></div>
   </div>
 </div>
 
@@ -1669,13 +1670,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:26.3%"></div>
-      <div class="prob-seg seg-draw" style="width:25.9%"></div>
+      <div class="prob-seg seg-home" style="width:26.2%"></div>
+      <div class="prob-seg seg-draw" style="width:26%"></div>
       <div class="prob-seg seg-away" style="width:47.8%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>26.3%</strong> New Zealand</span>
-      <span class="pl-draw"><strong>25.9%</strong> 平局</span>
+      <span class="pl-home"><strong>26.2%</strong> New Zealand</span>
+      <span class="pl-draw"><strong>26%</strong> 平局</span>
       <span class="pl-away"><strong>47.8%</strong> Belgium</span>
     </div>
   </div>
@@ -1685,8 +1686,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Belgium)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">12.35%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">11.77%</div><span class="sres ra">Belgium</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-2</div><div class="spct">9.21%</div><span class="sres ra">Belgium</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-2</div><div class="spct">8.86%</div><span class="sres ra">Belgium</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-0</div><div class="spct">8.21%</div><span class="sres rh">New Zealand</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">12.44%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">11.79%</div><span class="sres ra">Belgium</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-2</div><div class="spct">9.15%</div><span class="sres ra">Belgium</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-2</div><div class="spct">8.83%</div><span class="sres ra">Belgium</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-0</div><div class="spct">8.2%</div><span class="sres rh">New Zealand</span></div></div>
   </div>
 </div></div>
 <div id="day-2026-06-27" class="day-section" style="display:none"><div class="day-label">6月27日 — Group J,K,L 末輪</div>
@@ -1715,14 +1716,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:7.4%"></div>
-      <div class="prob-seg seg-draw" style="width:15.8%"></div>
-      <div class="prob-seg seg-away" style="width:76.8%"></div>
+      <div class="prob-seg seg-home" style="width:7.3%"></div>
+      <div class="prob-seg seg-draw" style="width:15.7%"></div>
+      <div class="prob-seg seg-away" style="width:76.9%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>7.4%</strong> Panama</span>
-      <span class="pl-draw"><strong>15.8%</strong> 平局</span>
-      <span class="pl-away"><strong>76.8%</strong> England</span>
+      <span class="pl-home"><strong>7.3%</strong> Panama</span>
+      <span class="pl-draw"><strong>15.7%</strong> 平局</span>
+      <span class="pl-away"><strong>76.9%</strong> England</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1731,8 +1732,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (England)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">15.11%</div><span class="sres ra">England</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">13.08%</div><span class="sres ra">England</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-3</div><div class="spct">11.58%</div><span class="sres ra">England</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-2</div><div class="spct">8.49%</div><span class="sres ra">England</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.38%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">15.11%</div><span class="sres ra">England</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">13.36%</div><span class="sres ra">England</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-3</div><div class="spct">11.45%</div><span class="sres ra">England</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-2</div><div class="spct">8.49%</div><span class="sres ra">England</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.3%</div><span class="sres rd">平局</span></div></div>
   </div>
 </div>
 
@@ -1761,13 +1762,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:23.7%"></div>
-      <div class="prob-seg seg-draw" style="width:34.8%"></div>
+      <div class="prob-seg seg-home" style="width:23.6%"></div>
+      <div class="prob-seg seg-draw" style="width:34.9%"></div>
       <div class="prob-seg seg-away" style="width:41.5%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>23.7%</strong> Croatia</span>
-      <span class="pl-draw"><strong>34.8%</strong> 平局</span>
+      <span class="pl-home"><strong>23.6%</strong> Croatia</span>
+      <span class="pl-draw"><strong>34.9%</strong> 平局</span>
       <span class="pl-away"><strong>41.5%</strong> Ghana</span>
     </div>
   </div>
@@ -1777,8 +1778,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Ghana)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">20.37%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">19.34%</div><span class="sres ra">Ghana</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">13.07%</div><span class="sres rh">Croatia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">12.41%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-2</div><div class="spct">9.26%</div><span class="sres ra">Ghana</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">20.48%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">19.41%</div><span class="sres ra">Ghana</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">13.01%</div><span class="sres rh">Croatia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">12.37%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-2</div><div class="spct">9.1%</div><span class="sres ra">Ghana</span></div></div>
   </div>
 </div>
 
@@ -1808,12 +1809,12 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="prob-section">
     <div class="prob-bar-wrap">
       <div class="prob-seg seg-home" style="width:45.5%"></div>
-      <div class="prob-seg seg-draw" style="width:22.2%"></div>
+      <div class="prob-seg seg-draw" style="width:22.3%"></div>
       <div class="prob-seg seg-away" style="width:32.2%"></div>
     </div>
     <div class="prob-labels">
       <span class="pl-home"><strong>45.5%</strong> Colombia</span>
-      <span class="pl-draw"><strong>22.2%</strong> 平局</span>
+      <span class="pl-draw"><strong>22.3%</strong> 平局</span>
       <span class="pl-away"><strong>32.2%</strong> Portugal</span>
     </div>
   </div>
@@ -1823,8 +1824,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Portugal)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">9.43%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-1</div><div class="spct">8.86%</div><span class="sres rh">Colombia</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-2</div><div class="spct">7.31%</div><span class="sres ra">Portugal</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-2</div><div class="spct">6.87%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-0</div><div class="spct">6.06%</div><span class="sres rh">Colombia</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">9.46%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-1</div><div class="spct">8.86%</div><span class="sres rh">Colombia</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-2</div><div class="spct">7.4%</div><span class="sres ra">Portugal</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-2</div><div class="spct">6.93%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-0</div><div class="spct">6.16%</div><span class="sres rh">Colombia</span></div></div>
   </div>
 </div>
 
@@ -1853,14 +1854,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:39.3%"></div>
+      <div class="prob-seg seg-home" style="width:39.4%"></div>
       <div class="prob-seg seg-draw" style="width:35.9%"></div>
-      <div class="prob-seg seg-away" style="width:24.8%"></div>
+      <div class="prob-seg seg-away" style="width:24.7%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>39.3%</strong> DR Congo</span>
+      <span class="pl-home"><strong>39.4%</strong> DR Congo</span>
       <span class="pl-draw"><strong>35.9%</strong> 平局</span>
-      <span class="pl-away"><strong>24.8%</strong> Uzbekistan</span>
+      <span class="pl-away"><strong>24.7%</strong> Uzbekistan</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1869,8 +1870,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Uzbekistan)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">21.74%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">19.26%</div><span class="sres rh">DR Congo</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">13.83%</div><span class="sres ra">Uzbekistan</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">12.33%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">8.58%</div><span class="sres rh">DR Congo</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">21.69%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">19.37%</div><span class="sres rh">DR Congo</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">13.81%</div><span class="sres ra">Uzbekistan</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">12.28%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">8.46%</div><span class="sres rh">DR Congo</span></div></div>
   </div>
 </div>
 
@@ -1899,14 +1900,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:10.2%"></div>
-      <div class="prob-seg seg-draw" style="width:21.2%"></div>
-      <div class="prob-seg seg-away" style="width:68.6%"></div>
+      <div class="prob-seg seg-home" style="width:10%"></div>
+      <div class="prob-seg seg-draw" style="width:21%"></div>
+      <div class="prob-seg seg-away" style="width:68.9%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>10.2%</strong> Algeria</span>
-      <span class="pl-draw"><strong>21.2%</strong> 平局</span>
-      <span class="pl-away"><strong>68.6%</strong> Austria</span>
+      <span class="pl-home"><strong>10%</strong> Algeria</span>
+      <span class="pl-draw"><strong>21%</strong> 平局</span>
+      <span class="pl-away"><strong>68.9%</strong> Austria</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1915,8 +1916,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Austria)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">17.25%</div><span class="sres ra">Austria</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">15.74%</div><span class="sres ra">Austria</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-3</div><div class="spct">9.58%</div><span class="sres ra">Austria</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">9.5%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">9.21%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">17.51%</div><span class="sres ra">Austria</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">15.77%</div><span class="sres ra">Austria</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-3</div><div class="spct">9.52%</div><span class="sres ra">Austria</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">9.41%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">9.14%</div><span class="sres rd">平局</span></div></div>
   </div>
 </div>
 
@@ -1945,14 +1946,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:3.6%"></div>
-      <div class="prob-seg seg-draw" style="width:14.3%"></div>
-      <div class="prob-seg seg-away" style="width:82.1%"></div>
+      <div class="prob-seg seg-home" style="width:3.5%"></div>
+      <div class="prob-seg seg-draw" style="width:14.6%"></div>
+      <div class="prob-seg seg-away" style="width:81.9%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>3.6%</strong> Jordan</span>
-      <span class="pl-draw"><strong>14.3%</strong> 平局</span>
-      <span class="pl-away"><strong>82.1%</strong> Argentina</span>
+      <span class="pl-home"><strong>3.5%</strong> Jordan</span>
+      <span class="pl-draw"><strong>14.6%</strong> 平局</span>
+      <span class="pl-away"><strong>81.9%</strong> Argentina</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1961,8 +1962,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="odds-chip"><div class="odds-lbl">客勝 (Argentina)</div><div class="odds-val">N/A</div></div>
   </div>
   <div class="scores-section">
-    <div class="scores-title">最可能比分（100萬次模擬）</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">20.33%</div><span class="sres ra">Argentina</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">18.49%</div><span class="sres ra">Argentina</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-3</div><div class="spct">14.96%</div><span class="sres ra">Argentina</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">8.37%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-4</div><div class="spct">8.22%</div><span class="sres ra">Argentina</span></div></div>
+    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">20.49%</div><span class="sres ra">Argentina</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">18.44%</div><span class="sres ra">Argentina</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-3</div><div class="spct">14.87%</div><span class="sres ra">Argentina</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">8.46%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-4</div><div class="spct">8.08%</div><span class="sres ra">Argentina</span></div></div>
   </div>
 </div></div>
   <div class="footer">
@@ -1979,7 +1980,7 @@ function showDay(d,btn){
   document.getElementById("day-"+d).style.display="block";
 }
 const UPCOMING =
-[{"date":"2026-06-20","home":"Netherlands","away":"Sweden","ts":1781985600000},{"date":"2026-06-20","home":"Germany","away":"Ivory Coast","ts":1781985600000},{"date":"2026-06-20","home":"Ecuador","away":"Curacao","ts":1781985600000},{"date":"2026-06-20","home":"Japan","away":"Tunisia","ts":1781985600000},{"date":"2026-06-21","home":"Spain","away":"Saudi Arabia","ts":1782072000000},{"date":"2026-06-21","home":"Belgium","away":"Iran","ts":1782072000000},{"date":"2026-06-21","home":"Uruguay","away":"Cape Verde","ts":1782072000000},{"date":"2026-06-21","home":"New Zealand","away":"Egypt","ts":1782072000000},{"date":"2026-06-22","home":"Argentina","away":"Austria","ts":1782158400000},{"date":"2026-06-22","home":"France","away":"Iraq","ts":1782158400000},{"date":"2026-06-22","home":"Norway","away":"Senegal","ts":1782158400000},{"date":"2026-06-22","home":"Jordan","away":"Algeria","ts":1782158400000},{"date":"2026-06-23","home":"Portugal","away":"Uzbekistan","ts":1782244800000},{"date":"2026-06-23","home":"England","away":"Ghana","ts":1782244800000},{"date":"2026-06-23","home":"Panama","away":"Croatia","ts":1782244800000},{"date":"2026-06-23","home":"Colombia","away":"DR Congo","ts":1782244800000},{"date":"2026-06-24","home":"Czechia","away":"Mexico","ts":1782331200000},{"date":"2026-06-24","home":"South Africa","away":"South Korea","ts":1782331200000},{"date":"2026-06-24","home":"Switzerland","away":"Canada","ts":1782331200000},{"date":"2026-06-24","home":"Bosnia","away":"Qatar","ts":1782331200000},{"date":"2026-06-24","home":"Scotland","away":"Brazil","ts":1782331200000},{"date":"2026-06-24","home":"Morocco","away":"Haiti","ts":1782331200000},{"date":"2026-06-25","home":"Turkey","away":"USA","ts":1782417600000},{"date":"2026-06-25","home":"Paraguay","away":"Australia","ts":1782417600000},{"date":"2026-06-25","home":"Ecuador","away":"Germany","ts":1782417600000},{"date":"2026-06-25","home":"Curacao","away":"Ivory Coast","ts":1782417600000},{"date":"2026-06-25","home":"Japan","away":"Sweden","ts":1782417600000},{"date":"2026-06-25","home":"Tunisia","away":"Netherlands","ts":1782417600000},{"date":"2026-06-26","home":"Norway","away":"France","ts":1782504000000},{"date":"2026-06-26","home":"Senegal","away":"Iraq","ts":1782504000000},{"date":"2026-06-26","home":"Cape Verde","away":"Saudi Arabia","ts":1782504000000},{"date":"2026-06-26","home":"Uruguay","away":"Spain","ts":1782504000000},{"date":"2026-06-26","home":"Egypt","away":"Iran","ts":1782504000000},{"date":"2026-06-26","home":"New Zealand","away":"Belgium","ts":1782504000000},{"date":"2026-06-27","home":"Panama","away":"England","ts":1782590400000},{"date":"2026-06-27","home":"Croatia","away":"Ghana","ts":1782590400000},{"date":"2026-06-27","home":"Colombia","away":"Portugal","ts":1782590400000},{"date":"2026-06-27","home":"DR Congo","away":"Uzbekistan","ts":1782590400000},{"date":"2026-06-27","home":"Algeria","away":"Austria","ts":1782590400000},{"date":"2026-06-27","home":"Jordan","away":"Argentina","ts":1782590400000}]
+[{"date":"2026-06-20","home":"Netherlands","away":"Sweden","ts":1781917200000},{"date":"2026-06-20","home":"Germany","away":"Ivory Coast","ts":1781917200000},{"date":"2026-06-20","home":"Ecuador","away":"Curacao","ts":1781917200000},{"date":"2026-06-20","home":"Japan","away":"Tunisia","ts":1781917200000},{"date":"2026-06-21","home":"Spain","away":"Saudi Arabia","ts":1782003600000},{"date":"2026-06-21","home":"Belgium","away":"Iran","ts":1782003600000},{"date":"2026-06-21","home":"Uruguay","away":"Cape Verde","ts":1782003600000},{"date":"2026-06-21","home":"New Zealand","away":"Egypt","ts":1782003600000},{"date":"2026-06-22","home":"Argentina","away":"Austria","ts":1782090000000},{"date":"2026-06-22","home":"France","away":"Iraq","ts":1782090000000},{"date":"2026-06-22","home":"Norway","away":"Senegal","ts":1782090000000},{"date":"2026-06-22","home":"Jordan","away":"Algeria","ts":1782090000000},{"date":"2026-06-23","home":"Portugal","away":"Uzbekistan","ts":1782176400000},{"date":"2026-06-23","home":"England","away":"Ghana","ts":1782176400000},{"date":"2026-06-23","home":"Panama","away":"Croatia","ts":1782176400000},{"date":"2026-06-23","home":"Colombia","away":"DR Congo","ts":1782176400000},{"date":"2026-06-24","home":"Czechia","away":"Mexico","ts":1782262800000},{"date":"2026-06-24","home":"South Africa","away":"South Korea","ts":1782262800000},{"date":"2026-06-24","home":"Switzerland","away":"Canada","ts":1782262800000},{"date":"2026-06-24","home":"Bosnia","away":"Qatar","ts":1782262800000},{"date":"2026-06-24","home":"Scotland","away":"Brazil","ts":1782262800000},{"date":"2026-06-24","home":"Morocco","away":"Haiti","ts":1782262800000},{"date":"2026-06-25","home":"Turkey","away":"USA","ts":1782349200000},{"date":"2026-06-25","home":"Paraguay","away":"Australia","ts":1782349200000},{"date":"2026-06-25","home":"Ecuador","away":"Germany","ts":1782349200000},{"date":"2026-06-25","home":"Curacao","away":"Ivory Coast","ts":1782349200000},{"date":"2026-06-25","home":"Japan","away":"Sweden","ts":1782349200000},{"date":"2026-06-25","home":"Tunisia","away":"Netherlands","ts":1782349200000},{"date":"2026-06-26","home":"Norway","away":"France","ts":1782435600000},{"date":"2026-06-26","home":"Senegal","away":"Iraq","ts":1782435600000},{"date":"2026-06-26","home":"Cape Verde","away":"Saudi Arabia","ts":1782435600000},{"date":"2026-06-26","home":"Uruguay","away":"Spain","ts":1782435600000},{"date":"2026-06-26","home":"Egypt","away":"Iran","ts":1782435600000},{"date":"2026-06-26","home":"New Zealand","away":"Belgium","ts":1782435600000},{"date":"2026-06-27","home":"Panama","away":"England","ts":1782522000000},{"date":"2026-06-27","home":"Croatia","away":"Ghana","ts":1782522000000},{"date":"2026-06-27","home":"Colombia","away":"Portugal","ts":1782522000000},{"date":"2026-06-27","home":"DR Congo","away":"Uzbekistan","ts":1782522000000},{"date":"2026-06-27","home":"Algeria","away":"Austria","ts":1782522000000},{"date":"2026-06-27","home":"Jordan","away":"Argentina","ts":1782522000000}]
 ;
 function nextMs(){
   var n=Date.now(), f=UPCOMING.filter(function(m){return m.ts>n;});
@@ -1987,28 +1988,34 @@ function nextMs(){
   var t=f[0].ts; return f.filter(function(m){return m.ts===t;});
 }
 function pad2(n){return String(n).padStart(2,'0');}
+function toTW(ts){
+  var d=new Date(ts+8*3600000);
+  return (d.getUTCMonth()+1)+'/'+(d.getUTCDate())+' '+pad2(d.getUTCHours())+':'+pad2(d.getUTCMinutes());
+}
 function renderCD(){
   var w=document.getElementById('cd-wrap'); if(!w) return;
   var ms=nextMs();
   if(!ms){w.innerHTML='<div class="cd-done">🏆 小組賽已全部結束！</div>';return;}
   var diff=ms[0].ts-Date.now();
-  if(diff<0){w.innerHTML='<div class="cd-done">比賽進行中... ⚙️</div>';return;}
-  var d=Math.floor(diff/86400000);
-  var h=Math.floor((diff%86400000)/3600000);
-  var m=Math.floor((diff%3600000)/60000);
-  var s=Math.floor((diff%60000)/1000);
-  var list=ms.map(function(x){return x.home+' vs '+x.away;}).join(' · ');
+  if(diff<0){w.innerHTML='<div class="cd-done">⚽ 比賽進行中...</div>';return;}
+  var dd=Math.floor(diff/86400000);
+  var hh=Math.floor((diff%86400000)/3600000);
+  var mm=Math.floor((diff%3600000)/60000);
+  var ss=Math.floor((diff%60000)/1000);
+  var list=ms.map(function(x){return x.home+' vs '+x.away;}).join(' &middot; ');
+  var twt=toTW(ms[0].ts);
   w.innerHTML=
     '<div class="cd-label">⏱ 下一場比賽倒數</div>'+
     '<div class="cd-match">'+list+'</div>'+
+    '<div class="cd-twtime">🇹🇼 台灣時間 '+twt+' 開賽（估）</div>'+
     '<div class="cd-digits">'+
-    '<div class="cd-unit"><div class="cd-num">'+pad2(d)+'</div><div class="cd-lbl">天</div></div>'+
+    '<div class="cd-unit"><div class="cd-num">'+pad2(dd)+'</div><div class="cd-lbl">天</div></div>'+
     '<div class="cd-sep">:</div>'+
-    '<div class="cd-unit"><div class="cd-num">'+pad2(h)+'</div><div class="cd-lbl">時</div></div>'+
+    '<div class="cd-unit"><div class="cd-num">'+pad2(hh)+'</div><div class="cd-lbl">時</div></div>'+
     '<div class="cd-sep">:</div>'+
-    '<div class="cd-unit"><div class="cd-num">'+pad2(m)+'</div><div class="cd-lbl">分</div></div>'+
+    '<div class="cd-unit"><div class="cd-num">'+pad2(mm)+'</div><div class="cd-lbl">分</div></div>'+
     '<div class="cd-sep">:</div>'+
-    '<div class="cd-unit"><div class="cd-num">'+pad2(s)+'</div><div class="cd-lbl">秒</div></div>'+
+    '<div class="cd-unit"><div class="cd-num">'+pad2(ss)+'</div><div class="cd-lbl">秒</div></div>'+
     '</div>'+(ms.length>1?'<div class="cd-multi">同時段共 '+ms.length+' 場比賽</div>':'');
 }
 renderCD(); setInterval(renderCD,1000);
