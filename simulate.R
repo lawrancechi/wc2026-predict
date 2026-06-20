@@ -1,7 +1,7 @@
 library(jsonlite)
 
 set.seed(2026)
-w <- 0.15   # Bayesian 更新權重
+w <- 0.10   # Bayesian 更新權重
 
 # ── 教練資料（姓名 + 能力評分 1.0=平均，>1.0=強帥）─────────
 COACH <- list(
@@ -849,7 +849,7 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     ', knockout_html, '
   </div>
   <div class="footer">
-    <strong>模型架構</strong>｜ xG Poisson + Bayesian 動態更新（w=0.15，係數上限 2.5）｜防守係數以除法計算<br>
+    <strong>模型架構</strong>｜ xG Poisson + Bayesian 動態更新（w=0.10，係數上限 2.5）｜防守係數以除法計算<br>
     天氣：高溫 → xG 下調·墨西哥城 → 海拔加成｜自動排程：每日 UTC 06:00 重算<br>
     Claude AI × R 4.6 × GitHub Actions · 僅供娛樂
   </div>
