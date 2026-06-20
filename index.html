@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026 世界盃比分預測</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#09101f;--card:#141e2e;--border:rgba(255,255,255,0.07);--text:#eef2ff;--muted:#7a8fa8;--accent:#3b82f6;--gold:#f59e0b;--silver:#9ca3af;--bronze:#b45309}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,sans-serif;min-height:100vh;padding-bottom:3rem}
+.hero{background:linear-gradient(160deg,#0d1b35 0%,#09101f 60%);border-bottom:1px solid var(--border);padding:2.5rem 1.5rem 2rem;text-align:center;position:relative}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(59,130,246,.12) 0%,transparent 70%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);border-radius:20px;padding:4px 14px;font-size:11px;color:#93c5fd;margin-bottom:1rem}
+.dot{display:inline-block;width:6px;height:6px;background:#3b82f6;border-radius:50%;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:.5rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{color:var(--muted);font-size:13px;max-width:500px;margin:0 auto .8rem;line-height:1.6}
+.update-info{font-size:11px;color:var(--muted);margin-top:.4rem}
+.update-info strong{color:#34d399}
+.stats-row{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:1rem}
+.stat .n{font-size:1.2rem;font-weight:700;color:var(--accent)}
+.stat .l{font-size:10px;color:var(--muted);margin-top:2px}
+.container{max-width:960px;margin:0 auto;padding:0 1rem}
+.tabs{display:flex;gap:6px;padding:1.2rem 0 .8rem;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--muted);padding:6px 14px;border-radius:18px;font-size:12px;cursor:pointer;transition:all .2s}
+.tab:hover{border-color:rgba(59,130,246,.4);color:var(--text)}
+.tab.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:500}
+.day-section{display:none}
+.day-label{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;padding:.8rem 0 .6rem}
+.day-label::after{content:"";flex:1;height:.5px;background:var(--border)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:.9rem;overflow:hidden;transition:border-color .2s}
+.card:hover{border-color:rgba(59,130,246,.25)}
+.card-header{padding:.55rem 1rem;border-bottom:1px solid var(--border);background:rgba(0,0,0,.2);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.venue{font-size:11px;color:var(--muted)}.venue b{color:var(--text);font-weight:500}
+.grp-chip{font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;background:rgba(59,130,246,.15);color:#93c5fd;border:1px solid rgba(59,130,246,.25)}
+.wchip{display:inline-flex;align-items:center;gap:4px;border-radius:16px;padding:3px 9px;font-size:10px;font-weight:500;border:1px solid}
+.w-success{background:rgba(16,185,129,.1);color:#34d399;border-color:rgba(16,185,129,.2)}
+.w-warning{background:rgba(251,191,36,.1);color:#fcd34d;border-color:rgba(251,191,36,.2)}
+.w-danger{background:rgba(239,68,68,.1);color:#f87171;border-color:rgba(239,68,68,.2)}
+.teams-row{padding:.85rem 1rem .75rem;display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:.5rem}
+.team{text-align:center}
+.flag{font-size:1.9rem;display:block;margin-bottom:4px;line-height:1}
+.tname{font-size:13px;font-weight:500}.tform{font-size:10px;color:var(--muted);margin-top:3px}
+.vs-badge{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:5px 0;font-size:11px;font-weight:600;color:var(--muted);text-align:center}
+.grp-sm{font-size:9px;color:var(--muted);display:block;margin-bottom:1px}
+.prob-section{padding:0 1rem .75rem}
+.prob-bar-wrap{display:flex;border-radius:4px;overflow:hidden;height:6px;gap:2px;margin-bottom:5px}
+.prob-seg{height:100%;border-radius:2px}
+.seg-home{background:var(--accent)}.seg-draw{background:#4b5563}.seg-away{background:#8b5cf6}
+.prob-labels{display:flex;justify-content:space-between;font-size:10px}
+.pl-home strong{color:var(--accent)}.pl-draw strong{color:#9ca3af}.pl-away strong{color:#a78bfa}
+.prob-labels span{color:var(--muted)}
+.scores-section{padding:0 1rem 1rem}
+.scores-title{font-size:10px;font-weight:500;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-bottom:.6rem}
+.scores-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.spill{border-radius:10px;padding:10px 6px 8px;text-align:center;border:.5px solid;position:relative}
+.s1{background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.3)}
+.s2{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+.s3{background:rgba(255,255,255,.02);border-color:rgba(255,255,255,.06)}
+.rbadge{position:absolute;top:-7px;left:50%;transform:translateX(-50%);font-size:8px;font-weight:600;padding:1px 7px;border-radius:8px;white-space:nowrap}
+.s1 .rbadge{background:var(--gold);color:#1a0e00}
+.s2 .rbadge{background:var(--silver);color:#111}
+.s3 .rbadge{background:var(--bronze);color:#fff8f0}
+.sval{font-size:1.35rem;font-weight:600;margin-top:6px;line-height:1}
+.s1 .sval{color:var(--gold)}.s2 .sval{color:#d1d5db}.s3 .sval{color:#d97706}
+.spct{font-size:10px;color:var(--muted);margin-top:3px}
+.sres{font-size:9px;margin-top:3px;padding:2px 6px;border-radius:4px;display:inline-block}
+.rh{background:rgba(59,130,246,.15);color:#93c5fd}
+.rd{background:rgba(107,114,128,.2);color:#9ca3af}
+.ra{background:rgba(139,92,246,.15);color:#c4b5fd}
+.disc{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:8px 12px;font-size:11px;color:#fcd34d;margin:.6rem 0;display:flex;gap:6px}
+.footer{text-align:center;padding:2rem 1rem 1rem;font-size:11px;color:var(--muted);line-height:1.9;border-top:1px solid var(--border);margin-top:1.5rem}
+.footer strong{color:#60a5fa}
+@media(max-width:480px){.flag{font-size:1.5rem}.tname{font-size:12px}.sval{font-size:1.1rem}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="badge"><span class="dot"></span> 每日自動更新 · Poisson 模擬</div>
+  <h1>2026 FIFA 世界盃<br>小組賽比分預測 <em>AI</em></h1>
+  <p>依每日賽況動態調整各隊 λ，以 Bayesian 更新 + 100萬次 Poisson 模擬推算最可能比分。</p>
+  <p class="update-info">最後更新：<strong>2026-06-20</strong>｜已完成 27 場 · 剩餘 40 場</p>
+  <div class="stats-row">
+    <div class="stat"><div class="n">40</div><div class="l">場剩餘</div></div>
+    <div class="stat"><div class="n">100萬</div><div class="l">次/場模擬</div></div>
+    <div class="stat"><div class="n">動態λ</div><div class="l">Bayesian 更新</div></div>
+  </div>
+</div>
+<div class="container">
+  <div class="tabs"><button class="tab active" onclick="showDay('2026-06-20',this)">06-20</button>
+<button class="tab" onclick="showDay('2026-06-21',this)">06-21</button>
+<button class="tab" onclick="showDay('2026-06-22',this)">06-22</button>
+<button class="tab" onclick="showDay('2026-06-23',this)">06-23</button>
+<button class="tab" onclick="showDay('2026-06-24',this)">06-24</button>
+<button class="tab" onclick="showDay('2026-06-25',this)">06-25</button>
+<button class="tab" onclick="showDay('2026-06-26',this)">06-26</button>
+<button class="tab" onclick="showDay('2026-06-27',this)">06-27</button></div>
+  <div class="disc">⚡ 純統計模型，λ 依本屆賽果動態調整，僅供娛樂參考。</div>
+  <div id="day-2026-06-20" class="day-section" style="display:block"><div class="day-label">6月20日 — Group E,F 第二輪</div>
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Houston</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 F</span>
+      <span class="wchip w-danger">🌡 33°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇳🇱</span><div class="tname">Netherlands</div><div class="tform">λ=1.33</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇸🇪</span><div class="tname">Sweden</div><div class="tform">λ=2.76</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:16.1%"></div>
+      <div class="prob-seg seg-draw" style="width:16.3%"></div>
+      <div class="prob-seg seg-away" style="width:67.6%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>16.1%</strong> Netherlands</span>
+      <span class="pl-draw"><strong>16.3%</strong> 平局</span>
+      <span class="pl-away"><strong>67.6%</strong> Sweden</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">8.5%</div><span class="sres ra">Sweden</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-3</div><div class="spct">7.79%</div><span class="sres ra">Sweden</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-2</div><div class="spct">6.41%</div><span class="sres ra">Sweden</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Toronto</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 E</span>
+      <span class="wchip w-success">🌤 24°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇩🇪</span><div class="tname">Germany</div><div class="tform">λ=19.20</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇨🇮</span><div class="tname">Ivory Coast</div><div class="tform">λ=0.72</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:100%"></div>
+      <div class="prob-seg seg-draw" style="width:0%"></div>
+      <div class="prob-seg seg-away" style="width:0%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>100%</strong> Germany</span>
+      <span class="pl-draw"><strong>0%</strong> 平局</span>
+      <span class="pl-away"><strong>0%</strong> Ivory Coast</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">19-0</div><div class="spct">4.43%</div><span class="sres rh">Germany</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">18-0</div><div class="spct">4.37%</div><span class="sres rh">Germany</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">20-0</div><div class="spct">4.25%</div><span class="sres rh">Germany</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Kansas City</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 E</span>
+      <span class="wchip w-warning">☀ 30°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇪🇨</span><div class="tname">Ecuador</div><div class="tform">λ=0.40</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇨🇼</span><div class="tname">Curacao</div><div class="tform">λ=0.70</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:18.6%"></div>
+      <div class="prob-seg seg-draw" style="width:43.5%"></div>
+      <div class="prob-seg seg-away" style="width:37.9%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>18.6%</strong> Ecuador</span>
+      <span class="pl-draw"><strong>43.5%</strong> 平局</span>
+      <span class="pl-away"><strong>37.9%</strong> Curacao</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">33.53%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">23.26%</div><span class="sres ra">Curacao</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">13.33%</div><span class="sres rh">Ecuador</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Monterrey</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 F</span>
+      <span class="wchip w-danger">🔥 34°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇯🇵</span><div class="tname">Japan</div><div class="tform">λ=1.21</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇹🇳</span><div class="tname">Tunisia</div><div class="tform">λ=0.65</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:49.5%"></div>
+      <div class="prob-seg seg-draw" style="width:30.4%"></div>
+      <div class="prob-seg seg-away" style="width:20.1%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>49.5%</strong> Japan</span>
+      <span class="pl-draw"><strong>30.4%</strong> 平局</span>
+      <span class="pl-away"><strong>20.1%</strong> Tunisia</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">18.8%</div><span class="sres rh">Japan</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">15.46%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">12.25%</div><span class="sres rd">平局</span></div></div>
+  </div>
+</div></div>
+<div id="day-2026-06-21" class="day-section" style="display:none"><div class="day-label">6月21日 — Group G,H 第二輪</div>
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Atlanta</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 H</span>
+      <span class="wchip w-warning">☀ 30°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇪🇸</span><div class="tname">Spain</div><div class="tform">λ=1.17</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇸🇦</span><div class="tname">Saudi Arabia</div><div class="tform">λ=2.81</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:13.2%"></div>
+      <div class="prob-seg seg-draw" style="width:15.3%"></div>
+      <div class="prob-seg seg-away" style="width:71.5%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>13.2%</strong> Spain</span>
+      <span class="pl-draw"><strong>15.3%</strong> 平局</span>
+      <span class="pl-away"><strong>71.5%</strong> Saudi Arabia</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">8.63%</div><span class="sres ra">Saudi Arabia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-3</div><div class="spct">8.08%</div><span class="sres ra">Saudi Arabia</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-2</div><div class="spct">7.41%</div><span class="sres ra">Saudi Arabia</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Los Angeles</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 G</span>
+      <span class="wchip w-success">🌤 25°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇧🇪</span><div class="tname">Belgium</div><div class="tform">λ=0.96</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇮🇷</span><div class="tname">Iran</div><div class="tform">λ=1.28</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:27.8%"></div>
+      <div class="prob-seg seg-draw" style="width:28.4%"></div>
+      <div class="prob-seg seg-away" style="width:43.8%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>27.8%</strong> Belgium</span>
+      <span class="pl-draw"><strong>28.4%</strong> 平局</span>
+      <span class="pl-away"><strong>43.8%</strong> Iran</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">13.63%</div><span class="sres ra">Iran</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">13.06%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-0</div><div class="spct">10.7%</div><span class="sres rd">平局</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Miami</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 H</span>
+      <span class="wchip w-danger">🌡 32°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇺🇾</span><div class="tname">Uruguay</div><div class="tform">λ=9.17</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇨🇻</span><div class="tname">Cape Verde</div><div class="tform">λ=0.31</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:99.9%"></div>
+      <div class="prob-seg seg-draw" style="width:0.1%"></div>
+      <div class="prob-seg seg-away" style="width:0%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>99.9%</strong> Uruguay</span>
+      <span class="pl-draw"><strong>0.1%</strong> 平局</span>
+      <span class="pl-away"><strong>0%</strong> Cape Verde</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">9-0</div><div class="spct">9.68%</div><span class="sres rh">Uruguay</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">8-0</div><div class="spct">9.47%</div><span class="sres rh">Uruguay</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">10-0</div><div class="spct">8.84%</div><span class="sres rh">Uruguay</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Vancouver</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 G</span>
+      <span class="wchip w-success">🌤 20°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇳🇿</span><div class="tname">New Zealand</div><div class="tform">λ=1.54</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇪🇬</span><div class="tname">Egypt</div><div class="tform">λ=0.75</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:56.1%"></div>
+      <div class="prob-seg seg-draw" style="width:25.7%"></div>
+      <div class="prob-seg seg-away" style="width:18.3%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>56.1%</strong> New Zealand</span>
+      <span class="pl-draw"><strong>25.7%</strong> 平局</span>
+      <span class="pl-away"><strong>18.3%</strong> Egypt</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">15.66%</div><span class="sres rh">New Zealand</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">12.06%</div><span class="sres rh">New Zealand</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">11.72%</div><span class="sres rd">平局</span></div></div>
+  </div>
+</div></div>
+<div id="day-2026-06-22" class="day-section" style="display:none"><div class="day-label">6月22日 — Group I,J 第二輪</div>
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Arlington</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 J</span>
+      <span class="wchip w-danger">🔥 35°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇦🇷</span><div class="tname">Argentina</div><div class="tform">λ=1.98</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇦🇹</span><div class="tname">Austria</div><div class="tform">λ=5.64</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:5.9%"></div>
+      <div class="prob-seg seg-draw" style="width:6.2%"></div>
+      <div class="prob-seg seg-away" style="width:87.9%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>5.9%</strong> Argentina</span>
+      <span class="pl-draw"><strong>6.2%</strong> 平局</span>
+      <span class="pl-away"><strong>87.9%</strong> Austria</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-5</div><div class="spct">4.63%</div><span class="sres ra">Austria</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-5</div><div class="spct">4.55%</div><span class="sres ra">Austria</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-6</div><div class="spct">4.35%</div><span class="sres ra">Austria</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Philadelphia</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 I</span>
+      <span class="wchip w-warning">☀ 28°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇫🇷</span><div class="tname">France</div><div class="tform">λ=1.84</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇮🇶</span><div class="tname">Iraq</div><div class="tform">λ=0.72</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:64.1%"></div>
+      <div class="prob-seg seg-draw" style="width:21.9%"></div>
+      <div class="prob-seg seg-away" style="width:14.1%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>64.1%</strong> France</span>
+      <span class="pl-draw"><strong>21.9%</strong> 平局</span>
+      <span class="pl-away"><strong>14.1%</strong> Iraq</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">14.1%</div><span class="sres rh">France</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">13.09%</div><span class="sres rh">France</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">10.2%</div><span class="sres rd">平局</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>New York</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 I</span>
+      <span class="wchip w-warning">☀ 27°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇳🇴</span><div class="tname">Norway</div><div class="tform">λ=2.33</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇸🇳</span><div class="tname">Senegal</div><div class="tform">λ=0.81</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:71.3%"></div>
+      <div class="prob-seg seg-draw" style="width:17.3%"></div>
+      <div class="prob-seg seg-away" style="width:11.4%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>71.3%</strong> Norway</span>
+      <span class="pl-draw"><strong>17.3%</strong> 平局</span>
+      <span class="pl-away"><strong>11.4%</strong> Senegal</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">11.73%</div><span class="sres rh">Norway</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">10.08%</div><span class="sres rh">Norway</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-1</div><div class="spct">9.5%</div><span class="sres rh">Norway</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>San Francisco</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 J</span>
+      <span class="wchip w-success">🌤 20°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇯🇴</span><div class="tname">Jordan</div><div class="tform">λ=0.67</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇩🇿</span><div class="tname">Algeria</div><div class="tform">λ=0.31</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:39.2%"></div>
+      <div class="prob-seg seg-draw" style="width:45.6%"></div>
+      <div class="prob-seg seg-away" style="width:15.2%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>39.2%</strong> Jordan</span>
+      <span class="pl-draw"><strong>45.6%</strong> 平局</span>
+      <span class="pl-away"><strong>15.2%</strong> Algeria</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">37.29%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">25.04%</div><span class="sres rh">Jordan</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">11.72%</div><span class="sres ra">Algeria</span></div></div>
+  </div>
+</div></div>
+<div id="day-2026-06-23" class="day-section" style="display:none"><div class="day-label">6月23日 — Group K,L 第二輪</div>
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Houston</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 K</span>
+      <span class="wchip w-danger">🌡 33°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇵🇹</span><div class="tname">Portugal</div><div class="tform">λ=1.05</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇺🇿</span><div class="tname">Uzbekistan</div><div class="tform">λ=0.69</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:43.5%"></div>
+      <div class="prob-seg seg-draw" style="width:32.8%"></div>
+      <div class="prob-seg seg-away" style="width:23.7%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>43.5%</strong> Portugal</span>
+      <span class="pl-draw"><strong>32.8%</strong> 平局</span>
+      <span class="pl-away"><strong>23.7%</strong> Uzbekistan</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">18.5%</div><span class="sres rh">Portugal</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">17.6%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">12.69%</div><span class="sres rd">平局</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Boston</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 L</span>
+      <span class="wchip w-success">🌤 25°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><div class="tname">England</div><div class="tform">λ=8.99</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇬🇭</span><div class="tname">Ghana</div><div class="tform">λ=0.75</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:99.7%"></div>
+      <div class="prob-seg seg-draw" style="width:0.2%"></div>
+      <div class="prob-seg seg-away" style="width:0.1%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>99.7%</strong> England</span>
+      <span class="pl-draw"><strong>0.2%</strong> 平局</span>
+      <span class="pl-away"><strong>0.1%</strong> Ghana</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">9-0</div><div class="spct">6.25%</div><span class="sres rh">England</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">8-0</div><div class="spct">6.23%</div><span class="sres rh">England</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">10-0</div><div class="spct">5.64%</div><span class="sres rh">England</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Toronto</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 L</span>
+      <span class="wchip w-success">🌤 24°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇵🇦</span><div class="tname">Panama</div><div class="tform">λ=0.31</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇭🇷</span><div class="tname">Croatia</div><div class="tform">λ=1.42</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:8%"></div>
+      <div class="prob-seg seg-draw" style="width:26.6%"></div>
+      <div class="prob-seg seg-away" style="width:65.4%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>8%</strong> Panama</span>
+      <span class="pl-draw"><strong>26.6%</strong> 平局</span>
+      <span class="pl-away"><strong>65.4%</strong> Croatia</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">25.16%</div><span class="sres ra">Croatia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">17.87%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-2</div><div class="spct">17.78%</div><span class="sres ra">Croatia</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Guadalajara</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 K</span>
+      <span class="wchip w-warning">☀ 28°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇨🇴</span><div class="tname">Colombia</div><div class="tform">λ=2.78</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇨🇩</span><div class="tname">DR Congo</div><div class="tform">λ=0.75</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:79.4%"></div>
+      <div class="prob-seg seg-draw" style="width:13.1%"></div>
+      <div class="prob-seg seg-away" style="width:7.5%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>79.4%</strong> Colombia</span>
+      <span class="pl-draw"><strong>13.1%</strong> 平局</span>
+      <span class="pl-away"><strong>7.5%</strong> DR Congo</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">11.29%</div><span class="sres rh">Colombia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">3-0</div><div class="spct">10.42%</div><span class="sres rh">Colombia</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-1</div><div class="spct">8.53%</div><span class="sres rh">Colombia</span></div></div>
+  </div>
+</div></div>
+<div id="day-2026-06-24" class="day-section" style="display:none"><div class="day-label">6月24日 — Group A,B,C 末輪</div>
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Mexico City</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 A</span>
+      <span class="wchip w-success">🌤 18°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇨🇿</span><div class="tname">Czechia</div><div class="tform">λ=4.26</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇲🇽</span><div class="tname">Mexico</div><div class="tform">λ=1.55</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:82.5%"></div>
+      <div class="prob-seg seg-draw" style="width:9.3%"></div>
+      <div class="prob-seg seg-away" style="width:8.3%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>82.5%</strong> Czechia</span>
+      <span class="pl-draw"><strong>9.3%</strong> 平局</span>
+      <span class="pl-away"><strong>8.3%</strong> Mexico</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">4-1</div><div class="spct">6.37%</div><span class="sres rh">Czechia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">3-1</div><div class="spct">5.97%</div><span class="sres rh">Czechia</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">5-1</div><div class="spct">5.44%</div><span class="sres rh">Czechia</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Guadalupe</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 A</span>
+      <span class="wchip w-danger">🔥 34°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇿🇦</span><div class="tname">South Africa</div><div class="tform">λ=0.36</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇰🇷</span><div class="tname">South Korea</div><div class="tform">λ=1.44</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:9.1%"></div>
+      <div class="prob-seg seg-draw" style="width:26.3%"></div>
+      <div class="prob-seg seg-away" style="width:64.6%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>9.1%</strong> South Africa</span>
+      <span class="pl-draw"><strong>26.3%</strong> 平局</span>
+      <span class="pl-away"><strong>64.6%</strong> South Korea</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">23.85%</div><span class="sres ra">South Korea</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">17.12%</div><span class="sres ra">South Korea</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-0</div><div class="spct">16.53%</div><span class="sres rd">平局</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Vancouver</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 B</span>
+      <span class="wchip w-success">🌤 20°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇨🇭</span><div class="tname">Switzerland</div><div class="tform">λ=7.33</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇨🇦</span><div class="tname">Canada</div><div class="tform">λ=2.25</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:93.7%"></div>
+      <div class="prob-seg seg-draw" style="width:3.3%"></div>
+      <div class="prob-seg seg-away" style="width:3%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>93.7%</strong> Switzerland</span>
+      <span class="pl-draw"><strong>3.3%</strong> 平局</span>
+      <span class="pl-away"><strong>3%</strong> Canada</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">7-2</div><div class="spct">3.93%</div><span class="sres rh">Switzerland</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">6-2</div><div class="spct">3.77%</div><span class="sres rh">Switzerland</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">8-2</div><div class="spct">3.58%</div><span class="sres rh">Switzerland</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Seattle</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 B</span>
+      <span class="wchip w-success">🌤 22°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇧🇦</span><div class="tname">Bosnia</div><div class="tform">λ=0.83</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇶🇦</span><div class="tname">Qatar</div><div class="tform">λ=0.37</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:44.4%"></div>
+      <div class="prob-seg seg-draw" style="width:40.1%"></div>
+      <div class="prob-seg seg-away" style="width:15.5%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>44.4%</strong> Bosnia</span>
+      <span class="pl-draw"><strong>40.1%</strong> 平局</span>
+      <span class="pl-away"><strong>15.5%</strong> Qatar</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">30.16%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">25.02%</div><span class="sres rh">Bosnia</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">11.12%</div><span class="sres ra">Qatar</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Miami</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 C</span>
+      <span class="wchip w-danger">🌡 32°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><div class="tname">Scotland</div><div class="tform">λ=1.09</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇧🇷</span><div class="tname">Brazil</div><div class="tform">λ=3.68</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:6.8%"></div>
+      <div class="prob-seg seg-draw" style="width:9.7%"></div>
+      <div class="prob-seg seg-away" style="width:83.5%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>6.8%</strong> Scotland</span>
+      <span class="pl-draw"><strong>9.7%</strong> 平局</span>
+      <span class="pl-away"><strong>83.5%</strong> Brazil</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-3</div><div class="spct">7.67%</div><span class="sres ra">Brazil</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-3</div><div class="spct">7.06%</div><span class="sres ra">Brazil</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-4</div><div class="spct">7.03%</div><span class="sres ra">Brazil</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Atlanta</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 C</span>
+      <span class="wchip w-warning">☀ 30°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇲🇦</span><div class="tname">Morocco</div><div class="tform">λ=1.09</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇭🇹</span><div class="tname">Haiti</div><div class="tform">λ=0.39</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:53.2%"></div>
+      <div class="prob-seg seg-draw" style="width:33.6%"></div>
+      <div class="prob-seg seg-away" style="width:13.2%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>53.2%</strong> Morocco</span>
+      <span class="pl-draw"><strong>33.6%</strong> 平局</span>
+      <span class="pl-away"><strong>13.2%</strong> Haiti</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">24.82%</div><span class="sres rh">Morocco</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">22.8%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-0</div><div class="spct">13.48%</div><span class="sres rh">Morocco</span></div></div>
+  </div>
+</div></div>
+<div id="day-2026-06-25" class="day-section" style="display:none"><div class="day-label">6月25日 — Group D,E,F 末輪</div>
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Los Angeles</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 D</span>
+      <span class="wchip w-success">🌤 25°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇹🇷</span><div class="tname">Turkey</div><div class="tform">λ=3.56</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇺🇸</span><div class="tname">USA</div><div class="tform">λ=1.37</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:77.8%"></div>
+      <div class="prob-seg seg-draw" style="width:11.8%"></div>
+      <div class="prob-seg seg-away" style="width:10.4%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>77.8%</strong> Turkey</span>
+      <span class="pl-draw"><strong>11.8%</strong> 平局</span>
+      <span class="pl-away"><strong>10.4%</strong> USA</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">3-1</div><div class="spct">7.47%</div><span class="sres rh">Turkey</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">4-1</div><div class="spct">6.64%</div><span class="sres rh">Turkey</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-1</div><div class="spct">6.3%</div><span class="sres rh">Turkey</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>San Francisco</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 D</span>
+      <span class="wchip w-success">🌤 20°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇵🇾</span><div class="tname">Paraguay</div><div class="tform">λ=5.05</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇦🇺</span><div class="tname">Australia</div><div class="tform">λ=0.67</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:96.1%"></div>
+      <div class="prob-seg seg-draw" style="width:2.8%"></div>
+      <div class="prob-seg seg-away" style="width:1.1%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>96.1%</strong> Paraguay</span>
+      <span class="pl-draw"><strong>2.8%</strong> 平局</span>
+      <span class="pl-away"><strong>1.1%</strong> Australia</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">5-0</div><div class="spct">9%</div><span class="sres rh">Paraguay</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">4-0</div><div class="spct">8.86%</div><span class="sres rh">Paraguay</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">6-0</div><div class="spct">7.52%</div><span class="sres rh">Paraguay</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>New York</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 E</span>
+      <span class="wchip w-warning">☀ 27°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇪🇨</span><div class="tname">Ecuador</div><div class="tform">λ=0.43</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇩🇪</span><div class="tname">Germany</div><div class="tform">λ=3.98</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:1.3%"></div>
+      <div class="prob-seg seg-draw" style="width:4.4%"></div>
+      <div class="prob-seg seg-away" style="width:94.3%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>1.3%</strong> Ecuador</span>
+      <span class="pl-draw"><strong>4.4%</strong> 平局</span>
+      <span class="pl-away"><strong>94.3%</strong> Germany</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-3</div><div class="spct">12.75%</div><span class="sres ra">Germany</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-4</div><div class="spct">12.72%</div><span class="sres ra">Germany</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-5</div><div class="spct">10.15%</div><span class="sres ra">Germany</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Philadelphia</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 E</span>
+      <span class="wchip w-warning">☀ 28°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇨🇼</span><div class="tname">Curacao</div><div class="tform">λ=3.53</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇨🇮</span><div class="tname">Ivory Coast</div><div class="tform">λ=0.67</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:88.8%"></div>
+      <div class="prob-seg seg-draw" style="width:7.7%"></div>
+      <div class="prob-seg seg-away" style="width:3.5%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>88.8%</strong> Curacao</span>
+      <span class="pl-draw"><strong>7.7%</strong> 平局</span>
+      <span class="pl-away"><strong>3.5%</strong> Ivory Coast</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">3-0</div><div class="spct">11.03%</div><span class="sres rh">Curacao</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">4-0</div><div class="spct">9.72%</div><span class="sres rh">Curacao</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-0</div><div class="spct">9.35%</div><span class="sres rh">Curacao</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Arlington</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 F</span>
+      <span class="wchip w-danger">🔥 35°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇯🇵</span><div class="tname">Japan</div><div class="tform">λ=1.35</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇸🇪</span><div class="tname">Sweden</div><div class="tform">λ=2.62</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:17.9%"></div>
+      <div class="prob-seg seg-draw" style="width:17.4%"></div>
+      <div class="prob-seg seg-away" style="width:64.7%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>17.9%</strong> Japan</span>
+      <span class="pl-draw"><strong>17.4%</strong> 平局</span>
+      <span class="pl-away"><strong>64.7%</strong> Sweden</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">8.78%</div><span class="sres ra">Sweden</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-3</div><div class="spct">7.6%</div><span class="sres ra">Sweden</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">6.7%</div><span class="sres rd">平局</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Kansas City</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 F</span>
+      <span class="wchip w-warning">☀ 30°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇹🇳</span><div class="tname">Tunisia</div><div class="tform">λ=0.75</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇳🇱</span><div class="tname">Netherlands</div><div class="tform">λ=1.22</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:22.8%"></div>
+      <div class="prob-seg seg-draw" style="width:29.9%"></div>
+      <div class="prob-seg seg-away" style="width:47.3%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>22.8%</strong> Tunisia</span>
+      <span class="pl-draw"><strong>29.9%</strong> 平局</span>
+      <span class="pl-away"><strong>47.3%</strong> Netherlands</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">17.03%</div><span class="sres ra">Netherlands</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">13.9%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">12.75%</div><span class="sres rd">平局</span></div></div>
+  </div>
+</div></div>
+<div id="day-2026-06-26" class="day-section" style="display:none"><div class="day-label">6月26日 — Group G,H,I 末輪</div>
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Boston</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 I</span>
+      <span class="wchip w-success">🌤 25°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇳🇴</span><div class="tname">Norway</div><div class="tform">λ=2.70</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇫🇷</span><div class="tname">France</div><div class="tform">λ=1.97</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:54%"></div>
+      <div class="prob-seg seg-draw" style="width:18.1%"></div>
+      <div class="prob-seg seg-away" style="width:27.9%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>54%</strong> Norway</span>
+      <span class="pl-draw"><strong>18.1%</strong> 平局</span>
+      <span class="pl-away"><strong>27.9%</strong> France</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-1</div><div class="spct">6.78%</div><span class="sres rh">Norway</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-2</div><div class="spct">6.62%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">3-1</div><div class="spct">6.08%</div><span class="sres rh">Norway</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Toronto</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 I</span>
+      <span class="wchip w-success">🌤 24°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇸🇳</span><div class="tname">Senegal</div><div class="tform">λ=0.80</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇮🇶</span><div class="tname">Iraq</div><div class="tform">λ=0.66</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:35.3%"></div>
+      <div class="prob-seg seg-draw" style="width:37.2%"></div>
+      <div class="prob-seg seg-away" style="width:27.4%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>35.3%</strong> Senegal</span>
+      <span class="pl-draw"><strong>37.2%</strong> 平局</span>
+      <span class="pl-away"><strong>27.4%</strong> Iraq</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">23.21%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">18.52%</div><span class="sres rh">Senegal</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">15.39%</div><span class="sres ra">Iraq</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Houston</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 H</span>
+      <span class="wchip w-danger">🌡 33°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇨🇻</span><div class="tname">Cape Verde</div><div class="tform">λ=0.37</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇸🇦</span><div class="tname">Saudi Arabia</div><div class="tform">λ=7.07</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:0.1%"></div>
+      <div class="prob-seg seg-draw" style="width:0.4%"></div>
+      <div class="prob-seg seg-away" style="width:99.6%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>0.1%</strong> Cape Verde</span>
+      <span class="pl-draw"><strong>0.4%</strong> 平局</span>
+      <span class="pl-away"><strong>99.6%</strong> Saudi Arabia</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-6</div><div class="spct">10.2%</div><span class="sres ra">Saudi Arabia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-7</div><div class="spct">10.19%</div><span class="sres ra">Saudi Arabia</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-8</div><div class="spct">9.02%</div><span class="sres ra">Saudi Arabia</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Guadalajara</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 H</span>
+      <span class="wchip w-warning">☀ 28°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇺🇾</span><div class="tname">Uruguay</div><div class="tform">λ=3.65</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇪🇸</span><div class="tname">Spain</div><div class="tform">λ=0.96</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:85.3%"></div>
+      <div class="prob-seg seg-draw" style="width:9%"></div>
+      <div class="prob-seg seg-away" style="width:5.7%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>85.3%</strong> Uruguay</span>
+      <span class="pl-draw"><strong>9%</strong> 平局</span>
+      <span class="pl-away"><strong>5.7%</strong> Spain</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">3-0</div><div class="spct">8.02%</div><span class="sres rh">Uruguay</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">3-1</div><div class="spct">7.74%</div><span class="sres rh">Uruguay</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">4-0</div><div class="spct">7.37%</div><span class="sres rh">Uruguay</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Seattle</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 G</span>
+      <span class="wchip w-success">🌤 22°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇪🇬</span><div class="tname">Egypt</div><div class="tform">λ=0.73</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇮🇷</span><div class="tname">Iran</div><div class="tform">λ=1.61</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:16.9%"></div>
+      <div class="prob-seg seg-draw" style="width:24.8%"></div>
+      <div class="prob-seg seg-away" style="width:58.3%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>16.9%</strong> Egypt</span>
+      <span class="pl-draw"><strong>24.8%</strong> 平局</span>
+      <span class="pl-away"><strong>58.3%</strong> Iran</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">15.49%</div><span class="sres ra">Iran</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">12.47%</div><span class="sres ra">Iran</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">11.31%</div><span class="sres rd">平局</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Vancouver</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 G</span>
+      <span class="wchip w-success">🌤 20°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇳🇿</span><div class="tname">New Zealand</div><div class="tform">λ=1.25</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇧🇪</span><div class="tname">Belgium</div><div class="tform">λ=1.01</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:41.7%"></div>
+      <div class="prob-seg seg-draw" style="width:28.5%"></div>
+      <div class="prob-seg seg-away" style="width:29.8%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>41.7%</strong> New Zealand</span>
+      <span class="pl-draw"><strong>28.5%</strong> 平局</span>
+      <span class="pl-away"><strong>29.8%</strong> Belgium</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">13.18%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">13.09%</div><span class="sres rh">New Zealand</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">10.59%</div><span class="sres ra">Belgium</span></div></div>
+  </div>
+</div></div>
+<div id="day-2026-06-27" class="day-section" style="display:none"><div class="day-label">6月27日 — Group J,K,L 末輪</div>
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>New York</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 L</span>
+      <span class="wchip w-warning">☀ 27°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇵🇦</span><div class="tname">Panama</div><div class="tform">λ=0.29</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><div class="tname">England</div><div class="tform">λ=2.67</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:2.4%"></div>
+      <div class="prob-seg seg-draw" style="width:10%"></div>
+      <div class="prob-seg seg-away" style="width:87.5%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>2.4%</strong> Panama</span>
+      <span class="pl-draw"><strong>10%</strong> 平局</span>
+      <span class="pl-away"><strong>87.5%</strong> England</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">18.43%</div><span class="sres ra">England</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-3</div><div class="spct">16.46%</div><span class="sres ra">England</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">13.8%</div><span class="sres ra">England</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Philadelphia</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 L</span>
+      <span class="wchip w-warning">☀ 28°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇭🇷</span><div class="tname">Croatia</div><div class="tform">λ=4.68</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇬🇭</span><div class="tname">Ghana</div><div class="tform">λ=0.71</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:94.6%"></div>
+      <div class="prob-seg seg-draw" style="width:3.8%"></div>
+      <div class="prob-seg seg-away" style="width:1.6%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>94.6%</strong> Croatia</span>
+      <span class="pl-draw"><strong>3.8%</strong> 平局</span>
+      <span class="pl-away"><strong>1.6%</strong> Ghana</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">4-0</div><div class="spct">9.11%</div><span class="sres rh">Croatia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">5-0</div><div class="spct">8.53%</div><span class="sres rh">Croatia</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">3-0</div><div class="spct">7.81%</div><span class="sres rh">Croatia</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Miami</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 K</span>
+      <span class="wchip w-danger">🌡 32°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇨🇴</span><div class="tname">Colombia</div><div class="tform">λ=2.02</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇵🇹</span><div class="tname">Portugal</div><div class="tform">λ=1.13</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:58%"></div>
+      <div class="prob-seg seg-draw" style="width:21.3%"></div>
+      <div class="prob-seg seg-away" style="width:20.7%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>58%</strong> Colombia</span>
+      <span class="pl-draw"><strong>21.3%</strong> 平局</span>
+      <span class="pl-away"><strong>20.7%</strong> Portugal</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-1</div><div class="spct">9.87%</div><span class="sres rh">Colombia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">9.82%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-0</div><div class="spct">8.75%</div><span class="sres rh">Colombia</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Atlanta</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 K</span>
+      <span class="wchip w-warning">☀ 30°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇨🇩</span><div class="tname">DR Congo</div><div class="tform">λ=0.71</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇺🇿</span><div class="tname">Uzbekistan</div><div class="tform">λ=1.01</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:24.9%"></div>
+      <div class="prob-seg seg-draw" style="width:33.3%"></div>
+      <div class="prob-seg seg-away" style="width:41.8%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>24.9%</strong> DR Congo</span>
+      <span class="pl-draw"><strong>33.3%</strong> 平局</span>
+      <span class="pl-away"><strong>41.8%</strong> Uzbekistan</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">18.19%</div><span class="sres ra">Uzbekistan</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">18.06%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">12.78%</div><span class="sres rd">平局</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Kansas City</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 J</span>
+      <span class="wchip w-warning">☀ 30°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇩🇿</span><div class="tname">Algeria</div><div class="tform">λ=0.29</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇦🇹</span><div class="tname">Austria</div><div class="tform">λ=1.76</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:5.4%"></div>
+      <div class="prob-seg seg-draw" style="width:20.3%"></div>
+      <div class="prob-seg seg-away" style="width:74.3%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>5.4%</strong> Algeria</span>
+      <span class="pl-draw"><strong>20.3%</strong> 平局</span>
+      <span class="pl-away"><strong>74.3%</strong> Austria</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">22.71%</div><span class="sres ra">Austria</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">20.09%</div><span class="sres ra">Austria</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-0</div><div class="spct">12.93%</div><span class="sres rd">平局</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="venue"><b>Arlington</b></span>
+    <div style="display:flex;gap:5px;align-items:center">
+      <span class="grp-chip">組別 J</span>
+      <span class="wchip w-danger">🔥 35°C</span>
+    </div>
+  </div>
+  <div class="teams-row">
+    <div class="team"><span class="flag">🇯🇴</span><div class="tname">Jordan</div><div class="tform">λ=2.00</div></div>
+    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
+    <div class="team"><span class="flag">🇦🇷</span><div class="tname">Argentina</div><div class="tform">λ=1.85</div></div>
+  </div>
+  <div class="prob-section">
+    <div class="prob-bar-wrap">
+      <div class="prob-seg seg-home" style="width:42.4%"></div>
+      <div class="prob-seg seg-draw" style="width:21.1%"></div>
+      <div class="prob-seg seg-away" style="width:36.5%"></div>
+    </div>
+    <div class="prob-labels">
+      <span class="pl-home"><strong>42.4%</strong> Jordan</span>
+      <span class="pl-draw"><strong>21.1%</strong> 平局</span>
+      <span class="pl-away"><strong>36.5%</strong> Argentina</span>
+    </div>
+  </div>
+  <div class="scores-section">
+    <div class="scores-title">最可能比分（100萬次模擬）</div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">7.92%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-1</div><div class="spct">7.9%</div><span class="sres rh">Jordan</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-2</div><div class="spct">7.26%</div><span class="sres ra">Argentina</span></div></div>
+  </div>
+</div></div>
+  <div class="footer">
+    <strong>模型架構</strong>｜Poisson 分布 × Bayesian 動態更新：每場賽後以 40% 權重調整各隊攻防係數<br>
+    天氣：高溫 → λ 下調 · 墨西哥城 → 海拔加成｜自動排程：每日 UTC 06:00 重算並部署<br>
+    Claude AI × R 4.6 × GitHub Actions · 僅供娛樂
+  </div>
+</div>
+<script>
+function showDay(d,btn){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  btn.classList.add("active");
+  document.querySelectorAll(".day-section").forEach(s=>s.style.display="none");
+  document.getElementById("day-"+d).style.display="block";
+}
+</script>
+</body>
+</html>
