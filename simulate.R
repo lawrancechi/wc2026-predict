@@ -1,8 +1,86 @@
 library(jsonlite)
 
 set.seed(2026)
-N <- 100000
-w <- 0.15   # Bayesian 更新權重（低權重避免單場極端結果扭曲）
+w <- 0.15   # Bayesian 更新權重
+
+# ── 教練資料（姓名 + 能力評分 1.0=平均，>1.0=強帥）─────────
+COACH <- list(
+  Argentina    = list(name="Lionel Scaloni",      rating=1.08),
+  France       = list(name="Didier Deschamps",    rating=1.07),
+  Spain        = list(name="Luis de la Fuente",   rating=1.06),
+  Germany      = list(name="Julian Nagelsmann",   rating=1.06),
+  England      = list(name="Thomas Tuchel",       rating=1.05),
+  Portugal     = list(name="Roberto Martínez",    rating=1.04),
+  Brazil       = list(name="Dorival Júnior",      rating=1.03),
+  Netherlands  = list(name="Ronald Koeman",       rating=1.03),
+  Morocco      = list(name="Walid Regragui",      rating=1.04),
+  Japan        = list(name="Hajime Moriyasu",     rating=1.03),
+  USA          = list(name="Mauricio Pochettino", rating=1.03),
+  Croatia      = list(name="Zlatko Dalić",        rating=1.03),
+  Switzerland  = list(name="Murat Yakin",         rating=1.02),
+  Colombia     = list(name="Néstor Lorenzo",      rating=1.02),
+  Mexico       = list(name="Javier Aguirre",      rating=1.01),
+  Uruguay      = list(name="Marcelo Bielsa",      rating=1.04),
+  Senegal      = list(name="Aliou Cissé",         rating=1.02),
+  Australia    = list(name="Tony Popovic",        rating=1.01),
+  Canada       = list(name="Jesse Marsch",        rating=1.02),
+  "South Korea"= list(name="Hong Myung-bo",       rating=1.00),
+  Turkey       = list(name="Vincenzo Montella",   rating=1.01),
+  Austria      = list(name="Ralf Rangnick",       rating=1.03),
+  Norway       = list(name="Ståle Solbakken",     rating=1.01),
+  Sweden       = list(name="Jon Dahl Tomasson",   rating=1.00),
+  Belgium      = list(name="Domenico Tedesco",    rating=1.01),
+  Ecuador      = list(name="Sebastián Beccacece", rating=1.00),
+  Iran         = list(name="Amir Ghalenoei",      rating=0.98),
+  "Saudi Arabia"=list(name="Hervé Renard",        rating=1.00),
+  "Ivory Coast"= list(name="Emerse Faé",          rating=0.99),
+  Algeria      = list(name="Vladimir Petković",   rating=1.00),
+  Ghana        = list(name="Otto Addo",           rating=0.99),
+  Tunisia      = list(name="Faouzi Benzarti",     rating=0.98),
+  Egypt        = list(name="Hossam El-Badry",     rating=0.98),
+  "DR Congo"   = list(name="Sébastien Desabre",   rating=0.99),
+  "Cape Verde" = list(name="Bubista",             rating=0.98),
+  Jordan       = list(name="Hussein Ammouta",     rating=0.97),
+  Paraguay     = list(name="Gustavo Alfaro",      rating=0.99),
+  Bosnia       = list(name="Sergej Barbarez",     rating=0.98),
+  Uzbekistan   = list(name="Srecko Katanec",      rating=0.98),
+  Curacao      = list(name="Remko Bicentini",     rating=0.97),
+  Panama       = list(name="Thomas Christiansen", rating=0.98),
+  Qatar        = list(name="Marquez López",       rating=0.97),
+  Scotland     = list(name="Steve Clarke",        rating=0.99),
+  Haiti        = list(name="Marc Collat",         rating=0.97),
+  "South Africa"=list(name="Hugo Broos",          rating=0.98),
+  "New Zealand"= list(name="Darren Bazeley",      rating=0.97),
+  Iraq         = list(name="Jesús Casas",         rating=0.98),
+  Czechia      = list(name="Ivan Hašek",          rating=0.99)
+)
+get_coach <- function(t) if (!is.null(COACH[[t]])) COACH[[t]] else list(name="(未知)", rating=1.0)
+
+# ── 場地天氣資料（6-7月實際氣候）───────────────────────────
+WEATHER <- list(
+  "Dallas"        = list(emoji="🌡️", desc="高溫悶熱 36°C 晴", impact=-0.04),
+  "Arlington"     = list(emoji="🌡️", desc="高溫 35°C 部分多雲", impact=-0.04),
+  "Houston"       = list(emoji="☀️", desc="高溫潮濕 35°C", impact=-0.05),
+  "Miami"         = list(emoji="🌧️", desc="高溫潮濕 33°C 雷陣雨", impact=-0.06),
+  "Atlanta"       = list(emoji="⛅", desc="炎熱 32°C 多雲", impact=-0.03),
+  "Kansas City"   = list(emoji="⛈️", desc="悶熱 30°C 雷雨風險", impact=-0.03),
+  "New York"      = list(emoji="⛅", desc="溫暖 29°C 舒適", impact=0.00),
+  "Boston"        = list(emoji="🌤️", desc="涼爽 26°C 適宜", impact=0.01),
+  "Philadelphia"  = list(emoji="⛅", desc="溫熱 30°C 多雲", impact=-0.01),
+  "Toronto"       = list(emoji="🌤️", desc="涼爽 24°C 晴", impact=0.01),
+  "Vancouver"     = list(emoji="🌦️", desc="涼爽 21°C 小雨", impact=0.01),
+  "Los Angeles"   = list(emoji="☀️", desc="溫暖乾燥 28°C", impact=0.00),
+  "San Francisco" = list(emoji="🌁", desc="涼爽 19°C 霧", impact=0.01),
+  "Seattle"       = list(emoji="🌦️", desc="溫涼 22°C 陰雨", impact=0.01),
+  "Monterrey"     = list(emoji="🔥", desc="極熱潮濕 39°C", impact=-0.07),
+  "Guadalupe"     = list(emoji="🔥", desc="極熱 38°C", impact=-0.07),
+  "Mexico City"   = list(emoji="⛅", desc="高海拔 2240m 涼爽 19°C", impact=0.00),
+  "Guadalajara"   = list(emoji="⛅", desc="溫熱 29°C 高海拔 1560m", impact=-0.01)
+)
+get_weather <- function(venue) {
+  if (!is.null(WEATHER[[venue]])) WEATHER[[venue]]
+  else list(emoji="🌤️", desc="氣候適中", impact=0.00)
+}
 
 cfg      <- fromJSON("data/teams.json", simplifyVector = FALSE)
 base_lam <- setNames(as.numeric(unlist(cfg$base_lambda)), names(cfg$base_lambda))
@@ -44,43 +122,104 @@ HOST_TEAMS <- c("USA", "Mexico", "Canada")
 GIANT_KILLERS <- c("Japan", "Morocco", "Switzerland", "Senegal",
                    "South Korea", "Ghana", "Australia", "Iran", "Czechia")
 
-# ── Poisson 模擬（綜合因素版）────────────────────────────
-simulate_match <- function(home, away, heat, altitude=FALSE, h_played=0, a_played=0) {
+# ── 積分榜計算（供晉級壓力分析）────────────────────────
+standings <- list()
+for (m in matches) {
+  if (!isTRUE(m$played)) next
+  h <- m$home; a <- m$away
+  hs <- m$home_score; as_ <- m$away_score
+  if (is.null(standings[[h]])) standings[[h]] <- list(pts=0L, gp=0L, gf=0L, ga_=0L)
+  if (is.null(standings[[a]])) standings[[a]] <- list(pts=0L, gp=0L, gf=0L, ga_=0L)
+  standings[[h]]$gp <- standings[[h]]$gp + 1L
+  standings[[a]]$gp <- standings[[a]]$gp + 1L
+  standings[[h]]$gf <- standings[[h]]$gf + hs
+  standings[[h]]$ga_ <- standings[[h]]$ga_ + as_
+  standings[[a]]$gf <- standings[[a]]$gf + as_
+  standings[[a]]$ga_ <- standings[[a]]$ga_ + hs
+  if (hs > as_)       { standings[[h]]$pts <- standings[[h]]$pts + 3L }
+  else if (hs == as_) { standings[[h]]$pts <- standings[[h]]$pts + 1L
+                        standings[[a]]$pts <- standings[[a]]$pts + 1L }
+  else                { standings[[a]]$pts <- standings[[a]]$pts + 3L }
+}
+get_standing <- function(t) {
+  s <- standings[[t]]
+  if (is.null(s)) list(pts=NA, gp=0L, status="首場出賽", pressure=0.0)
+  else if (s$gp == 0L) list(pts=0, gp=0L, status="首場出賽", pressure=0.0)
+  else {
+    pts <- s$pts; gp <- s$gp
+    status <- if (pts >= 6) "幾乎晉級 ✅"
+              else if (pts == 4) "積分領先"
+              else if (pts == 3) "積分尚可"
+              else if (pts == 1) "急需積分 ⚠️"
+              else               "背水一戰 🔴"
+    pressure <- if (pts == 0 && gp >= 1) 0.06
+                else if (pts <= 1 && gp >= 2) 0.10
+                else if (pts >= 6) -0.03
+                else 0.0
+    list(pts=pts, gp=gp, status=status, pressure=pressure)
+  }
+}
+
+# ── 解析式 Poisson 分析（取代10萬次模擬）────────────────
+simulate_match <- function(home, away, heat, altitude=FALSE, h_played=0, a_played=0, venue="") {
   xg_h <- max(0.05, base_lam[home] * atk[home] / def[away] + heat)
   xg_a <- max(0.05, base_lam[away] * atk[away] / def[home] + heat)
 
-  # 主辦國主場加成 +5%
+  # 教練能力加成
+  ch <- get_coach(home)$rating; ca <- get_coach(away)$rating
+  xg_h <- xg_h * ch; xg_a <- xg_a * ca
+
+  # 天氣影響
+  wi <- get_weather(venue)$impact
+  xg_h <- xg_h * (1 + wi); xg_a <- xg_a * (1 + wi)
+
+  # 主辦國主場加成
   if (home %in% HOST_TEAMS) xg_h <- xg_h * 1.05
 
   # 海拔加成
   if (isTRUE(altitude)) { xg_h <- xg_h * 1.15; xg_a <- xg_a * 0.95 }
 
-  # 首場比賽不確定性：若兩隊均未踢過，稍微拉近差距（爆冷因素）
+  # 晉級壓力修正
+  xg_h <- xg_h * (1 + get_standing(home)$pressure)
+  xg_a <- xg_a * (1 + get_standing(away)$pressure)
+
+  # 首戰不確定性（拉近差距）
   if (h_played == 0 && a_played == 0) {
     mid <- (xg_h + xg_a) / 2
     xg_h <- xg_h * 0.85 + mid * 0.15
     xg_a <- xg_a * 0.85 + mid * 0.15
   }
 
-  # 黑馬加成：傳統爆冷強隊在劣勢時多5%攻擊力
+  # 黑馬加成
   ratio <- xg_h / max(0.1, xg_a)
   if (away %in% GIANT_KILLERS && ratio > 1.5) xg_a <- xg_a * 1.05
   if (home %in% GIANT_KILLERS && ratio < 0.67) xg_h <- xg_h * 1.05
-  gh <- rpois(N, xg_h); ga <- rpois(N, xg_a)
-  hw  <- round(mean(gh > ga) * 100, 1)
-  dr  <- round(mean(gh == ga) * 100, 1)
-  aw  <- round(mean(gh < ga) * 100, 1)
-  sc  <- paste0(gh, "-", ga)
-  tbl <- sort(table(sc), decreasing = TRUE)
-  top5 <- lapply(seq_len(min(5, length(tbl))), function(i) {
-    s   <- names(tbl)[i]
-    pct <- round(as.integer(tbl[i]) / N * 100, 2)
-    pts <- as.integer(strsplit(s, "-")[[1]])
-    res <- if (pts[1] > pts[2]) "home" else if (pts[1] == pts[2]) "draw" else "away"
-    list(score = s, pct = pct, result = res)
+
+  # ── 解析式 Poisson 比分矩陣（精確機率，無隨機性）──────
+  max_g <- 8L
+  ph <- dpois(0:max_g, xg_h)
+  pa <- dpois(0:max_g, xg_a)
+  mat <- outer(ph, pa)          # mat[i,j] = P(home=i-1, away=j-1)
+  idx_h <- row(mat) > col(mat)  # home 進球 > away
+  idx_d <- row(mat) == col(mat)
+  hw <- round(sum(mat[idx_h]) * 100, 1)
+  dr <- round(sum(mat[idx_d]) * 100, 1)
+  aw <- round(100 - hw - dr, 1)
+
+  # 前5高機率比分
+  df <- data.frame(h=rep(0:max_g, each=max_g+1L),
+                   a=rep(0:max_g, times=max_g+1L),
+                   p=as.vector(mat), stringsAsFactors=FALSE)
+  df <- df[order(-df$p), ]
+  top5 <- lapply(seq_len(5L), function(i) {
+    s <- df[i, ]
+    list(score  = paste0(s$h, "-", s$a),
+         pct    = round(s$p * 100, 2),
+         result = if (s$h > s$a) "home" else if (s$h == s$a) "draw" else "away")
   })
-  list(xg_h = round(xg_h, 2), xg_a = round(xg_a, 2),
-       hw = hw, dr = dr, aw = aw, top5 = top5)
+
+  list(xg_h=round(xg_h,2), xg_a=round(xg_a,2),
+       hw=hw, dr=dr, aw=aw, top5=top5)
 }
 
 # ── 旗幟對應表 ────────────────────────────────────────────
@@ -213,12 +352,20 @@ expert_analysis <- function(m, sim) {
   if (hp == 0 && ap == 0)
     notes <- c(notes, '⚡ <b>首戰效應</b>：雙方均為本屆首場，世界盃首戰心理壓力大、技術狀態尚未磨合，爆冷機率比後續輪次高 20-30%%，模型已調整。')
 
-  # 6. 小組賽出線壓力
-  if (hp >= 2 || ap >= 2) {
-    who <- if (hp >= 2 && ap >= 2) "雙方" else if (hp >= 2) ht else at
-    notes <- c(notes, sprintf('🔑 <b>出線壓力</b>：%s 已踢完兩場，本場為生死戰，必勝壓力下戰術可能更激進、賠率水位易受情緒影響。', who))
-  } else if (hp >= 1 || ap >= 1)
-    notes <- c(notes, '📋 <b>積分關鍵場</b>：已踢過第一輪，本場積分直接影響小組排名，雙方戰意預計全開。')
+  # 6. 晉級壓力（從積分榜計算）
+  sh <- get_standing(ht); sa <- get_standing(at)
+  if (!is.na(sh$pts) || !is.na(sa$pts)) {
+    hpts <- if (is.na(sh$pts)) "–" else sh$pts
+    apts <- if (is.na(sa$pts)) "–" else sa$pts
+    if (sh$pressure >= 0.08 || sa$pressure >= 0.08) {
+      desperate <- if (sh$pressure >= sa$pressure) ht else at
+      notes <- c(notes, sprintf('🔑 <b>生死壓力</b>：%s（%s）已到背水一戰，激進打法可能帶來更多空間，比賽節奏預計激烈，也可能造成戰術失當。', desperate, if(sh$pressure>=sa$pressure) sh$status else sa$status))
+    } else if (sh$gp > 0 || sa$gp > 0) {
+      notes <- c(notes, sprintf('📋 <b>積分態勢</b>：%s 現有 %s 分（%s），%s 現有 %s 分（%s），本場積分直接影響小組排名。', ht, hpts, sh$status, at, apts, sa$status))
+    }
+  }
+  if (hp == 0 && ap == 0)
+    notes <- c(notes, '⚡ <b>首戰效應</b>：雙方均為本屆首場，世界盃首戰心理壓力大、技術狀態尚未磨合，爆冷機率比後續輪次高 20-30%，模型已調整。')
 
   # 7. 賠率分析（莊家心理 & 價值）
   if (!is.null(m$odds_h) && !is.null(m$odds_a)) {
@@ -232,33 +379,59 @@ expert_analysis <- function(m, sim) {
       notes <- c(notes, sprintf('⚖️ <b>賠率合理</b>：莊家賠率（主 %.2f / 客 %.2f）與模型機率吻合，無明顯套利空間。', m$odds_h, m$odds_a))
   }
 
-  # 8. 前幾天賽果影響（根據 form）
+  # 8. 近期賽況（本屆已踢場次）
   hf <- recent_form[[ht]]; af <- recent_form[[at]]
   if (length(hf) > 0 || length(af) > 0) {
     hform <- if (length(hf) > 0) paste(hf, collapse="") else "–"
     aform <- if (length(af) > 0) paste(af, collapse="") else "–"
     h_hot <- sum(hf == "W") >= 2; a_hot <- sum(af == "W") >= 2
     h_cold <- sum(hf == "L") >= 2; a_cold <- sum(af == "L") >= 2
-    if (h_hot) notes <- c(notes, sprintf('🔴 <b>近況火熱</b>：%s 近期 %s，士氣高昂，莊家可能調低主勝賠率，需確認是否已反映。', ht, hform))
-    if (a_hot) notes <- c(notes, sprintf('🔵 <b>黑馬狀態</b>：%s 近期 %s 表現亮眼，莊家可能尚未完全調整賠率。', at, aform))
-    if (h_cold && !a_cold) notes <- c(notes, sprintf('⚠️ <b>主場狀態堪憂</b>：%s 近期 %s，低迷狀態下主場優勢可能縮水。', ht, hform))
+    if (h_hot) notes <- c(notes, sprintf('🔴 <b>主隊近況火熱</b>：%s 本屆戰績 %s，士氣高昂，莊家可能已調低主勝賠率，需確認是否仍有價值。', ht, hform))
+    if (a_hot) notes <- c(notes, sprintf('🔵 <b>客隊狀態亮眼</b>：%s 本屆戰績 %s 表現突出，莊家可能尚未完全反映在盤口，留意客勝賠率。', at, aform))
+    if (h_cold && !a_cold) notes <- c(notes, sprintf('⚠️ <b>主隊低迷</b>：%s 本屆 %s，低迷狀態下主場優勢縮水，建議審慎看待主勝盤。', ht, hform))
   }
+
+  # 9. 教練分析
+  ch_h <- get_coach(ht); ch_a <- get_coach(at)
+  if (ch_h$rating >= 1.05 || ch_a$rating >= 1.05) {
+    top_coach <- if (ch_h$rating >= ch_a$rating) sprintf('%s（%s，頂級名帥）', ch_h$name, ht) else sprintf('%s（%s，頂級名帥）', ch_a$name, at)
+    notes <- c(notes, sprintf('👔 <b>教練優勢</b>：%s 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。', top_coach))
+  } else if (abs(ch_h$rating - ch_a$rating) >= 0.04) {
+    better <- if (ch_h$rating > ch_a$rating) sprintf('%s（%s）', ch_h$name, ht) else sprintf('%s（%s）', ch_a$name, at)
+    notes <- c(notes, sprintf('👔 <b>教練差距</b>：%s 執教能力略勝一籌，策略部署上佔有微幅優勢。', better))
+  } else {
+    notes <- c(notes, sprintf('👔 <b>教練</b>：%s（%s）vs %s（%s），執教能力相當，戰術佈局成勝負關鍵。', ch_h$name, ht, ch_a$name, at))
+  }
+
+  # 10. 天氣環境
+  wt <- get_weather(if (!is.null(m$venue)) m$venue else "")
+  if (wt$impact <= -0.05)
+    notes <- c(notes, sprintf('🌡️ <b>極端天氣警示</b>：%s 場地 %s，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。', m$venue, wt$desc))
+  else if (wt$impact <= -0.02)
+    notes <- c(notes, sprintf('☀️ <b>天氣影響</b>：%s（%s），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。', m$venue, wt$desc))
+  else if (wt$impact >= 0.01)
+    notes <- c(notes, sprintf('🌤️ <b>天氣有利</b>：%s（%s），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。', m$venue, wt$desc))
 
   if (length(notes) == 0) return("")
   items <- paste(sapply(notes, function(n) sprintf('<div class="ai-item">%s</div>', n)), collapse="")
-  sprintf('<div class="ai-box"><div class="ai-title">🧠 運彩投資專家分析</div>%s</div>', items)
+  sprintf('<div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div>%s</div>', items)
 }
 
 match_html <- function(m, sim) {
   hf  <- FLAG_MAP[m$home]; af <- FLAG_MAP[m$away]
   tc  <- temp_class(m$temp)
-  # 賠率（從 JSON 取，若無則顯示 N/A）
   odds_h <- if (!is.null(m$odds_h)) sprintf("%.2f", m$odds_h) else "N/A"
   odds_d <- if (!is.null(m$odds_d)) sprintf("%.2f", m$odds_d) else "N/A"
   odds_a <- if (!is.null(m$odds_a)) sprintf("%.2f", m$odds_a) else "N/A"
   utag   <- upset_tag(sim, m$home, m$away)
   vtip   <- value_tip(sim, m)
   analysis <- expert_analysis(m, sim)
+  # 教練資訊
+  ch_h <- get_coach(m$home); ch_a <- get_coach(m$away)
+  coach_row <- sprintf('<div class="coach-row"><span>👔 %s</span><span style="color:#94a3b8">vs</span><span>%s 👔</span></div>', ch_h$name, ch_a$name)
+  # 天氣資訊
+  wt <- get_weather(if (!is.null(m$venue)) m$venue else "")
+  weather_row <- sprintf('<div class="weather-row">%s %s</div>', wt$emoji, wt$desc)
 
   pills <- paste(sapply(seq_along(sim$top5), function(i) {
     s   <- sim$top5[[i]]
@@ -308,8 +481,10 @@ match_html <- function(m, sim) {
     <div class="odds-chip"><div class="odds-lbl">平局 (%s)</div><div class="odds-val">%s</div></div>
     <div class="odds-chip"><div class="odds-lbl">客勝 (%s)</div><div class="odds-val">%s</div></div>
   </div>
+  %s
+  %s
   <div class="scores-section">
-    <div class="scores-title">最可能比分（10萬次模擬）</div>
+    <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid">%s</div>
   </div>
   %s%s%s
@@ -322,7 +497,7 @@ match_html <- function(m, sim) {
     m$home, odds_h,
     "平", odds_d,
     m$away, odds_a,
-    pills, utag, vtip, analysis)
+    coach_row, weather_row, pills, utag, vtip, analysis)
 }
 
 # ── 戰術風格資料 ──────────────────────────────────────────
@@ -385,7 +560,7 @@ sections <- paste(sapply(seq_along(dates), function(i) {
   cards <- paste(sapply(ms, function(m) {
     heat <- ifelse(is.null(m$heat), 0, m$heat)
     hp   <- get_played_g(m$home); ap <- get_played_g(m$away)
-    sim  <- simulate_match(m$home, m$away, heat, isTRUE(m$altitude), hp, ap)
+    sim  <- simulate_match(m$home, m$away, heat, isTRUE(m$altitude), hp, ap, venue=if(!is.null(m$venue)) m$venue else "")
     cat(sprintf("  ✓ %s vs %s  xG[%.2f-%.2f]  %s%%-%s%%-%s%%\n",
                 m$home, m$away, sim$xg_h, sim$xg_a, sim$hw, sim$dr, sim$aw))
     match_html(m, sim)
@@ -541,6 +716,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 .upset-high{display:block;margin:.1rem 1rem .3rem;padding:4px 10px;border-radius:6px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);font-size:11px;color:#f87171;font-weight:600}
 .upset-med{display:block;margin:.1rem 1rem .3rem;padding:4px 10px;border-radius:6px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);font-size:11px;color:#fcd34d;font-weight:600}
 .value-tip{margin:.1rem 1rem .3rem;padding:5px 10px;border-radius:6px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);font-size:11px;color:#34d399}
+.coach-row{display:flex;justify-content:space-between;align-items:center;margin:.2rem 1rem .1rem;padding:5px 10px;border-radius:6px;background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.2);font-size:11px;color:#c4b5fd}
+.weather-row{margin:.1rem 1rem .3rem;padding:5px 10px;border-radius:6px;background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.18);font-size:11px;color:#7dd3fc;text-align:center}
 .sporttery-bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:1rem}
 .sporttery-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.35);border-radius:20px;padding:7px 18px;font-size:12px;color:#fcd34d;text-decoration:none;font-weight:600;transition:all .2s}
 .sporttery-btn:hover{background:rgba(234,179,8,.22);border-color:rgba(234,179,8,.6);color:#fef08a}
