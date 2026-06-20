@@ -207,8 +207,8 @@ simulate_match <- function(home, away, heat, altitude=FALSE, h_played=0, a_playe
   aw <- round(100 - hw - dr, 1)
 
   # 前5高機率比分
-  df <- data.frame(h=rep(0:max_g, each=max_g+1L),
-                   a=rep(0:max_g, times=max_g+1L),
+  df <- data.frame(h=rep(0:max_g, times=max_g+1L),
+                   a=rep(0:max_g, each=max_g+1L),
                    p=as.vector(mat), stringsAsFactors=FALSE)
   df <- df[order(-df$p), ]
   top5 <- lapply(seq_len(5L), function(i) {
