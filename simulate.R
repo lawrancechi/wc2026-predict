@@ -107,8 +107,8 @@ for (m in matches) {
   # 更新係數，限制在 [0.4, 2.5] 內
   atk[h] <- min(2.5, max(0.4, atk[h] * (1-w) + w * (hs  / lh_exp)))
   atk[a] <- min(2.5, max(0.4, atk[a] * (1-w) + w * (as_ / la_exp)))
-  def[h] <- min(2.5, max(0.4, def[h] * (1-w) + w * (la_exp / max(0.1, as_))))
-  def[a] <- min(2.5, max(0.4, def[a] * (1-w) + w * (lh_exp / max(0.1, hs))))
+  def[h] <- min(2.5, max(0.4, def[h] * (1-w) + w * (la_exp / max(0.5, as_))))
+  def[a] <- min(2.5, max(0.4, def[a] * (1-w) + w * (lh_exp / max(0.5, hs))))
 
   # 記錄近3場勝/平/負
   recent_form[[h]] <- tail(c(recent_form[[h]], if(hs>as_)"W" else if(hs==as_)"D" else "L"), 3)
