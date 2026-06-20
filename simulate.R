@@ -37,11 +37,35 @@ for (m in matches) {
   recent_form[[a]] <- tail(c(recent_form[[a]], if(as_>hs)"W" else if(as_==hs)"D" else "L"), 3)
 }
 
-# ── Poisson 模擬（xG 修正版）─────────────────────────────
-simulate_match <- function(home, away, heat, altitude = FALSE) {
+# ── 主辦國加成 ────────────────────────────────────────────
+HOST_TEAMS <- c("USA", "Mexico", "Canada")
+
+# ── 歷史爆冷強隊（世界盃常見黑馬）────────────────────────
+GIANT_KILLERS <- c("Japan", "Morocco", "Switzerland", "Senegal",
+                   "South Korea", "Ghana", "Australia", "Iran", "Czechia")
+
+# ── Poisson 模擬（綜合因素版）────────────────────────────
+simulate_match <- function(home, away, heat, altitude=FALSE, h_played=0, a_played=0) {
   xg_h <- max(0.05, base_lam[home] * atk[home] / def[away] + heat)
   xg_a <- max(0.05, base_lam[away] * atk[away] / def[home] + heat)
+
+  # 主辦國主場加成 +5%
+  if (home %in% HOST_TEAMS) xg_h <- xg_h * 1.05
+
+  # 海拔加成
   if (isTRUE(altitude)) { xg_h <- xg_h * 1.15; xg_a <- xg_a * 0.95 }
+
+  # 首場比賽不確定性：若兩隊均未踢過，稍微拉近差距（爆冷因素）
+  if (h_played == 0 && a_played == 0) {
+    mid <- (xg_h + xg_a) / 2
+    xg_h <- xg_h * 0.85 + mid * 0.15
+    xg_a <- xg_a * 0.85 + mid * 0.15
+  }
+
+  # 黑馬加成：傳統爆冷強隊在劣勢時多5%攻擊力
+  ratio <- xg_h / max(0.1, xg_a)
+  if (away %in% GIANT_KILLERS && ratio > 1.5) xg_a <- xg_a * 1.05
+  if (home %in% GIANT_KILLERS && ratio < 0.67) xg_h <- xg_h * 1.05
   gh <- rpois(N, xg_h); ga <- rpois(N, xg_a)
   hw  <- round(mean(gh > ga) * 100, 1)
   dr  <- round(mean(gh == ga) * 100, 1)
@@ -122,6 +146,27 @@ res_label <- function(r, h, a) {
   sprintf('<span class="sres ra">%s</span>', a)
 }
 
+upset_tag <- function(sim, home, away) {
+  # 爆冷風險：劣勢方（aw%）高於25%且主場xG比>1.5時
+  fav_win <- sim$hw; dog_win <- sim$aw
+  if (sim$xg_h < sim$xg_a) { fav_win <- sim$aw; dog_win <- sim$hw }
+  risk_team <- if (sim$xg_h < sim$xg_a) home else away
+  if (dog_win >= 30) return(sprintf('<span class="upset-high">🔥 高爆冷風險 %s</span>', risk_team))
+  if (dog_win >= 20) return(sprintf('<span class="upset-med">⚡ 爆冷可能 %s</span>', risk_team))
+  ""
+}
+
+value_tip <- function(sim, m) {
+  if (is.null(m$odds_h) || is.null(m$odds_a)) return("")
+  implied_h <- 1 / m$odds_h; implied_a <- 1 / m$odds_a
+  model_h   <- sim$hw / 100; model_a <- sim$aw / 100
+  tips <- c()
+  if (model_h - implied_h >  0.08) tips <- c(tips, sprintf('主勝有價值（模型%.0f%% vs 賠率隱含%.0f%%）', model_h*100, implied_h*100))
+  if (model_a - implied_a >  0.08) tips <- c(tips, sprintf('客勝有價值（模型%.0f%% vs 賠率隱含%.0f%%）', model_a*100, implied_a*100))
+  if (length(tips) == 0) return("")
+  sprintf('<div class="value-tip">💡 %s</div>', paste(tips, collapse="｜"))
+}
+
 match_html <- function(m, sim) {
   hf  <- FLAG_MAP[m$home]; af <- FLAG_MAP[m$away]
   tc  <- temp_class(m$temp)
@@ -129,6 +174,8 @@ match_html <- function(m, sim) {
   odds_h <- if (!is.null(m$odds_h)) sprintf("%.2f", m$odds_h) else "N/A"
   odds_d <- if (!is.null(m$odds_d)) sprintf("%.2f", m$odds_d) else "N/A"
   odds_a <- if (!is.null(m$odds_a)) sprintf("%.2f", m$odds_a) else "N/A"
+  utag   <- upset_tag(sim, m$home, m$away)
+  vtip   <- value_tip(sim, m)
 
   pills <- paste(sapply(seq_along(sim$top5), function(i) {
     s   <- sim$top5[[i]]
@@ -182,6 +229,7 @@ match_html <- function(m, sim) {
     <div class="scores-title">最可能比分（10萬次模擬）</div>
     <div class="scores-grid">%s</div>
   </div>
+  %s%s
 </div>',
     m$venue, m$group, tc$cls, tc$label,
     hf, m$home, sim$xg_h, form_html(m$home),
@@ -191,7 +239,7 @@ match_html <- function(m, sim) {
     m$home, odds_h,
     "平", odds_d,
     m$away, odds_a,
-    pills)
+    pills, utag, vtip)
 }
 
 # ── 執行模擬 ──────────────────────────────────────────────
@@ -201,12 +249,12 @@ today     <- format(Sys.Date(), "%Y-%m-%d")
 dates     <- sort(unique(sapply(remaining, function(m) m$date)))
 cat(sprintf("[SIM] %d matches to simulate...\n", length(remaining)))
 
-# UPCOMING JS 陣列（UTC 23:00 開賽估算）
+# UPCOMING JS 陣列（使用 teams.json 內的 ko 開賽時間戳）
 upcoming_js <- paste0("[", paste(sapply(remaining, function(m) {
-  # 北美賽事約 UTC 00:00-04:00（台灣時間 08:00-12:00），
-  # 統一用當天 UTC 01:00（台灣時間當天 09:00）作為估算基準
-  days_since_epoch <- as.integer(as.Date(m$date) - as.Date("1970-01-01"))
-  ts_ms <- (days_since_epoch * 86400L + 1L * 3600L) * 1000
+  ko <- if (!is.null(m$ko)) as.numeric(m$ko) else {
+    as.integer(as.Date(m$date) - as.Date("1970-01-01")) * 86400 + 23 * 3600
+  }
+  ts_ms <- ko * 1000
   sprintf('{"date":"%s","home":"%s","away":"%s","ts":%s}',
           m$date, m$home, m$away, format(ts_ms, scientific=FALSE))
 }), collapse=","), "]")
@@ -220,9 +268,17 @@ tab_btns <- paste(sapply(seq_along(dates), function(i) {
 sections <- paste(sapply(seq_along(dates), function(i) {
   d  <- dates[i]; label <- DATE_LABELS[d]
   ms <- Filter(function(m) m$date == d, remaining)
+  # 計算各隊已踢場數
+  played_count <- table(c(
+    sapply(Filter(function(x) isTRUE(x$played), matches), function(x) x$home),
+    sapply(Filter(function(x) isTRUE(x$played), matches), function(x) x$away)
+  ))
+  get_played <- function(t) if (!is.null(played_count[t])) as.integer(played_count[t]) else 0L
+
   cards <- paste(sapply(ms, function(m) {
     heat <- ifelse(is.null(m$heat), 0, m$heat)
-    sim  <- simulate_match(m$home, m$away, heat, isTRUE(m$altitude))
+    hp   <- get_played(m$home); ap <- get_played(m$away)
+    sim  <- simulate_match(m$home, m$away, heat, isTRUE(m$altitude), hp, ap)
     cat(sprintf("  ✓ %s vs %s  xG[%.2f-%.2f]  %s%%-%s%%-%s%%\n",
                 m$home, m$away, sim$xg_h, sim$xg_a, sim$hw, sim$dr, sim$aw))
     match_html(m, sim)
@@ -374,6 +430,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 .rh{background:rgba(59,130,246,.15);color:#93c5fd}
 .rd{background:rgba(107,114,128,.2);color:#9ca3af}
 .ra{background:rgba(139,92,246,.15);color:#c4b5fd}
+.upset-high{display:block;margin:.1rem 1rem .3rem;padding:4px 10px;border-radius:6px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);font-size:11px;color:#f87171;font-weight:600}
+.upset-med{display:block;margin:.1rem 1rem .3rem;padding:4px 10px;border-radius:6px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);font-size:11px;color:#fcd34d;font-weight:600}
+.value-tip{margin:.1rem 1rem .3rem;padding:5px 10px;border-radius:6px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);font-size:11px;color:#34d399}
 .disc{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:8px 12px;font-size:11px;color:#fcd34d;margin:.4rem 0;display:flex;gap:6px}
 .footer{text-align:center;padding:2rem 1rem 1rem;font-size:11px;color:var(--muted);line-height:1.9;border-top:1px solid var(--border);margin-top:1.5rem}
 .footer strong{color:#60a5fa}
