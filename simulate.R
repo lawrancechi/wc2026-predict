@@ -203,7 +203,10 @@ cat(sprintf("[SIM] %d matches to simulate...\n", length(remaining)))
 
 # UPCOMING JS 陣列（UTC 23:00 開賽估算）
 upcoming_js <- paste0("[", paste(sapply(remaining, function(m) {
-  ts_ms <- as.numeric(as.POSIXct(paste0(m$date, "T23:00:00Z"), tz="UTC")) * 1000
+  # 各賽場約 19:00-21:00 當地時間開賽，換算 UTC 大約是 23:00-03:00
+  # 統一用當天 UTC 20:00（台灣時間隔天 04:00）作為估算基準
+  days_since_epoch <- as.integer(as.Date(m$date) - as.Date("1970-01-01"))
+  ts_ms <- (days_since_epoch * 86400L + 20L * 3600L) * 1000
   sprintf('{"date":"%s","home":"%s","away":"%s","ts":%s}',
           m$date, m$home, m$away, format(ts_ms, scientific=FALSE))
 }), collapse=","), "]")
