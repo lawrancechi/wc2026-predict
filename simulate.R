@@ -424,7 +424,7 @@ cd_js <- paste(
   "  w.innerHTML=",
   "    '<div class=\"cd-label\">⏱ 下一場比賽倒數</div>'+",
   "    '<div class=\"cd-match\">'+list+'</div>'+",
-  "    '<div class=\"cd-twtime\">\U0001F1F9\U0001F1FC 台灣時間 '+twt+' 開賽（估）</div>'+",
+  "    '<div class=\"cd-twtime\">\U0001F1F9\U0001F1FC 台灣時間約 '+twt+' 開賽 · <a href=\"https://www.sporttery.com.tw/\" target=\"_blank\" style=\"color:#34d399\">確認運彩賽程</a></div>'+",
   "    '<div class=\"cd-digits\">'+",
   "    '<div class=\"cd-unit\"><div class=\"cd-num\">'+pad2(dd)+'</div><div class=\"cd-lbl\">天</div></div>'+",
   "    '<div class=\"cd-sep\">:</div>'+",
@@ -541,6 +541,11 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 .upset-high{display:block;margin:.1rem 1rem .3rem;padding:4px 10px;border-radius:6px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);font-size:11px;color:#f87171;font-weight:600}
 .upset-med{display:block;margin:.1rem 1rem .3rem;padding:4px 10px;border-radius:6px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);font-size:11px;color:#fcd34d;font-weight:600}
 .value-tip{margin:.1rem 1rem .3rem;padding:5px 10px;border-radius:6px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);font-size:11px;color:#34d399}
+.sporttery-bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:1rem}
+.sporttery-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.35);border-radius:20px;padding:7px 18px;font-size:12px;color:#fcd34d;text-decoration:none;font-weight:600;transition:all .2s}
+.sporttery-btn:hover{background:rgba(234,179,8,.22);border-color:rgba(234,179,8,.6);color:#fef08a}
+.sporttery-btn2{background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.3);color:#93c5fd}
+.sporttery-btn2:hover{background:rgba(59,130,246,.2);color:#bfdbfe}
 .ai-box{margin:.3rem 1rem .8rem;padding:10px 12px;border-radius:10px;background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.15)}
 .ai-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#60a5fa;margin-bottom:6px}
 .ai-item{font-size:11px;color:#cbd5e1;line-height:1.6;padding:3px 0;border-bottom:.5px solid rgba(255,255,255,.05)}
@@ -554,7 +559,7 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 </head>
 <body>
 <div class="hero">
-  <div class="badge"><span class="dot"></span> 每日自動更新 · xG Poisson 模型</div>
+  <div class="badge"><span class="dot"></span> 每2小時自動更新 · xG Poisson 模型</div>
   <h1>2026 FIFA 世界盃<br>小組賽比分預測 <em>AI</em></h1>
   <p>以 xG 預期進球値為基礎，透過 Bayesian 將賽果動態更新各隊攻防係數，10萬次 Poisson 模擬導出比分機率分布。</p>
   <p class="update-info">最後更新：<strong>', today, '</strong>｜已完成 ', played_n, ' 場 · 剩餘 ', length(remaining), ' 場</p>
@@ -562,6 +567,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="stat"><div class="n">', length(remaining), '</div><div class="l">場剩餘</div></div>
     <div class="stat"><div class="n">10萬</div><div class="l">次/場模擬</div></div>
     <div class="stat"><div class="n">xG+</div><div class="l">防守修正版</div></div>
+  </div>
+  <div class="sporttery-bar">
+    <a href="https://www.sporttery.com.tw/" target="_blank" rel="noopener" class="sporttery-btn">
+      🎯 台灣運彩官網（查詢最新賠率）
+    </a>
+    <a href="https://www.sporttery.com.tw/football/index" target="_blank" rel="noopener" class="sporttery-btn sporttery-btn2">
+      ⚽ 運彩足球投注專區
+    </a>
   </div>
 </div>
 <div class="container">
