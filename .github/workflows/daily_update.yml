@@ -2,8 +2,8 @@ name: Daily World Cup Prediction Update
 
 on:
   schedule:
-    # 每天 UTC 06:00 (台灣時間 14:00) 自動跑
-    - cron: '0 6 * * *'
+    # 每2小時跑一次（UTC 0/2/4/.../22 = 台灣 8/10/12/.../6）
+    - cron: '0 0,2,4,6,8,10,12,14,16,18,20,22 * * *'
   workflow_dispatch:
 
 jobs:
