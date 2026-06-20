@@ -572,8 +572,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <a href="https://www.sporttery.com.tw/" target="_blank" rel="noopener" class="sporttery-btn">
       🎯 台灣運彩官網（查詢最新賠率）
     </a>
-    <a href="https://www.sporttery.com.tw/football/index" target="_blank" rel="noopener" class="sporttery-btn sporttery-btn2">
-      ⚽ 運彩足球投注專區
+    <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/match-centre" target="_blank" rel="noopener" class="sporttery-btn sporttery-btn2">
+      🏆 FIFA 官方賽程表
     </a>
   </div>
 </div>
