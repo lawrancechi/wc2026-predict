@@ -570,6 +570,69 @@ sections <- paste(sapply(seq_along(dates), function(i) {
           d, disp, label, cards)
 }), collapse="\n")
 
+# ── 淘汰賽賽程 ───────────────────────────────────────────────
+ko_data <- tryCatch(fromJSON("data/knockouts.json", simplifyVector=FALSE), error=function(e) NULL)
+
+ko_match_card <- function(m) {
+  h_known <- nchar(m$home) > 0
+  a_known <- nchar(m$away) > 0
+  both    <- h_known && a_known
+  hflag <- if (h_known && !is.na(FLAG_MAP[m$home])) FLAG_MAP[[m$home]] else "🏳️"
+  aflag <- if (a_known && !is.na(FLAG_MAP[m$away])) FLAG_MAP[[m$away]] else "🏳️"
+  hname <- if (h_known) m$home else m$label_h
+  aname <- if (a_known) m$away else m$label_a
+  date_tw <- {
+    ko <- if (!is.null(m$ko)) as.numeric(m$ko) else NA
+    if (!is.na(ko)) {
+      tw <- as.POSIXct(ko + 8*3600, origin="1970-01-01", tz="UTC")
+      format(tw, "%m/%d %H:%M 台灣")
+    } else m$date
+  }
+  probs_html <- if (both && h_known && a_known) {
+    sim <- tryCatch(
+      simulate_match(m$home, m$away, heat=0, altitude=FALSE,
+                     h_played=get_played_g(m$home), a_played=get_played_g(m$away),
+                     venue=if(!is.null(m$venue)) m$venue else ""),
+      error=function(e) NULL)
+    if (!is.null(sim))
+      sprintf('<div class="ko-probs"><span class="kph">主%s%%</span><span class="kpd">平%s%%</span><span class="kpa">客%s%%</span></div>
+               <div class="ko-xg">xG %s – %s</div>', sim$hw, sim$dr, sim$aw, sim$xg_h, sim$xg_a)
+    else ""
+  } else '<div class="ko-tbd-tag">待定</div>'
+  coach_h <- if (h_known) get_coach(m$home)$name else "–"
+  coach_a <- if (a_known) get_coach(m$away)$name else "–"
+  coach_line <- if (both) sprintf('<div class="ko-coach">👔 %s  vs  %s</div>', coach_h, coach_a) else ""
+  cls <- if (both) "ko-card known" else "ko-card tbd"
+  sprintf('<div class="%s">
+  <div class="ko-meta">%s · %s</div>
+  <div class="ko-teams">
+    <div class="ko-team%s"><span class="ko-flag">%s</span><span class="ko-nm">%s</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team%s"><span class="ko-nm">%s</span><span class="ko-flag">%s</span></div>
+  </div>
+  %s%s
+</div>', cls, date_tw, m$round,
+    if(h_known) "" else " tbd-team", hflag, hname,
+    if(a_known) "" else " tbd-team", aname, aflag,
+    probs_html, coach_line)
+}
+
+knockout_html <- if (!is.null(ko_data)) {
+  round_order <- c("r32","r16","qf","sf","third","final")
+  round_labels <- c(r32="⚔️ 32強",r16="🔥 16強",qf="💥 8強（準決賽）",
+                    sf="🌟 4強（半決賽）",third="🥉 季軍賽",final="🏆 決賽")
+  paste(sapply(round_order, function(rnd) {
+    ms <- ko_data[[rnd]]
+    if (is.null(ms) || length(ms)==0) return("")
+    cards <- paste(sapply(ms, ko_match_card), collapse="\n")
+    sprintf('<div class="ko-round"><div class="ko-round-title">%s</div><div class="ko-grid">%s</div></div>',
+            round_labels[rnd], cards)
+  }), collapse="\n")
+} else '<div class="ko-empty">淘汰賽賽程載入中...</div>'
+
+# 加入淘汰賽 tab 按鈕
+tab_btns <- paste0(tab_btns, '\n<button class="tab" onclick="showKO(this)">🏆 淘汰賽</button>')
+
 # ── 倒數計時 JS（台灣時間 UTC+8 顯示）───────────────────────
 cd_js <- paste(
   "const UPCOMING =", upcoming_js, ";",
@@ -729,6 +792,28 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 .ai-item:last-child{border-bottom:none}
 .ai-item b{color:#e2e8f0}
 .disc{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:8px 12px;font-size:11px;color:#fcd34d;margin:.4rem 0;display:flex;gap:6px}
+/* knockout */
+.ko-note{font-size:11px;color:#fcd34d;background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:8px 12px;margin:.5rem 0 .8rem;text-align:center}
+.ko-round{margin-bottom:1.5rem}
+.ko-round-title{font-size:13px;font-weight:700;color:#93c5fd;margin:.8rem 0 .5rem;padding-bottom:.3rem;border-bottom:1px solid rgba(59,130,246,.2)}
+.ko-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.6rem}
+.ko-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;transition:border-color .2s}
+.ko-card.known{border-color:rgba(59,130,246,.25)}
+.ko-card.tbd{opacity:.7}
+.ko-meta{font-size:10px;color:var(--muted);margin-bottom:.4rem}
+.ko-teams{display:flex;align-items:center;justify-content:space-between;gap:.4rem;margin-bottom:.4rem}
+.ko-team{display:flex;align-items:center;gap:5px;flex:1}
+.ko-team:last-child{flex-direction:row-reverse;text-align:right}
+.ko-flag{font-size:1.2rem}
+.ko-nm{font-size:12px;font-weight:600;color:var(--text)}
+.tbd-team .ko-nm{color:var(--muted);font-style:italic;font-weight:400}
+.ko-vs{font-size:11px;font-weight:700;color:var(--muted);flex-shrink:0}
+.ko-probs{display:flex;gap:6px;font-size:11px;margin:.2rem 0}
+.kph{color:#34d399;font-weight:600}.kpd{color:#94a3b8}.kpa{color:#f87171;font-weight:600}
+.ko-xg{font-size:10px;color:var(--muted)}
+.ko-tbd-tag{font-size:10px;color:var(--muted);font-style:italic;margin-top:.2rem}
+.ko-coach{font-size:10px;color:#c4b5fd;margin-top:.3rem}
+.ko-empty{text-align:center;color:var(--muted);padding:2rem;font-size:13px}
 .footer{text-align:center;padding:2rem 1rem 1rem;font-size:11px;color:var(--muted);line-height:1.9;border-top:1px solid var(--border);margin-top:1.5rem}
 .footer strong{color:#60a5fa}
 @media(max-width:520px){.flag{font-size:1.5rem}.tname{font-size:12px}.sval{font-size:.95rem}.scores-grid{grid-template-columns:repeat(3,1fr)}.s4,.s5{display:none}}
@@ -737,13 +822,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 <body>
 <div class="hero">
   <div class="badge"><span class="dot"></span> 每2小時自動更新 · xG Poisson 模型</div>
-  <h1>2026 FIFA 世界盃<br>小組賽比分預測 <em>AI</em></h1>
-  <p>以 xG 預期進球値為基礎，透過 Bayesian 將賽果動態更新各隊攻防係數，10萬次 Poisson 模擬導出比分機率分布。</p>
+  <h1>2026 FIFA 世界盃<br>比分預測 <em>AI</em></h1>
+  <p>解析式 Poisson 機率分析 · Bayesian xG 動態更新 · 教練 / 天氣 / 積分壓力 / 戰術相剋 綜合評估</p>
   <p class="update-info">最後更新：<strong>', today, '</strong>｜已完成 ', played_n, ' 場 · 剩餘 ', length(remaining), ' 場</p>
   <div class="stats-row">
-    <div class="stat"><div class="n">', length(remaining), '</div><div class="l">場剩餘</div></div>
-    <div class="stat"><div class="n">10萬</div><div class="l">次/場模擬</div></div>
-    <div class="stat"><div class="n">xG+</div><div class="l">防守修正版</div></div>
+    <div class="stat"><div class="n">', length(remaining), '</div><div class="l">場小組賽剩餘</div></div>
+    <div class="stat"><div class="n">32強</div><div class="l">淘汰賽賽程</div></div>
+    <div class="stat"><div class="n">10+</div><div class="l">分析維度</div></div>
   </div>
   <div class="sporttery-bar">
     <a href="https://article.sportslottery.com.tw/" class="sporttery-btn">
@@ -757,8 +842,12 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 <div class="container">
   <div id="cd-wrap"></div>
   <div class="tabs">', tab_btns, '</div>
-  <div class="disc">⚡ 純統計模型，賞率為台灣運彩資料（需手動更新），僅供娛樂參考。</div>
+  <div class="disc">⚡ 純統計模型，賠率為台灣運彩資料（需手動更新），僅供娛樂參考。</div>
   ', sections, '
+  <div id="ko-section" style="display:none">
+    <div class="ko-note">📌 淘汰賽賽程依小組賽結果自動更新 · 確認晉級後顯示預測機率</div>
+    ', knockout_html, '
+  </div>
   <div class="footer">
     <strong>模型架構</strong>｜ xG Poisson + Bayesian 動態更新（w=0.15，係數上限 2.5）｜防守係數以除法計算<br>
     天氣：高溫 → xG 下調·墨西哥城 → 海拔加成｜自動排程：每日 UTC 06:00 重算<br>
@@ -770,7 +859,14 @@ function showDay(d,btn){
   document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
   btn.classList.add("active");
   document.querySelectorAll(".day-section").forEach(function(s){s.style.display="none";});
+  document.getElementById("ko-section").style.display="none";
   document.getElementById("day-"+d).style.display="block";
+}
+function showKO(btn){
+  document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
+  btn.classList.add("active");
+  document.querySelectorAll(".day-section").forEach(function(s){s.style.display="none";});
+  document.getElementById("ko-section").style.display="block";
 }
 ', cd_js, '
 </script>

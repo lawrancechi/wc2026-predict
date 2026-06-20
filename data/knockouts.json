@@ -1,0 +1,399 @@
+{
+  "note": "bracket labels: Xgroup_rank. 3rd place: ranked by pts/gd/gf across all groups.",
+  "r32": [
+    {
+      "id": "r32_01",
+      "round": "32強",
+      "date": "2026-06-29",
+      "ko": 1782763200,
+      "venue": "待定",
+      "label_h": "A組第1",
+      "label_a": "C組第2",
+      "home": "Mexico",
+      "away": "Brazil",
+      "played": false
+    },
+    {
+      "id": "r32_02",
+      "round": "32強",
+      "date": "2026-06-29",
+      "ko": 1782774000,
+      "venue": "待定",
+      "label_h": "B組第1",
+      "label_a": "D組第2",
+      "home": "Canada",
+      "away": "Australia",
+      "played": false
+    },
+    {
+      "id": "r32_03",
+      "round": "32強",
+      "date": "2026-06-30",
+      "ko": 1782849600,
+      "venue": "待定",
+      "label_h": "C組第1",
+      "label_a": "A組第2",
+      "home": "Scotland",
+      "away": "South Korea",
+      "played": false
+    },
+    {
+      "id": "r32_04",
+      "round": "32強",
+      "date": "2026-06-30",
+      "ko": 1782860400,
+      "venue": "待定",
+      "label_h": "D組第1",
+      "label_a": "B組第2",
+      "home": "USA",
+      "away": "Switzerland",
+      "played": false
+    },
+    {
+      "id": "r32_05",
+      "round": "32強",
+      "date": "2026-07-01",
+      "ko": 1782936000,
+      "venue": "待定",
+      "label_h": "E組第1",
+      "label_a": "G組第2",
+      "home": "Germany",
+      "away": "New Zealand",
+      "played": false
+    },
+    {
+      "id": "r32_06",
+      "round": "32強",
+      "date": "2026-07-01",
+      "ko": 1782946800,
+      "venue": "待定",
+      "label_h": "F組第1",
+      "label_a": "H組第2",
+      "home": "Sweden",
+      "away": "Uruguay",
+      "played": false
+    },
+    {
+      "id": "r32_07",
+      "round": "32強",
+      "date": "2026-07-02",
+      "ko": 1783022400,
+      "venue": "待定",
+      "label_h": "G組第1",
+      "label_a": "E組第2",
+      "home": "Iran",
+      "away": "Ivory Coast",
+      "played": false
+    },
+    {
+      "id": "r32_08",
+      "round": "32強",
+      "date": "2026-07-02",
+      "ko": 1783033200,
+      "venue": "待定",
+      "label_h": "H組第1",
+      "label_a": "F組第2",
+      "home": "Saudi Arabia",
+      "away": "Netherlands",
+      "played": false
+    },
+    {
+      "id": "r32_09",
+      "round": "32強",
+      "date": "2026-07-03",
+      "ko": 1783108800,
+      "venue": "待定",
+      "label_h": "I組第1",
+      "label_a": "K組第2",
+      "home": "Norway",
+      "away": "Portugal",
+      "played": false
+    },
+    {
+      "id": "r32_10",
+      "round": "32強",
+      "date": "2026-07-03",
+      "ko": 1783119600,
+      "venue": "待定",
+      "label_h": "J組第1",
+      "label_a": "L組第2",
+      "home": "Argentina",
+      "away": "Ghana",
+      "played": false
+    },
+    {
+      "id": "r32_11",
+      "round": "32強",
+      "date": "2026-07-04",
+      "ko": 1783195200,
+      "venue": "待定",
+      "label_h": "K組第1",
+      "label_a": "I組第2",
+      "home": "Colombia",
+      "away": "France",
+      "played": false
+    },
+    {
+      "id": "r32_12",
+      "round": "32強",
+      "date": "2026-07-04",
+      "ko": 1783206000,
+      "venue": "待定",
+      "label_h": "L組第1",
+      "label_a": "J組第2",
+      "home": "England",
+      "away": "Austria",
+      "played": false
+    },
+    {
+      "id": "r32_13",
+      "round": "32強",
+      "date": "2026-07-05",
+      "ko": 1783281600,
+      "venue": "待定",
+      "label_h": "最佳第3-①",
+      "label_a": "最佳第3-②",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "r32_14",
+      "round": "32強",
+      "date": "2026-07-05",
+      "ko": 1783292400,
+      "venue": "待定",
+      "label_h": "最佳第3-③",
+      "label_a": "最佳第3-④",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "r32_15",
+      "round": "32強",
+      "date": "2026-07-06",
+      "ko": 1783368000,
+      "venue": "待定",
+      "label_h": "最佳第3-⑤",
+      "label_a": "最佳第3-⑥",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "r32_16",
+      "round": "32強",
+      "date": "2026-07-06",
+      "ko": 1783378800,
+      "venue": "待定",
+      "label_h": "最佳第3-⑦",
+      "label_a": "最佳第3-⑧",
+      "home": "",
+      "away": "",
+      "played": false
+    }
+  ],
+  "r16": [
+    {
+      "id": "r16_01",
+      "round": "16強",
+      "date": "2026-07-08",
+      "ko": 1783540800,
+      "venue": "待定",
+      "label_h": "R32-01勝",
+      "label_a": "R32-02勝",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "r16_02",
+      "round": "16強",
+      "date": "2026-07-08",
+      "ko": 1783551600,
+      "venue": "待定",
+      "label_h": "R32-03勝",
+      "label_a": "R32-04勝",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "r16_03",
+      "round": "16強",
+      "date": "2026-07-09",
+      "ko": 1783627200,
+      "venue": "待定",
+      "label_h": "R32-05勝",
+      "label_a": "R32-06勝",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "r16_04",
+      "round": "16強",
+      "date": "2026-07-09",
+      "ko": 1783638000,
+      "venue": "待定",
+      "label_h": "R32-07勝",
+      "label_a": "R32-08勝",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "r16_05",
+      "round": "16強",
+      "date": "2026-07-10",
+      "ko": 1783713600,
+      "venue": "待定",
+      "label_h": "R32-09勝",
+      "label_a": "R32-10勝",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "r16_06",
+      "round": "16強",
+      "date": "2026-07-10",
+      "ko": 1783724400,
+      "venue": "待定",
+      "label_h": "R32-11勝",
+      "label_a": "R32-12勝",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "r16_07",
+      "round": "16強",
+      "date": "2026-07-11",
+      "ko": 1783800000,
+      "venue": "待定",
+      "label_h": "R32-13勝",
+      "label_a": "R32-14勝",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "r16_08",
+      "round": "16強",
+      "date": "2026-07-11",
+      "ko": 1783810800,
+      "venue": "待定",
+      "label_h": "R32-15勝",
+      "label_a": "R32-16勝",
+      "home": "",
+      "away": "",
+      "played": false
+    }
+  ],
+  "qf": [
+    {
+      "id": "qf_01",
+      "round": "8強",
+      "date": "2026-07-13",
+      "ko": 1783972800,
+      "venue": "待定",
+      "label_h": "R16-01勝",
+      "label_a": "R16-02勝",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "qf_02",
+      "round": "8強",
+      "date": "2026-07-13",
+      "ko": 1783983600,
+      "venue": "待定",
+      "label_h": "R16-03勝",
+      "label_a": "R16-04勝",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "qf_03",
+      "round": "8強",
+      "date": "2026-07-14",
+      "ko": 1784059200,
+      "venue": "待定",
+      "label_h": "R16-05勝",
+      "label_a": "R16-06勝",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "qf_04",
+      "round": "8強",
+      "date": "2026-07-14",
+      "ko": 1784070000,
+      "venue": "待定",
+      "label_h": "R16-07勝",
+      "label_a": "R16-08勝",
+      "home": "",
+      "away": "",
+      "played": false
+    }
+  ],
+  "sf": [
+    {
+      "id": "sf_01",
+      "round": "4強",
+      "date": "2026-07-16",
+      "ko": 1784232000,
+      "venue": "待定",
+      "label_h": "QF-01勝",
+      "label_a": "QF-02勝",
+      "home": "",
+      "away": "",
+      "played": false
+    },
+    {
+      "id": "sf_02",
+      "round": "4強",
+      "date": "2026-07-17",
+      "ko": 1784318400,
+      "venue": "待定",
+      "label_h": "QF-03勝",
+      "label_a": "QF-04勝",
+      "home": "",
+      "away": "",
+      "played": false
+    }
+  ],
+  "third": [
+    {
+      "id": "3rd",
+      "round": "季軍賽",
+      "date": "2026-07-19",
+      "ko": 1784491200,
+      "venue": "待定",
+      "label_h": "SF-01負",
+      "label_a": "SF-02負",
+      "home": "",
+      "away": "",
+      "played": false
+    }
+  ],
+  "final": [
+    {
+      "id": "final",
+      "round": "🏆 決賽",
+      "date": "2026-07-19",
+      "ko": 1784505600,
+      "venue": "待定",
+      "label_h": "SF-01勝",
+      "label_a": "SF-02勝",
+      "home": "",
+      "away": "",
+      "played": false
+    }
+  ]
+}

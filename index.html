@@ -113,6 +113,28 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 .ai-item:last-child{border-bottom:none}
 .ai-item b{color:#e2e8f0}
 .disc{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:8px 12px;font-size:11px;color:#fcd34d;margin:.4rem 0;display:flex;gap:6px}
+/* knockout */
+.ko-note{font-size:11px;color:#fcd34d;background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:8px 12px;margin:.5rem 0 .8rem;text-align:center}
+.ko-round{margin-bottom:1.5rem}
+.ko-round-title{font-size:13px;font-weight:700;color:#93c5fd;margin:.8rem 0 .5rem;padding-bottom:.3rem;border-bottom:1px solid rgba(59,130,246,.2)}
+.ko-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.6rem}
+.ko-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;transition:border-color .2s}
+.ko-card.known{border-color:rgba(59,130,246,.25)}
+.ko-card.tbd{opacity:.7}
+.ko-meta{font-size:10px;color:var(--muted);margin-bottom:.4rem}
+.ko-teams{display:flex;align-items:center;justify-content:space-between;gap:.4rem;margin-bottom:.4rem}
+.ko-team{display:flex;align-items:center;gap:5px;flex:1}
+.ko-team:last-child{flex-direction:row-reverse;text-align:right}
+.ko-flag{font-size:1.2rem}
+.ko-nm{font-size:12px;font-weight:600;color:var(--text)}
+.tbd-team .ko-nm{color:var(--muted);font-style:italic;font-weight:400}
+.ko-vs{font-size:11px;font-weight:700;color:var(--muted);flex-shrink:0}
+.ko-probs{display:flex;gap:6px;font-size:11px;margin:.2rem 0}
+.kph{color:#34d399;font-weight:600}.kpd{color:#94a3b8}.kpa{color:#f87171;font-weight:600}
+.ko-xg{font-size:10px;color:var(--muted)}
+.ko-tbd-tag{font-size:10px;color:var(--muted);font-style:italic;margin-top:.2rem}
+.ko-coach{font-size:10px;color:#c4b5fd;margin-top:.3rem}
+.ko-empty{text-align:center;color:var(--muted);padding:2rem;font-size:13px}
 .footer{text-align:center;padding:2rem 1rem 1rem;font-size:11px;color:var(--muted);line-height:1.9;border-top:1px solid var(--border);margin-top:1.5rem}
 .footer strong{color:#60a5fa}
 @media(max-width:520px){.flag{font-size:1.5rem}.tname{font-size:12px}.sval{font-size:.95rem}.scores-grid{grid-template-columns:repeat(3,1fr)}.s4,.s5{display:none}}
@@ -121,13 +143,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 <body>
 <div class="hero">
   <div class="badge"><span class="dot"></span> 每2小時自動更新 · xG Poisson 模型</div>
-  <h1>2026 FIFA 世界盃<br>小組賽比分預測 <em>AI</em></h1>
-  <p>以 xG 預期進球値為基礎，透過 Bayesian 將賽果動態更新各隊攻防係數，10萬次 Poisson 模擬導出比分機率分布。</p>
+  <h1>2026 FIFA 世界盃<br>比分預測 <em>AI</em></h1>
+  <p>解析式 Poisson 機率分析 · Bayesian xG 動態更新 · 教練 / 天氣 / 積分壓力 / 戰術相剋 綜合評估</p>
   <p class="update-info">最後更新：<strong>2026-06-21</strong>｜已完成 27 場 · 剩餘 40 場</p>
   <div class="stats-row">
-    <div class="stat"><div class="n">40</div><div class="l">場剩餘</div></div>
-    <div class="stat"><div class="n">10萬</div><div class="l">次/場模擬</div></div>
-    <div class="stat"><div class="n">xG+</div><div class="l">防守修正版</div></div>
+    <div class="stat"><div class="n">40</div><div class="l">場小組賽剩餘</div></div>
+    <div class="stat"><div class="n">32強</div><div class="l">淘汰賽賽程</div></div>
+    <div class="stat"><div class="n">10+</div><div class="l">分析維度</div></div>
   </div>
   <div class="sporttery-bar">
     <a href="https://article.sportslottery.com.tw/" class="sporttery-btn">
@@ -147,8 +169,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 <button class="tab" onclick="showDay('2026-06-24',this)">06-24</button>
 <button class="tab" onclick="showDay('2026-06-25',this)">06-25</button>
 <button class="tab" onclick="showDay('2026-06-26',this)">06-26</button>
-<button class="tab" onclick="showDay('2026-06-27',this)">06-27</button></div>
-  <div class="disc">⚡ 純統計模型，賞率為台灣運彩資料（需手動更新），僅供娛樂參考。</div>
+<button class="tab" onclick="showDay('2026-06-27',this)">06-27</button>
+<button class="tab" onclick="showKO(this)">🏆 淘汰賽</button></div>
+  <div class="disc">⚡ 純統計模型，賠率為台灣運彩資料（需手動更新），僅供娛樂參考。</div>
   <div id="day-2026-06-20" class="day-section" style="display:block"><div class="day-label">6月20日 — Group E,F 第二輪</div>
 <div class="card">
   <div class="card-header">
@@ -2109,6 +2132,309 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Argentina xG 是主場 8.4 倍，模擬客勝率 83%。</div><div class="ai-item">📋 <b>積分態勢</b>：Jordan 現有 0 分（背水一戰 🔴），Argentina 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 13.39 / 客 1.19）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Lionel Scaloni（Argentina，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">☀️ <b>天氣影響</b>：Arlington（高溫 35°C 部分多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
 </div></div>
+  <div id="ko-section" style="display:none">
+    <div class="ko-note">📌 淘汰賽賽程依小組賽結果自動更新 · 確認晉級後顯示預測機率</div>
+    <div class="ko-round"><div class="ko-round-title">⚔️ 32強</div><div class="ko-grid"><div class="ko-card known">
+  <div class="ko-meta">06/30 04:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team"><span class="ko-flag">🇲🇽</span><span class="ko-nm">Mexico</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team"><span class="ko-nm">Brazil</span><span class="ko-flag">🇧🇷</span></div>
+  </div>
+  <div class="ko-probs"><span class="kph">主54.9%</span><span class="kpd">平24%</span><span class="kpa">客21.1%</span></div>
+               <div class="ko-xg">xG 1.7 – 0.95</div><div class="ko-coach">👔 Javier Aguirre  vs  Dorival Júnior</div>
+</div>
+<div class="ko-card known">
+  <div class="ko-meta">06/30 07:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team"><span class="ko-flag">🇨🇦</span><span class="ko-nm">Canada</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team"><span class="ko-nm">Australia</span><span class="ko-flag">🇦🇺</span></div>
+  </div>
+  <div class="ko-probs"><span class="kph">主46.4%</span><span class="kpd">平31.6%</span><span class="kpa">客22%</span></div>
+               <div class="ko-xg">xG 1.13 – 0.68</div><div class="ko-coach">👔 Jesse Marsch  vs  Tony Popovic</div>
+</div>
+<div class="ko-card known">
+  <div class="ko-meta">07/01 04:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team"><span class="ko-flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><span class="ko-nm">Scotland</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team"><span class="ko-nm">South Korea</span><span class="ko-flag">🇰🇷</span></div>
+  </div>
+  <div class="ko-probs"><span class="kph">主36.6%</span><span class="kpd">平29.8%</span><span class="kpa">客33.6%</span></div>
+               <div class="ko-xg">xG 1.09 – 1.03</div><div class="ko-coach">👔 Steve Clarke  vs  Hong Myung-bo</div>
+</div>
+<div class="ko-card known">
+  <div class="ko-meta">07/01 07:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team"><span class="ko-flag">🇺🇸</span><span class="ko-nm">USA</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team"><span class="ko-nm">Switzerland</span><span class="ko-flag">🇨🇭</span></div>
+  </div>
+  <div class="ko-probs"><span class="kph">主76.3%</span><span class="kpd">平14.4%</span><span class="kpa">客9.3%</span></div>
+               <div class="ko-xg">xG 2.67 – 0.83</div><div class="ko-coach">👔 Mauricio Pochettino  vs  Murat Yakin</div>
+</div>
+<div class="ko-card known">
+  <div class="ko-meta">07/02 04:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team"><span class="ko-flag">🇩🇪</span><span class="ko-nm">Germany</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team"><span class="ko-nm">New Zealand</span><span class="ko-flag">🇳🇿</span></div>
+  </div>
+  <div class="ko-probs"><span class="kph">主78.4%</span><span class="kpd">平12%</span><span class="kpa">客9.6%</span></div>
+               <div class="ko-xg">xG 3.28 – 1.1</div><div class="ko-coach">👔 Julian Nagelsmann  vs  Darren Bazeley</div>
+</div>
+<div class="ko-card known">
+  <div class="ko-meta">07/02 07:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team"><span class="ko-flag">🇸🇪</span><span class="ko-nm">Sweden</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team"><span class="ko-nm">Uruguay</span><span class="ko-flag">🇺🇾</span></div>
+  </div>
+  <div class="ko-probs"><span class="kph">主54.8%</span><span class="kpd">平20%</span><span class="kpa">客25.2%</span></div>
+               <div class="ko-xg">xG 2.27 – 1.51</div><div class="ko-coach">👔 Jon Dahl Tomasson  vs  Marcelo Bielsa</div>
+</div>
+<div class="ko-card known">
+  <div class="ko-meta">07/03 04:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team"><span class="ko-flag">🇮🇷</span><span class="ko-nm">Iran</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team"><span class="ko-nm">Ivory Coast</span><span class="ko-flag">🇨🇮</span></div>
+  </div>
+  <div class="ko-probs"><span class="kph">主16.9%</span><span class="kpd">平34.1%</span><span class="kpa">客49%</span></div>
+               <div class="ko-xg">xG 0.48 – 1.05</div><div class="ko-coach">👔 Amir Ghalenoei  vs  Emerse Faé</div>
+</div>
+<div class="ko-card known">
+  <div class="ko-meta">07/03 07:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team"><span class="ko-flag">🇸🇦</span><span class="ko-nm">Saudi Arabia</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team"><span class="ko-nm">Netherlands</span><span class="ko-flag">🇳🇱</span></div>
+  </div>
+  <div class="ko-probs"><span class="kph">主23.2%</span><span class="kpd">平25.3%</span><span class="kpa">客51.5%</span></div>
+               <div class="ko-xg">xG 0.96 – 1.57</div><div class="ko-coach">👔 Hervé Renard  vs  Ronald Koeman</div>
+</div>
+<div class="ko-card known">
+  <div class="ko-meta">07/04 04:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team"><span class="ko-flag">🇳🇴</span><span class="ko-nm">Norway</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team"><span class="ko-nm">Portugal</span><span class="ko-flag">🇵🇹</span></div>
+  </div>
+  <div class="ko-probs"><span class="kph">主51%</span><span class="kpd">平19.9%</span><span class="kpa">客29.1%</span></div>
+               <div class="ko-xg">xG 2.3 – 1.73</div><div class="ko-coach">👔 Ståle Solbakken  vs  Roberto Martínez</div>
+</div>
+<div class="ko-card known">
+  <div class="ko-meta">07/04 07:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team"><span class="ko-flag">🇦🇷</span><span class="ko-nm">Argentina</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team"><span class="ko-nm">Ghana</span><span class="ko-flag">🇬🇭</span></div>
+  </div>
+  <div class="ko-probs"><span class="kph">主54%</span><span class="kpd">平29.3%</span><span class="kpa">客16.7%</span></div>
+               <div class="ko-xg">xG 1.29 – 0.58</div><div class="ko-coach">👔 Lionel Scaloni  vs  Otto Addo</div>
+</div>
+<div class="ko-card known">
+  <div class="ko-meta">07/05 04:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team"><span class="ko-flag">🇨🇴</span><span class="ko-nm">Colombia</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team"><span class="ko-nm">France</span><span class="ko-flag">🇫🇷</span></div>
+  </div>
+  <div class="ko-probs"><span class="kph">主32.3%</span><span class="kpd">平19.4%</span><span class="kpa">客48.3%</span></div>
+               <div class="ko-xg">xG 1.95 – 2.38</div><div class="ko-coach">👔 Néstor Lorenzo  vs  Didier Deschamps</div>
+</div>
+<div class="ko-card known">
+  <div class="ko-meta">07/05 07:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team"><span class="ko-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span class="ko-nm">England</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team"><span class="ko-nm">Austria</span><span class="ko-flag">🇦🇹</span></div>
+  </div>
+  <div class="ko-probs"><span class="kph">主51.3%</span><span class="kpd">平18.7%</span><span class="kpa">客30%</span></div>
+               <div class="ko-xg">xG 2.56 – 1.96</div><div class="ko-coach">👔 Thomas Tuchel  vs  Ralf Rangnick</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/06 04:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">最佳第3-①</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">最佳第3-②</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/06 07:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">最佳第3-③</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">最佳第3-④</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/07 04:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">最佳第3-⑤</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">最佳第3-⑥</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/07 07:00 台灣 · 32強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">最佳第3-⑦</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">最佳第3-⑧</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div></div></div>
+<div class="ko-round"><div class="ko-round-title">🔥 16強</div><div class="ko-grid"><div class="ko-card tbd">
+  <div class="ko-meta">07/09 04:00 台灣 · 16強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">R32-01勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">R32-02勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/09 07:00 台灣 · 16強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">R32-03勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">R32-04勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/10 04:00 台灣 · 16強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">R32-05勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">R32-06勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/10 07:00 台灣 · 16強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">R32-07勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">R32-08勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/11 04:00 台灣 · 16強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">R32-09勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">R32-10勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/11 07:00 台灣 · 16強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">R32-11勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">R32-12勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/12 04:00 台灣 · 16強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">R32-13勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">R32-14勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/12 07:00 台灣 · 16強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">R32-15勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">R32-16勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div></div></div>
+<div class="ko-round"><div class="ko-round-title">💥 8強（準決賽）</div><div class="ko-grid"><div class="ko-card tbd">
+  <div class="ko-meta">07/14 04:00 台灣 · 8強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">R16-01勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">R16-02勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/14 07:00 台灣 · 8強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">R16-03勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">R16-04勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/15 04:00 台灣 · 8強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">R16-05勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">R16-06勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/15 07:00 台灣 · 8強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">R16-07勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">R16-08勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div></div></div>
+<div class="ko-round"><div class="ko-round-title">🌟 4強（半決賽）</div><div class="ko-grid"><div class="ko-card tbd">
+  <div class="ko-meta">07/17 04:00 台灣 · 4強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">QF-01勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">QF-02勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div>
+<div class="ko-card tbd">
+  <div class="ko-meta">07/18 04:00 台灣 · 4強</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">QF-03勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">QF-04勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div></div></div>
+<div class="ko-round"><div class="ko-round-title">🥉 季軍賽</div><div class="ko-grid"><div class="ko-card tbd">
+  <div class="ko-meta">07/20 04:00 台灣 · 季軍賽</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">SF-01負</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">SF-02負</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div></div></div>
+<div class="ko-round"><div class="ko-round-title">🏆 決賽</div><div class="ko-grid"><div class="ko-card tbd">
+  <div class="ko-meta">07/20 08:00 台灣 · 🏆 決賽</div>
+  <div class="ko-teams">
+    <div class="ko-team tbd-team"><span class="ko-flag">🏳️</span><span class="ko-nm">SF-01勝</span></div>
+    <span class="ko-vs">VS</span>
+    <div class="ko-team tbd-team"><span class="ko-nm">SF-02勝</span><span class="ko-flag">🏳️</span></div>
+  </div>
+  <div class="ko-tbd-tag">待定</div>
+</div></div></div>
+  </div>
   <div class="footer">
     <strong>模型架構</strong>｜ xG Poisson + Bayesian 動態更新（w=0.15，係數上限 2.5）｜防守係數以除法計算<br>
     天氣：高溫 → xG 下調·墨西哥城 → 海拔加成｜自動排程：每日 UTC 06:00 重算<br>
@@ -2120,7 +2446,14 @@ function showDay(d,btn){
   document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
   btn.classList.add("active");
   document.querySelectorAll(".day-section").forEach(function(s){s.style.display="none";});
+  document.getElementById("ko-section").style.display="none";
   document.getElementById("day-"+d).style.display="block";
+}
+function showKO(btn){
+  document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
+  btn.classList.add("active");
+  document.querySelectorAll(".day-section").forEach(function(s){s.style.display="none";});
+  document.getElementById("ko-section").style.display="block";
 }
 const UPCOMING =
 [{"date":"2026-06-20","home":"Netherlands","away":"Sweden","ts":1781974800000},{"date":"2026-06-20","home":"Germany","away":"Ivory Coast","ts":1781985600000},{"date":"2026-06-20","home":"Ecuador","away":"Curacao","ts":1782000000000},{"date":"2026-06-20","home":"Japan","away":"Tunisia","ts":1782014400000},{"date":"2026-06-21","home":"Spain","away":"Saudi Arabia","ts":1782057600000},{"date":"2026-06-21","home":"Belgium","away":"Iran","ts":1782068400000},{"date":"2026-06-21","home":"Uruguay","away":"Cape Verde","ts":1782079200000},{"date":"2026-06-21","home":"New Zealand","away":"Egypt","ts":1782090000000},{"date":"2026-06-22","home":"Argentina","away":"Austria","ts":1782147600000},{"date":"2026-06-22","home":"France","away":"Iraq","ts":1782162000000},{"date":"2026-06-22","home":"Norway","away":"Senegal","ts":1782172800000},{"date":"2026-06-22","home":"Jordan","away":"Algeria","ts":1782183600000},{"date":"2026-06-23","home":"Portugal","away":"Uzbekistan","ts":1782234000000},{"date":"2026-06-23","home":"England","away":"Ghana","ts":1782244800000},{"date":"2026-06-23","home":"Panama","away":"Croatia","ts":1782255600000},{"date":"2026-06-23","home":"Colombia","away":"DR Congo","ts":1782266400000},{"date":"2026-06-24","home":"Switzerland","away":"Canada","ts":1782327600000},{"date":"2026-06-24","home":"Bosnia","away":"Qatar","ts":1782327600000},{"date":"2026-06-24","home":"Scotland","away":"Brazil","ts":1782338400000},{"date":"2026-06-24","home":"Morocco","away":"Haiti","ts":1782338400000},{"date":"2026-06-24","home":"Czechia","away":"Mexico","ts":1782349200000},{"date":"2026-06-24","home":"South Africa","away":"South Korea","ts":1782349200000},{"date":"2026-06-25","home":"Ecuador","away":"Germany","ts":1782417600000},{"date":"2026-06-25","home":"Curacao","away":"Ivory Coast","ts":1782417600000},{"date":"2026-06-25","home":"Japan","away":"Sweden","ts":1782428400000},{"date":"2026-06-25","home":"Tunisia","away":"Netherlands","ts":1782428400000},{"date":"2026-06-25","home":"Turkey","away":"USA","ts":1782439200000},{"date":"2026-06-25","home":"Paraguay","away":"Australia","ts":1782439200000},{"date":"2026-06-26","home":"Norway","away":"France","ts":1782500400000},{"date":"2026-06-26","home":"Senegal","away":"Iraq","ts":1782500400000},{"date":"2026-06-26","home":"Cape Verde","away":"Saudi Arabia","ts":1782518400000},{"date":"2026-06-26","home":"Uruguay","away":"Spain","ts":1782518400000},{"date":"2026-06-26","home":"Egypt","away":"Iran","ts":1782529200000},{"date":"2026-06-26","home":"New Zealand","away":"Belgium","ts":1782529200000},{"date":"2026-06-27","home":"Panama","away":"England","ts":1782594000000},{"date":"2026-06-27","home":"Croatia","away":"Ghana","ts":1782594000000},{"date":"2026-06-27","home":"Colombia","away":"Portugal","ts":1782602100000},{"date":"2026-06-27","home":"DR Congo","away":"Uzbekistan","ts":1782602100000},{"date":"2026-06-27","home":"Algeria","away":"Austria","ts":1782612000000},{"date":"2026-06-27","home":"Jordan","away":"Argentina","ts":1782612000000}]

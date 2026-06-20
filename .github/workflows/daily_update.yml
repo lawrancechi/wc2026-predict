@@ -29,6 +29,9 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: Rscript update_odds.R
 
+      - name: Update knockout bracket
+        run: Rscript update_knockouts.R
+
       - name: Run simulation & regenerate HTML
         run: Rscript simulate.R
 
@@ -36,6 +39,6 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html data/teams.json
-          git diff --staged --quiet || git commit -m "chore: auto-update predictions + odds $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git add index.html data/teams.json data/knockouts.json
+          git diff --staged --quiet || git commit -m "chore: auto-update predictions + odds + knockouts $(date -u '+%Y-%m-%d %H:%M UTC')"
           git push
