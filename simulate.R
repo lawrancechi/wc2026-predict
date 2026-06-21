@@ -603,11 +603,71 @@ upcoming_js <- paste0("[", paste(sapply(remaining_sorted, function(m) {
           m$date, m$home, m$away, format(ts_ms, scientific=FALSE))
 }), collapse=","), "]")
 
+# ── 已完賽比賽卡片 ──────────────────────────────────────────
+played_match_html <- function(m) {
+  hf  <- FLAG_MAP[m$home]; af <- FLAG_MAP[m$away]
+  hs  <- m$home_score;     as_ <- m$away_score
+  res <- if (hs > as_) "home" else if (hs == as_) "draw" else "away"
+  res_cls  <- list(home="res-home", draw="res-draw", away="res-away")[[res]]
+  res_text <- list(home=sprintf("%s 勝", m$home),
+                   draw="平局",
+                   away=sprintf("%s 勝", m$away))[[res]]
+  grp <- if (!is.null(m$group)) m$group else ""
+  venue <- if (!is.null(m$venue)) m$venue else ""
+  date_label <- sub("2026-", "", m$date)
+  sprintf('
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>%s</b> · %s</span>
+    <span class="grp-chip">%s</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">%s</span>
+      <div class="tname">%s</div>
+    </div>
+    <div class="played-score %s">
+      <span class="score-num">%d</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">%d</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">%s</span>
+      <div class="tname">%s</div>
+    </div>
+  </div>
+  <div class="played-result-label %s">%s</div>
+</div>',
+  venue, date_label, grp,
+  hf, m$home,
+  res_cls, hs, as_,
+  af, m$away,
+  res_cls, res_text)
+}
+
+# 按日期（倒序）分組已完賽場次
+played_dates <- sort(unique(sapply(played_matches, function(m) m$date)), decreasing=TRUE)
+played_section <- paste(sapply(played_dates, function(d) {
+  ms    <- Filter(function(m) m$date == d, played_matches)
+  label <- if (!is.na(DATE_LABELS[d])) DATE_LABELS[[d]] else d
+  cards <- paste(sapply(ms, played_match_html), collapse="\n")
+  sprintf('<div class="day-label">%s</div>%s', label, cards)
+}), collapse="\n")
+
+played_html <- sprintf('<div id="played-section" class="day-section" style="display:none">%s</div>', played_section)
+
+# ── 即將出賽分頁按鈕 ─────────────────────────────────────
 tab_btns <- paste(sapply(seq_along(dates), function(i) {
   d <- dates[i]; sh <- sub("2026-", "", d)
   ac <- if (i == 1) " active" else ""
   sprintf('<button class="tab%s" onclick="showDay(\'%s\',this)">%s</button>', ac, d, sh)
 }), collapse="\n")
+
+# 在最前面加「已完賽」分頁按鈕
+tab_btns <- paste0(
+  sprintf('<button class="tab tab-played" onclick="showPlayed(this)">✅ 已完賽（%d）</button>\n', played_n),
+  tab_btns
+)
 
 sections <- paste(sapply(seq_along(dates), function(i) {
   d  <- dates[i]; label <- DATE_LABELS[d]
@@ -624,6 +684,8 @@ sections <- paste(sapply(seq_along(dates), function(i) {
   sprintf('<div id="day-%s" class="day-section" style="display:%s"><div class="day-label">%s</div>%s</div>',
           d, disp, label, cards)
 }), collapse="\n")
+
+sections <- paste0(played_html, "\n", sections)
 
 # ── 淘汰賽賽程 ───────────────────────────────────────────────
 ko_data <- tryCatch(fromJSON("data/knockouts.json", simplifyVector=FALSE), error=function(e) NULL)
@@ -780,6 +842,18 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 /* card */
 .card{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:.9rem;overflow:hidden;transition:border-color .2s}
 .card:hover{border-color:rgba(59,130,246,.25)}
+.played-card{opacity:.92}.played-card:hover{border-color:rgba(16,185,129,.3)}
+.played-scoreline{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.5rem;padding:1rem 1.2rem .6rem}
+.played-team{text-align:center}.played-team .flag{font-size:1.9rem;display:block;margin-bottom:4px}
+.played-score{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:10px;font-size:1.6rem;font-weight:700;border:2px solid}
+.played-score.res-home{background:rgba(16,185,129,.1);color:#34d399;border-color:rgba(16,185,129,.3)}
+.played-score.res-draw{background:rgba(251,191,36,.08);color:#fcd34d;border-color:rgba(251,191,36,.25)}
+.played-score.res-away{background:rgba(99,102,241,.1);color:#a5b4fc;border-color:rgba(99,102,241,.3)}
+.score-num{min-width:24px;text-align:center}.score-sep{color:var(--muted);font-weight:300}
+.played-result-label{text-align:center;font-size:11px;font-weight:600;padding:0 1rem .7rem;letter-spacing:.3px}
+.played-result-label.res-home{color:#34d399}.played-result-label.res-draw{color:#fcd34d}.played-result-label.res-away{color:#a5b4fc}
+.tab-played{border-color:rgba(16,185,129,.3)!important;color:#34d399!important}
+.tab-played.active{background:rgba(16,185,129,.15)!important;border-color:#34d399!important}
 .card-header{padding:.5rem 1rem;border-bottom:1px solid var(--border);background:rgba(0,0,0,.2);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .venue{font-size:11px;color:var(--muted)}.venue b{color:var(--text);font-weight:500}
 .grp-chip{font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;background:rgba(59,130,246,.15);color:#93c5fd;border:1px solid rgba(59,130,246,.25)}
@@ -922,6 +996,13 @@ function showKO(btn){
   btn.classList.add("active");
   document.querySelectorAll(".day-section").forEach(function(s){s.style.display="none";});
   document.getElementById("ko-section").style.display="block";
+}
+function showPlayed(btn){
+  document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
+  btn.classList.add("active");
+  document.querySelectorAll(".day-section").forEach(function(s){s.style.display="none";});
+  document.getElementById("ko-section").style.display="none";
+  document.getElementById("played-section").style.display="block";
 }
 ', cd_js, '
 </script>

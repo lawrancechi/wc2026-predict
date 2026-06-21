@@ -46,6 +46,18 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 /* card */
 .card{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:.9rem;overflow:hidden;transition:border-color .2s}
 .card:hover{border-color:rgba(59,130,246,.25)}
+.played-card{opacity:.92}.played-card:hover{border-color:rgba(16,185,129,.3)}
+.played-scoreline{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.5rem;padding:1rem 1.2rem .6rem}
+.played-team{text-align:center}.played-team .flag{font-size:1.9rem;display:block;margin-bottom:4px}
+.played-score{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:10px;font-size:1.6rem;font-weight:700;border:2px solid}
+.played-score.res-home{background:rgba(16,185,129,.1);color:#34d399;border-color:rgba(16,185,129,.3)}
+.played-score.res-draw{background:rgba(251,191,36,.08);color:#fcd34d;border-color:rgba(251,191,36,.25)}
+.played-score.res-away{background:rgba(99,102,241,.1);color:#a5b4fc;border-color:rgba(99,102,241,.3)}
+.score-num{min-width:24px;text-align:center}.score-sep{color:var(--muted);font-weight:300}
+.played-result-label{text-align:center;font-size:11px;font-weight:600;padding:0 1rem .7rem;letter-spacing:.3px}
+.played-result-label.res-home{color:#34d399}.played-result-label.res-draw{color:#fcd34d}.played-result-label.res-away{color:#a5b4fc}
+.tab-played{border-color:rgba(16,185,129,.3)!important;color:#34d399!important}
+.tab-played.active{background:rgba(16,185,129,.15)!important;border-color:#34d399!important}
 .card-header{padding:.5rem 1rem;border-bottom:1px solid var(--border);background:rgba(0,0,0,.2);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .venue{font-size:11px;color:var(--muted)}.venue b{color:var(--text);font-weight:500}
 .grp-chip{font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;background:rgba(59,130,246,.15);color:#93c5fd;border:1px solid rgba(59,130,246,.25)}
@@ -162,7 +174,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 </div>
 <div class="container">
   <div id="cd-wrap"></div>
-  <div class="tabs"><button class="tab active" onclick="showDay('2026-06-21',this)">06-21</button>
+  <div class="tabs"><button class="tab tab-played" onclick="showPlayed(this)">✅ 已完賽（31）</button>
+<button class="tab active" onclick="showDay('2026-06-21',this)">06-21</button>
 <button class="tab" onclick="showDay('2026-06-22',this)">06-22</button>
 <button class="tab" onclick="showDay('2026-06-23',this)">06-23</button>
 <button class="tab" onclick="showDay('2026-06-24',this)">06-24</button>
@@ -171,7 +184,720 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 <button class="tab" onclick="showDay('2026-06-27',this)">06-27</button>
 <button class="tab" onclick="showKO(this)">🏆 淘汰賽</button></div>
   <div class="disc">⚡ 純統計模型，賠率為台灣運彩資料（需手動更新），僅供娛樂參考。</div>
-  <div id="day-2026-06-21" class="day-section" style="display:block"><div class="day-label">6月21日 — Group G,H 第二輪</div>
+  <div id="played-section" class="day-section" style="display:none"><div class="day-label">6月20日 — Group E,F 第二輪</div>
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Houston</b> · 06-20</span>
+    <span class="grp-chip">F</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇳🇱</span>
+      <div class="tname">Netherlands</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">5</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇸🇪</span>
+      <div class="tname">Sweden</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Netherlands 勝</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Toronto</b> · 06-20</span>
+    <span class="grp-chip">E</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇩🇪</span>
+      <div class="tname">Germany</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">2</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇨🇮</span>
+      <div class="tname">Ivory Coast</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Germany 勝</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Kansas City</b> · 06-20</span>
+    <span class="grp-chip">E</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇪🇨</span>
+      <div class="tname">Ecuador</div>
+    </div>
+    <div class="played-score res-draw">
+      <span class="score-num">0</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">0</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇨🇼</span>
+      <div class="tname">Curacao</div>
+    </div>
+  </div>
+  <div class="played-result-label res-draw">平局</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Monterrey</b> · 06-20</span>
+    <span class="grp-chip">F</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇯🇵</span>
+      <div class="tname">Japan</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">2</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">0</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇹🇳</span>
+      <div class="tname">Tunisia</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Japan 勝</div>
+</div>
+<div class="day-label">2026-06-19</div>
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Kansas City</b> · 06-19</span>
+    <span class="grp-chip">D</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇺🇸</span>
+      <div class="tname">USA</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">2</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">0</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇦🇺</span>
+      <div class="tname">Australia</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">USA 勝</div>
+</div>
+<div class="day-label">2026-06-18</div>
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Vancouver</b> · 06-18</span>
+    <span class="grp-chip">B</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇨🇭</span>
+      <div class="tname">Switzerland</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">4</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇧🇦</span>
+      <div class="tname">Bosnia</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Switzerland 勝</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Toronto</b> · 06-18</span>
+    <span class="grp-chip">B</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇨🇦</span>
+      <div class="tname">Canada</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">6</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">0</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇶🇦</span>
+      <div class="tname">Qatar</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Canada 勝</div>
+</div>
+<div class="day-label">2026-06-17</div>
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Los Angeles</b> · 06-17</span>
+    <span class="grp-chip">K</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇵🇹</span>
+      <div class="tname">Portugal</div>
+    </div>
+    <div class="played-score res-draw">
+      <span class="score-num">1</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇨🇩</span>
+      <div class="tname">DR Congo</div>
+    </div>
+  </div>
+  <div class="played-result-label res-draw">平局</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Guadalajara</b> · 06-17</span>
+    <span class="grp-chip">K</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇨🇴</span>
+      <div class="tname">Colombia</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">3</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇺🇿</span>
+      <div class="tname">Uzbekistan</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Colombia 勝</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Boston</b> · 06-17</span>
+    <span class="grp-chip">L</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+      <div class="tname">England</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">4</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">2</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇭🇷</span>
+      <div class="tname">Croatia</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">England 勝</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Toronto</b> · 06-17</span>
+    <span class="grp-chip">L</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇬🇭</span>
+      <div class="tname">Ghana</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">1</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">0</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇵🇦</span>
+      <div class="tname">Panama</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Ghana 勝</div>
+</div>
+<div class="day-label">2026-06-16</div>
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>New York</b> · 06-16</span>
+    <span class="grp-chip">I</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇫🇷</span>
+      <div class="tname">France</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">3</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇸🇳</span>
+      <div class="tname">Senegal</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">France 勝</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Boston</b> · 06-16</span>
+    <span class="grp-chip">I</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇳🇴</span>
+      <div class="tname">Norway</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">4</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇮🇶</span>
+      <div class="tname">Iraq</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Norway 勝</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Dallas</b> · 06-16</span>
+    <span class="grp-chip">J</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇦🇷</span>
+      <div class="tname">Argentina</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">3</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">0</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇩🇿</span>
+      <div class="tname">Algeria</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Argentina 勝</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>San Francisco</b> · 06-16</span>
+    <span class="grp-chip">J</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇦🇹</span>
+      <div class="tname">Austria</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">3</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇯🇴</span>
+      <div class="tname">Jordan</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Austria 勝</div>
+</div>
+<div class="day-label">2026-06-15</div>
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Los Angeles</b> · 06-15</span>
+    <span class="grp-chip">G</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇧🇪</span>
+      <div class="tname">Belgium</div>
+    </div>
+    <div class="played-score res-draw">
+      <span class="score-num">1</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇪🇬</span>
+      <div class="tname">Egypt</div>
+    </div>
+  </div>
+  <div class="played-result-label res-draw">平局</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Vancouver</b> · 06-15</span>
+    <span class="grp-chip">G</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇮🇷</span>
+      <div class="tname">Iran</div>
+    </div>
+    <div class="played-score res-draw">
+      <span class="score-num">2</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">2</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇳🇿</span>
+      <div class="tname">New Zealand</div>
+    </div>
+  </div>
+  <div class="played-result-label res-draw">平局</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Dallas</b> · 06-15</span>
+    <span class="grp-chip">H</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇪🇸</span>
+      <div class="tname">Spain</div>
+    </div>
+    <div class="played-score res-draw">
+      <span class="score-num">0</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">0</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇨🇻</span>
+      <div class="tname">Cape Verde</div>
+    </div>
+  </div>
+  <div class="played-result-label res-draw">平局</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Miami</b> · 06-15</span>
+    <span class="grp-chip">H</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇸🇦</span>
+      <div class="tname">Saudi Arabia</div>
+    </div>
+    <div class="played-score res-draw">
+      <span class="score-num">1</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇺🇾</span>
+      <div class="tname">Uruguay</div>
+    </div>
+  </div>
+  <div class="played-result-label res-draw">平局</div>
+</div>
+<div class="day-label">2026-06-14</div>
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Toronto</b> · 06-14</span>
+    <span class="grp-chip">B</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇨🇦</span>
+      <div class="tname">Canada</div>
+    </div>
+    <div class="played-score res-draw">
+      <span class="score-num">1</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇧🇦</span>
+      <div class="tname">Bosnia</div>
+    </div>
+  </div>
+  <div class="played-result-label res-draw">平局</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>New York</b> · 06-14</span>
+    <span class="grp-chip">B</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇨🇭</span>
+      <div class="tname">Switzerland</div>
+    </div>
+    <div class="played-score res-draw">
+      <span class="score-num">1</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇶🇦</span>
+      <div class="tname">Qatar</div>
+    </div>
+  </div>
+  <div class="played-result-label res-draw">平局</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Houston</b> · 06-14</span>
+    <span class="grp-chip">E</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇩🇪</span>
+      <div class="tname">Germany</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">7</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇨🇼</span>
+      <div class="tname">Curacao</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Germany 勝</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Kansas City</b> · 06-14</span>
+    <span class="grp-chip">E</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇨🇮</span>
+      <div class="tname">Ivory Coast</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">1</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">0</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇪🇨</span>
+      <div class="tname">Ecuador</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Ivory Coast 勝</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Houston</b> · 06-14</span>
+    <span class="grp-chip">F</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇳🇱</span>
+      <div class="tname">Netherlands</div>
+    </div>
+    <div class="played-score res-draw">
+      <span class="score-num">2</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">2</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇯🇵</span>
+      <div class="tname">Japan</div>
+    </div>
+  </div>
+  <div class="played-result-label res-draw">平局</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Dallas</b> · 06-14</span>
+    <span class="grp-chip">F</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇸🇪</span>
+      <div class="tname">Sweden</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">5</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇹🇳</span>
+      <div class="tname">Tunisia</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Sweden 勝</div>
+</div>
+<div class="day-label">2026-06-13</div>
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Dallas</b> · 06-13</span>
+    <span class="grp-chip">A</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇲🇽</span>
+      <div class="tname">Mexico</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">2</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">0</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇿🇦</span>
+      <div class="tname">South Africa</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Mexico 勝</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Houston</b> · 06-13</span>
+    <span class="grp-chip">A</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇰🇷</span>
+      <div class="tname">South Korea</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">2</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇨🇿</span>
+      <div class="tname">Czechia</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">South Korea 勝</div>
+</div>
+<div class="day-label">2026-06-12</div>
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Dallas</b> · 06-12</span>
+    <span class="grp-chip">D</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇺🇸</span>
+      <div class="tname">USA</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">4</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇵🇾</span>
+      <div class="tname">Paraguay</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">USA 勝</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Atlanta</b> · 06-12</span>
+    <span class="grp-chip">D</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇦🇺</span>
+      <div class="tname">Australia</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">2</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">0</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇹🇷</span>
+      <div class="tname">Turkey</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Australia 勝</div>
+</div>
+<div class="day-label">2026-06-11</div>
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Los Angeles</b> · 06-11</span>
+    <span class="grp-chip">C</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🇧🇷</span>
+      <div class="tname">Brazil</div>
+    </div>
+    <div class="played-score res-draw">
+      <span class="score-num">1</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">1</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇲🇦</span>
+      <div class="tname">Morocco</div>
+    </div>
+  </div>
+  <div class="played-result-label res-draw">平局</div>
+</div>
+
+<div class="card played-card">
+  <div class="card-header">
+    <span class="venue"><b>Miami</b> · 06-11</span>
+    <span class="grp-chip">C</span>
+  </div>
+  <div class="played-scoreline">
+    <div class="played-team">
+      <span class="flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+      <div class="tname">Scotland</div>
+    </div>
+    <div class="played-score res-home">
+      <span class="score-num">1</span>
+      <span class="score-sep">–</span>
+      <span class="score-num">0</span>
+    </div>
+    <div class="played-team">
+      <span class="flag">🇭🇹</span>
+      <div class="tname">Haiti</div>
+    </div>
+  </div>
+  <div class="played-result-label res-home">Scotland 勝</div>
+</div></div>
+<div id="day-2026-06-21" class="day-section" style="display:block"><div class="day-label">6月21日 — Group G,H 第二輪</div>
 <div class="card">
   <div class="card-header">
     <span class="venue"><b>Atlanta</b></span>
@@ -2257,6 +2983,13 @@ function showKO(btn){
   btn.classList.add("active");
   document.querySelectorAll(".day-section").forEach(function(s){s.style.display="none";});
   document.getElementById("ko-section").style.display="block";
+}
+function showPlayed(btn){
+  document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
+  btn.classList.add("active");
+  document.querySelectorAll(".day-section").forEach(function(s){s.style.display="none";});
+  document.getElementById("ko-section").style.display="none";
+  document.getElementById("played-section").style.display="block";
 }
 const UPCOMING =
 [{"date":"2026-06-21","home":"Spain","away":"Saudi Arabia","ts":1782057600000},{"date":"2026-06-21","home":"Belgium","away":"Iran","ts":1782068400000},{"date":"2026-06-21","home":"Uruguay","away":"Cape Verde","ts":1782079200000},{"date":"2026-06-21","home":"New Zealand","away":"Egypt","ts":1782090000000},{"date":"2026-06-22","home":"Argentina","away":"Austria","ts":1782147600000},{"date":"2026-06-22","home":"France","away":"Iraq","ts":1782162000000},{"date":"2026-06-22","home":"Norway","away":"Senegal","ts":1782172800000},{"date":"2026-06-22","home":"Jordan","away":"Algeria","ts":1782183600000},{"date":"2026-06-23","home":"Portugal","away":"Uzbekistan","ts":1782234000000},{"date":"2026-06-23","home":"England","away":"Ghana","ts":1782244800000},{"date":"2026-06-23","home":"Panama","away":"Croatia","ts":1782255600000},{"date":"2026-06-23","home":"Colombia","away":"DR Congo","ts":1782266400000},{"date":"2026-06-24","home":"Switzerland","away":"Canada","ts":1782327600000},{"date":"2026-06-24","home":"Bosnia","away":"Qatar","ts":1782327600000},{"date":"2026-06-24","home":"Scotland","away":"Brazil","ts":1782338400000},{"date":"2026-06-24","home":"Morocco","away":"Haiti","ts":1782338400000},{"date":"2026-06-24","home":"Czechia","away":"Mexico","ts":1782349200000},{"date":"2026-06-24","home":"South Africa","away":"South Korea","ts":1782349200000},{"date":"2026-06-25","home":"Ecuador","away":"Germany","ts":1782417600000},{"date":"2026-06-25","home":"Curacao","away":"Ivory Coast","ts":1782417600000},{"date":"2026-06-25","home":"Japan","away":"Sweden","ts":1782428400000},{"date":"2026-06-25","home":"Tunisia","away":"Netherlands","ts":1782428400000},{"date":"2026-06-25","home":"Turkey","away":"USA","ts":1782439200000},{"date":"2026-06-25","home":"Paraguay","away":"Australia","ts":1782439200000},{"date":"2026-06-26","home":"Norway","away":"France","ts":1782500400000},{"date":"2026-06-26","home":"Senegal","away":"Iraq","ts":1782500400000},{"date":"2026-06-26","home":"Cape Verde","away":"Saudi Arabia","ts":1782518400000},{"date":"2026-06-26","home":"Uruguay","away":"Spain","ts":1782518400000},{"date":"2026-06-26","home":"Egypt","away":"Iran","ts":1782529200000},{"date":"2026-06-26","home":"New Zealand","away":"Belgium","ts":1782529200000},{"date":"2026-06-27","home":"Panama","away":"England","ts":1782594000000},{"date":"2026-06-27","home":"Croatia","away":"Ghana","ts":1782594000000},{"date":"2026-06-27","home":"Colombia","away":"Portugal","ts":1782602100000},{"date":"2026-06-27","home":"DR Congo","away":"Uzbekistan","ts":1782602100000},{"date":"2026-06-27","home":"Algeria","away":"Austria","ts":1782612000000},{"date":"2026-06-27","home":"Jordan","away":"Argentina","ts":1782612000000}]
