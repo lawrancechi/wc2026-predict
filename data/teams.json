@@ -382,11 +382,13 @@
       "venue": "Houston",
       "temp": 33,
       "heat": -0.1,
-      "played": false,
+      "played": true,
       "ko": 1781974800,
       "odds_h": 1.73,
       "odds_d": 4.05,
-      "odds_a": 4.66
+      "odds_a": 4.66,
+      "home_score": 5,
+      "away_score": 1
     },
     {
       "date": "2026-06-20",
@@ -396,11 +398,13 @@
       "venue": "Toronto",
       "temp": 24,
       "heat": 0,
-      "played": false,
+      "played": true,
       "ko": 1781985600,
       "odds_h": 1.5,
       "odds_d": 4.7,
-      "odds_a": 6.31
+      "odds_a": 6.31,
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "date": "2026-06-20",
@@ -410,8 +414,10 @@
       "venue": "Kansas City",
       "temp": 30,
       "heat": -0.05,
-      "played": false,
-      "ko": 1782000000
+      "played": true,
+      "ko": 1782000000,
+      "home_score": 0,
+      "away_score": 0
     },
     {
       "date": "2026-06-20",
@@ -421,11 +427,13 @@
       "venue": "Monterrey",
       "temp": 34,
       "heat": -0.12,
-      "played": false,
+      "played": true,
       "ko": 1782014400,
       "odds_h": 1.54,
       "odds_d": 4.14,
-      "odds_a": 6.85
+      "odds_a": 6.85,
+      "home_score": 2,
+      "away_score": 0
     },
     {
       "date": "2026-06-21",
@@ -926,5 +934,22 @@
       "odds_d": 6.73,
       "odds_a": 1.19
     }
-  ]
+  ],
+  "lineup_factor": {
+    "Netherlands": 0.93,
+    "Japan": 0.88,
+    "Ghana": 0.84,
+    "Brazil": 0.93,
+    "Germany": 0.97,
+    "Spain": 0.97,
+    "Canada": 0.86,
+    "England": 1,
+    "France": 0.97,
+    "Argentina": 1,
+    "Portugal": 1,
+    "Morocco": 0.97,
+    "Belgium": 1,
+    "Uruguay": 1,
+    "Norway": 1
+  }
 }

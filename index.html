@@ -145,9 +145,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="badge"><span class="dot"></span> 每2小時自動更新 · xG Poisson 模型</div>
   <h1>2026 FIFA 世界盃<br>比分預測 <em>AI</em></h1>
   <p>解析式 Poisson 機率分析 · Bayesian xG 動態更新 · 教練 / 天氣 / 積分壓力 / 戰術相剋 綜合評估</p>
-  <p class="update-info">最後更新：<strong>2026-06-21</strong>｜已完成 27 場 · 剩餘 40 場</p>
+  <p class="update-info">最後更新：<strong>2026-06-21</strong>｜已完成 31 場 · 剩餘 36 場</p>
   <div class="stats-row">
-    <div class="stat"><div class="n">40</div><div class="l">場小組賽剩餘</div></div>
+    <div class="stat"><div class="n">36</div><div class="l">場小組賽剩餘</div></div>
     <div class="stat"><div class="n">32強</div><div class="l">淘汰賽賽程</div></div>
     <div class="stat"><div class="n">10+</div><div class="l">分析維度</div></div>
   </div>
@@ -162,8 +162,7 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 </div>
 <div class="container">
   <div id="cd-wrap"></div>
-  <div class="tabs"><button class="tab active" onclick="showDay('2026-06-20',this)">06-20</button>
-<button class="tab" onclick="showDay('2026-06-21',this)">06-21</button>
+  <div class="tabs"><button class="tab active" onclick="showDay('2026-06-21',this)">06-21</button>
 <button class="tab" onclick="showDay('2026-06-22',this)">06-22</button>
 <button class="tab" onclick="showDay('2026-06-23',this)">06-23</button>
 <button class="tab" onclick="showDay('2026-06-24',this)">06-24</button>
@@ -172,203 +171,7 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 <button class="tab" onclick="showDay('2026-06-27',this)">06-27</button>
 <button class="tab" onclick="showKO(this)">🏆 淘汰賽</button></div>
   <div class="disc">⚡ 純統計模型，賠率為台灣運彩資料（需手動更新），僅供娛樂參考。</div>
-  <div id="day-2026-06-20" class="day-section" style="display:block"><div class="day-label">6月20日 — Group E,F 第二輪</div>
-<div class="card">
-  <div class="card-header">
-    <span class="venue"><b>Houston</b></span>
-    <div style="display:flex;gap:5px;align-items:center">
-      <span class="grp-chip">F</span>
-      <span class="wchip w-danger">🌡 33ଌ</span>
-    </div>
-  </div>
-  <div class="teams-row">
-    <div class="team">
-      <span class="flag">🇳🇱</span>
-      <div class="tname">Netherlands</div>
-      <div class="tform">xG 2.06</div>
-      <div class="form-row"><span class="fb-d">D</span></div>
-    </div>
-    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
-    <div class="team">
-      <span class="flag">🇸🇪</span>
-      <div class="tname">Sweden</div>
-      <div class="tform">xG 1.38</div>
-      <div class="form-row"><span class="fb-w">W</span></div>
-    </div>
-  </div>
-  <div class="prob-section">
-    <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:53.2%"></div>
-      <div class="prob-seg seg-draw" style="width:21.3%"></div>
-      <div class="prob-seg seg-away" style="width:25.5%"></div>
-    </div>
-    <div class="prob-labels">
-      <span class="pl-home"><strong>53.2%</strong> Netherlands</span>
-      <span class="pl-draw"><strong>21.3%</strong> 平局</span>
-      <span class="pl-away"><strong>25.5%</strong> Sweden</span>
-    </div>
-  </div>
-  <div class="odds-row">
-    <div class="odds-chip"><div class="odds-lbl">主勝 (Netherlands)</div><div class="odds-val">1.73</div></div>
-    <div class="odds-chip"><div class="odds-lbl">平局 (平)</div><div class="odds-val">4.05</div></div>
-    <div class="odds-chip"><div class="odds-lbl">客勝 (Sweden)</div><div class="odds-val">4.66</div></div>
-  </div>
-  <div class="coach-row"><span>👔 Ronald Koeman</span><span style="color:#94a3b8">vs</span><span>Jon Dahl Tomasson 👔</span></div>
-  <div class="weather-row">☀️ 高溫潮濕 35°C</div>
-  <div class="scores-section">
-    <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-1</div><div class="spct">9.4%</div><span class="sres rh">Netherlands</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">9.13%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-0</div><div class="spct">6.83%</div><span class="sres rh">Netherlands</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-0</div><div class="spct">6.64%</div><span class="sres rh">Netherlands</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-2</div><div class="spct">6.47%</div><span class="sres rd">平局</span></div></div>
-  </div>
-  <span class="upset-med">⚡ 爆冷可能 Sweden</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>主場佔優</b>：Netherlands xG 優勢 49%，主勝率 53%，但未到壓倒性。</div><div class="ai-item">📋 <b>積分態勢</b>：Netherlands 現有 1 分（急需積分 ⚠️），Sweden 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.73 / 客 4.66）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Ronald Koeman（Netherlands）vs Jon Dahl Tomasson（Sweden），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Houston 場地 高溫潮濕 35°C，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
-</div>
-
-<div class="card">
-  <div class="card-header">
-    <span class="venue"><b>Toronto</b></span>
-    <div style="display:flex;gap:5px;align-items:center">
-      <span class="grp-chip">E</span>
-      <span class="wchip w-success">🌤 24ଌ</span>
-    </div>
-  </div>
-  <div class="teams-row">
-    <div class="team">
-      <span class="flag">🇩🇪</span>
-      <div class="tname">Germany</div>
-      <div class="tform">xG 2.70</div>
-      <div class="form-row"><span class="fb-w">W</span></div>
-    </div>
-    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
-    <div class="team">
-      <span class="flag">🇨🇮</span>
-      <div class="tname">Ivory Coast</div>
-      <div class="tform">xG 1.03</div>
-      <div class="form-row"><span class="fb-w">W</span></div>
-    </div>
-  </div>
-  <div class="prob-section">
-    <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:72.5%"></div>
-      <div class="prob-seg seg-draw" style="width:15.4%"></div>
-      <div class="prob-seg seg-away" style="width:12.1%"></div>
-    </div>
-    <div class="prob-labels">
-      <span class="pl-home"><strong>72.5%</strong> Germany</span>
-      <span class="pl-draw"><strong>15.4%</strong> 平局</span>
-      <span class="pl-away"><strong>12.1%</strong> Ivory Coast</span>
-    </div>
-  </div>
-  <div class="odds-row">
-    <div class="odds-chip"><div class="odds-lbl">主勝 (Germany)</div><div class="odds-val">1.50</div></div>
-    <div class="odds-chip"><div class="odds-lbl">平局 (平)</div><div class="odds-val">4.70</div></div>
-    <div class="odds-chip"><div class="odds-lbl">客勝 (Ivory Coast)</div><div class="odds-val">6.31</div></div>
-  </div>
-  <div class="coach-row"><span>👔 Julian Nagelsmann</span><span style="color:#94a3b8">vs</span><span>Emerse Faé 👔</span></div>
-  <div class="weather-row">🌤️ 涼爽 24°C 晴</div>
-  <div class="scores-section">
-    <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-1</div><div class="spct">9%</div><span class="sres rh">Germany</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">8.73%</div><span class="sres rh">Germany</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">3-1</div><div class="spct">8.11%</div><span class="sres rh">Germany</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">3-0</div><div class="spct">7.87%</div><span class="sres rh">Germany</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">6.65%</div><span class="sres rd">平局</span></div></div>
-  </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Germany xG 是對手 2.6 倍，模擬主勝率 72%，強弱差距明顯。</div><div class="ai-item">⚔️ <b>戰術相剋</b>：（傳控壓迫）vs（快速反擊）Germany 高壓打法 vs Ivory Coast 防反，空間反擊或令客隊受益。</div><div class="ai-item">📋 <b>積分態勢</b>：Germany 現有 3 分（積分尚可），Ivory Coast 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.50 / 客 6.31）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Julian Nagelsmann（Germany，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Toronto（涼爽 24°C 晴），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
-</div>
-
-<div class="card">
-  <div class="card-header">
-    <span class="venue"><b>Kansas City</b></span>
-    <div style="display:flex;gap:5px;align-items:center">
-      <span class="grp-chip">E</span>
-      <span class="wchip w-warning">☀ 30ଌ</span>
-    </div>
-  </div>
-  <div class="teams-row">
-    <div class="team">
-      <span class="flag">🇪🇨</span>
-      <div class="tname">Ecuador</div>
-      <div class="tform">xG 0.86</div>
-      <div class="form-row"><span class="fb-l">L</span></div>
-    </div>
-    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
-    <div class="team">
-      <span class="flag">🇨🇼</span>
-      <div class="tname">Curacao</div>
-      <div class="tform">xG 0.46</div>
-      <div class="form-row"><span class="fb-l">L</span></div>
-    </div>
-  </div>
-  <div class="prob-section">
-    <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:43.1%"></div>
-      <div class="prob-seg seg-draw" style="width:38.2%"></div>
-      <div class="prob-seg seg-away" style="width:18.7%"></div>
-    </div>
-    <div class="prob-labels">
-      <span class="pl-home"><strong>43.1%</strong> Ecuador</span>
-      <span class="pl-draw"><strong>38.2%</strong> 平局</span>
-      <span class="pl-away"><strong>18.7%</strong> Curacao</span>
-    </div>
-  </div>
-  <div class="odds-row">
-    <div class="odds-chip"><div class="odds-lbl">主勝 (Ecuador)</div><div class="odds-val">N/A</div></div>
-    <div class="odds-chip"><div class="odds-lbl">平局 (平)</div><div class="odds-val">N/A</div></div>
-    <div class="odds-chip"><div class="odds-lbl">客勝 (Curacao)</div><div class="odds-val">N/A</div></div>
-  </div>
-  <div class="coach-row"><span>👔 Sebastián Beccacece</span><span style="color:#94a3b8">vs</span><span>Remko Bicentini 👔</span></div>
-  <div class="weather-row">⛈️ 悶熱 30°C 雷雨風險</div>
-  <div class="scores-section">
-    <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">26.52%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">22.92%</div><span class="sres rh">Ecuador</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">12.28%</div><span class="sres ra">Curacao</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">10.61%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">9.9%</div><span class="sres rh">Ecuador</span></div></div>
-  </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>主場佔優</b>：Ecuador xG 優勢 87%，主勝率 43%，但未到壓倒性。</div><div class="ai-item">📋 <b>積分態勢</b>：Ecuador 現有 0 分（背水一戰 🔴），Curacao 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">👔 <b>教練</b>：Sebastián Beccacece（Ecuador）vs Remko Bicentini（Curacao），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">☀️ <b>天氣影響</b>：Kansas City（悶熱 30°C 雷雨風險），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
-</div>
-
-<div class="card">
-  <div class="card-header">
-    <span class="venue"><b>Monterrey</b></span>
-    <div style="display:flex;gap:5px;align-items:center">
-      <span class="grp-chip">F</span>
-      <span class="wchip w-danger">🌡 34ଌ</span>
-    </div>
-  </div>
-  <div class="teams-row">
-    <div class="team">
-      <span class="flag">🇯🇵</span>
-      <div class="tname">Japan</div>
-      <div class="tform">xG 1.61</div>
-      <div class="form-row"><span class="fb-d">D</span></div>
-    </div>
-    <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
-    <div class="team">
-      <span class="flag">🇹🇳</span>
-      <div class="tname">Tunisia</div>
-      <div class="tform">xG 0.57</div>
-      <div class="form-row"><span class="fb-l">L</span></div>
-    </div>
-  </div>
-  <div class="prob-section">
-    <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:62.9%"></div>
-      <div class="prob-seg seg-draw" style="width:24.3%"></div>
-      <div class="prob-seg seg-away" style="width:12.8%"></div>
-    </div>
-    <div class="prob-labels">
-      <span class="pl-home"><strong>62.9%</strong> Japan</span>
-      <span class="pl-draw"><strong>24.3%</strong> 平局</span>
-      <span class="pl-away"><strong>12.8%</strong> Tunisia</span>
-    </div>
-  </div>
-  <div class="odds-row">
-    <div class="odds-chip"><div class="odds-lbl">主勝 (Japan)</div><div class="odds-val">1.54</div></div>
-    <div class="odds-chip"><div class="odds-lbl">平局 (平)</div><div class="odds-val">4.14</div></div>
-    <div class="odds-chip"><div class="odds-lbl">客勝 (Tunisia)</div><div class="odds-val">6.85</div></div>
-  </div>
-  <div class="coach-row"><span>👔 Hajime Moriyasu</span><span style="color:#94a3b8">vs</span><span>Faouzi Benzarti 👔</span></div>
-  <div class="weather-row">🔥 極熱潮濕 39°C</div>
-  <div class="scores-section">
-    <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">18.25%</div><span class="sres rh">Japan</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">14.68%</div><span class="sres rh">Japan</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-0</div><div class="spct">11.34%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">10.36%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-1</div><div class="spct">8.33%</div><span class="sres rh">Japan</span></div></div>
-  </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Japan xG 是對手 2.8 倍，模擬主勝率 63%，強弱差距明顯。</div><div class="ai-item">📋 <b>積分態勢</b>：Japan 現有 1 分（急需積分 ⚠️），Tunisia 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.54 / 客 6.85）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Hajime Moriyasu（Japan） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Monterrey 場地 極熱潮濕 39°C，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
-</div></div>
-<div id="day-2026-06-21" class="day-section" style="display:none"><div class="day-label">6月21日 — Group G,H 第二輪</div>
+  <div id="day-2026-06-21" class="day-section" style="display:block"><div class="day-label">6月21日 — Group G,H 第二輪</div>
 <div class="card">
   <div class="card-header">
     <span class="venue"><b>Atlanta</b></span>
@@ -381,7 +184,7 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="team">
       <span class="flag">🇪🇸</span>
       <div class="tname">Spain</div>
-      <div class="tform">xG 2.02</div>
+      <div class="tform">xG 1.96</div>
       <div class="form-row"><span class="fb-d">D</span></div>
     </div>
     <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
@@ -394,14 +197,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:65.2%"></div>
-      <div class="prob-seg seg-draw" style="width:20.3%"></div>
-      <div class="prob-seg seg-away" style="width:14.5%"></div>
+      <div class="prob-seg seg-home" style="width:63.9%"></div>
+      <div class="prob-seg seg-draw" style="width:21%"></div>
+      <div class="prob-seg seg-away" style="width:15.1%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>65.2%</strong> Spain</span>
-      <span class="pl-draw"><strong>20.3%</strong> 平局</span>
-      <span class="pl-away"><strong>14.5%</strong> Saudi Arabia</span>
+      <span class="pl-home"><strong>63.9%</strong> Spain</span>
+      <span class="pl-draw"><strong>21%</strong> 平局</span>
+      <span class="pl-away"><strong>15.1%</strong> Saudi Arabia</span>
     </div>
   </div>
   <div class="odds-row">
@@ -413,9 +216,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="weather-row">⛅ 炎熱 32°C 多雲</div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">11.81%</div><span class="sres rh">Spain</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">11.66%</div><span class="sres rh">Spain</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-1</div><div class="spct">9.79%</div><span class="sres rh">Spain</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">9.67%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">3-0</div><div class="spct">7.97%</div><span class="sres rh">Spain</span></div></div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">12.02%</div><span class="sres rh">Spain</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">11.8%</div><span class="sres rh">Spain</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">9.97%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">9.79%</div><span class="sres rh">Spain</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">3-0</div><div class="spct">7.73%</div><span class="sres rh">Spain</span></div></div>
   </div>
-  <div class="value-tip">💡 客勝有價值（模型14% vs 賠率隱含4%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Spain xG 是對手 2.4 倍，模擬主勝率 65%，強弱差距明顯。</div><div class="ai-item">⚔️ <b>戰術相剋</b>：（tiki-taka控球）vs（防守型）Spain 控球型 vs Saudi Arabia 防守型，易演變為低比分膠著。</div><div class="ai-item">📋 <b>積分態勢</b>：Spain 現有 1 分（急需積分 ⚠️），Saudi Arabia 現有 1 分（急需積分 ⚠️），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>客勝具價值</b>：模型客勝 14% > 莊家隱含 4%，超額 11%，賠率偏低值得留意。</div><div class="ai-item">👔 <b>教練優勢</b>：Luis de la Fuente（Spain，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">☀️ <b>天氣影響</b>：Atlanta（炎熱 32°C 多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
+  <div class="value-tip">💡 客勝有價值（模型15% vs 賠率隱含4%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Spain xG 是對手 2.4 倍，模擬主勝率 64%，強弱差距明顯。</div><div class="ai-item">🚑 <b>Spain 主力傷缺</b>：<b>Fermín López</b>（MF，蹠骨骨折傷缺全程）。攻擊力預估下降 3%，模型已調整。</div><div class="ai-item">⚔️ <b>戰術相剋</b>：（tiki-taka控球）vs（防守型）Spain 控球型 vs Saudi Arabia 防守型，易演變為低比分膠著。</div><div class="ai-item">📋 <b>積分態勢</b>：Spain 現有 1 分（急需積分 ⚠️），Saudi Arabia 現有 1 分（急需積分 ⚠️），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>客勝具價值</b>：模型客勝 15% > 莊家隱含 4%，超額 11%，賠率偏低值得留意。</div><div class="ai-item">👔 <b>教練優勢</b>：Luis de la Fuente（Spain，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">☀️ <b>天氣影響</b>：Atlanta（炎熱 32°C 多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
 </div>
 
 <div class="card">
@@ -626,7 +429,7 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="team">
       <span class="flag">🇫🇷</span>
       <div class="tname">France</div>
-      <div class="tform">xG 2.38</div>
+      <div class="tform">xG 2.31</div>
       <div class="form-row"><span class="fb-w">W</span></div>
     </div>
     <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
@@ -639,14 +442,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:77.6%"></div>
-      <div class="prob-seg seg-draw" style="width:15.2%"></div>
-      <div class="prob-seg seg-away" style="width:7.2%"></div>
+      <div class="prob-seg seg-home" style="width:76.6%"></div>
+      <div class="prob-seg seg-draw" style="width:15.9%"></div>
+      <div class="prob-seg seg-away" style="width:7.5%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>77.6%</strong> France</span>
-      <span class="pl-draw"><strong>15.2%</strong> 平局</span>
-      <span class="pl-away"><strong>7.2%</strong> Iraq</span>
+      <span class="pl-home"><strong>76.6%</strong> France</span>
+      <span class="pl-draw"><strong>15.9%</strong> 平局</span>
+      <span class="pl-away"><strong>7.5%</strong> Iraq</span>
     </div>
   </div>
   <div class="odds-row">
@@ -658,9 +461,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="weather-row">⛅ 溫熱 30°C 多雲</div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">14.79%</div><span class="sres rh">France</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">12.43%</div><span class="sres rh">France</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">3-0</div><div class="spct">11.73%</div><span class="sres rh">France</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">8.46%</div><span class="sres rh">France</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.11%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">14.95%</div><span class="sres rh">France</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">12.95%</div><span class="sres rh">France</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">3-0</div><div class="spct">11.5%</div><span class="sres rh">France</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">8.55%</div><span class="sres rh">France</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.41%</div><span class="sres rd">平局</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：France xG 是對手 4.2 倍，模擬主勝率 78%，強弱差距明顯。</div><div class="ai-item">📋 <b>積分態勢</b>：France 現有 3 分（積分尚可），Iraq 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.08 / 客 30.61）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Didier Deschamps（France，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
+  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：France xG 是對手 4.1 倍，模擬主勝率 77%，強弱差距明顯。</div><div class="ai-item">🚑 <b>France 主力傷缺</b>：<b>Hugo Ekitike</b>（FW，備役前鋒未入選）。攻擊力預估下降 3%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：France 現有 3 分（積分尚可），Iraq 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.08 / 客 30.61）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Didier Deschamps（France，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
 </div>
 
 <div class="card">
@@ -829,20 +632,20 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="team">
       <span class="flag">🇬🇭</span>
       <div class="tname">Ghana</div>
-      <div class="tform">xG 0.95</div>
+      <div class="tform">xG 0.80</div>
       <div class="form-row"><span class="fb-w">W</span></div>
     </div>
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:69.9%"></div>
-      <div class="prob-seg seg-draw" style="width:17.1%"></div>
-      <div class="prob-seg seg-away" style="width:13%"></div>
+      <div class="prob-seg seg-home" style="width:73.3%"></div>
+      <div class="prob-seg seg-draw" style="width:16.3%"></div>
+      <div class="prob-seg seg-away" style="width:10.4%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>69.9%</strong> England</span>
-      <span class="pl-draw"><strong>17.1%</strong> 平局</span>
-      <span class="pl-away"><strong>13%</strong> Ghana</span>
+      <span class="pl-home"><strong>73.3%</strong> England</span>
+      <span class="pl-draw"><strong>16.3%</strong> 平局</span>
+      <span class="pl-away"><strong>10.4%</strong> Ghana</span>
     </div>
   </div>
   <div class="odds-row">
@@ -854,9 +657,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="weather-row">🌤️ 涼爽 26°C 適宜</div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">10.06%</div><span class="sres rh">England</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-1</div><div class="spct">9.54%</div><span class="sres rh">England</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">8.27%</div><span class="sres rh">England</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">3-0</div><div class="spct">8.16%</div><span class="sres rh">England</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.85%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">11.71%</div><span class="sres rh">England</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">9.62%</div><span class="sres rh">England</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">3-0</div><div class="spct">9.49%</div><span class="sres rh">England</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">9.33%</div><span class="sres rh">England</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.67%</div><span class="sres rd">平局</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：England xG 是對手 2.6 倍，模擬主勝率 70%，強弱差距明顯。</div><div class="ai-item">📋 <b>積分態勢</b>：England 現有 3 分（積分尚可），Ghana 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.22 / 客 14.44）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Thomas Tuchel（England，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Boston（涼爽 26°C 適宜），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
+  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：England xG 是對手 3.0 倍，模擬主勝率 73%，強弱差距明顯。</div><div class="ai-item">🚑 <b>Ghana 主力傷缺</b>：<b>Mohammed Kudus</b>（FW，大腿/腿筋傷缺全程，最強進攻核心）、<b>Abdul Salisu</b>（CB，傷缺全程）。攻擊力預估下降 16%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：England 現有 3 分（積分尚可），Ghana 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.22 / 客 14.44）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Thomas Tuchel（England，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Boston（涼爽 26°C 適宜），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
 </div>
 
 <div class="card">
@@ -1074,20 +877,20 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="team">
       <span class="flag">🇨🇦</span>
       <div class="tname">Canada</div>
-      <div class="tform">xG 2.06</div>
+      <div class="tform">xG 1.78</div>
       <div class="form-row"><span class="fb-d">D</span><span class="fb-w">W</span></div>
     </div>
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:35.5%"></div>
-      <div class="prob-seg seg-draw" style="width:20.8%"></div>
-      <div class="prob-seg seg-away" style="width:43.7%"></div>
+      <div class="prob-seg seg-home" style="width:40.7%"></div>
+      <div class="prob-seg seg-draw" style="width:21.8%"></div>
+      <div class="prob-seg seg-away" style="width:37.5%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>35.5%</strong> Switzerland</span>
-      <span class="pl-draw"><strong>20.8%</strong> 平局</span>
-      <span class="pl-away"><strong>43.7%</strong> Canada</span>
+      <span class="pl-home"><strong>40.7%</strong> Switzerland</span>
+      <span class="pl-draw"><strong>21.8%</strong> 平局</span>
+      <span class="pl-away"><strong>37.5%</strong> Canada</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1099,9 +902,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="weather-row">🌦️ 涼爽 21°C 小雨</div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">7.84%</div><span class="sres ra">Canada</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">7.59%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-2</div><div class="spct">7.28%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">7.05%</div><span class="sres rh">Switzerland</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-3</div><div class="spct">5.4%</div><span class="sres ra">Canada</span></div></div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">8.72%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-1</div><div class="spct">8.1%</div><span class="sres rh">Switzerland</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-2</div><div class="spct">7.74%</div><span class="sres ra">Canada</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-2</div><div class="spct">7.19%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">3-1</div><div class="spct">5.01%</div><span class="sres rh">Switzerland</span></div></div>
   </div>
-  <span class="upset-high">🔥 高爆冷風險 Switzerland</span><div class="value-tip">💡 客勝有價值（模型44% vs 賠率隱含31%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.20，平局率高達 21%，比賽走向難測。</div><div class="ai-item">🔥 <b>爆冷警示</b>：Switzerland 是世界盃傳統黑馬，歷史上多次爆冷擊敗強隊，本場勝率 36%，不可輕視。</div><div class="ai-item">📋 <b>積分態勢</b>：Switzerland 現有 4 分（積分領先），Canada 現有 4 分（積分領先），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>客勝具價值</b>：模型客勝 44% > 莊家隱含 31%，超額 13%，賠率偏低值得留意。</div><div class="ai-item">👔 <b>教練</b>：Murat Yakin（Switzerland）vs Jesse Marsch（Canada），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Vancouver（涼爽 21°C 小雨），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
+  <span class="upset-high">🔥 高爆冷風險 Canada</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.08，平局率高達 22%，比賽走向難測。</div><div class="ai-item">🚑 <b>Canada 主力傷缺</b>：<b>Alphonso Davies</b>（LB，傷缺全程，主力左翼衛）。攻擊力預估下降 14%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Switzerland 現有 4 分（積分領先），Canada 現有 4 分（積分領先），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 2.44 / 客 3.21）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Murat Yakin（Switzerland）vs Jesse Marsch（Canada），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Vancouver（涼爽 21°C 小雨），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
 </div>
 
 <div class="card">
@@ -1172,20 +975,20 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="team">
       <span class="flag">🇧🇷</span>
       <div class="tname">Brazil</div>
-      <div class="tform">xG 1.77</div>
+      <div class="tform">xG 1.65</div>
       <div class="form-row"><span class="fb-d">D</span></div>
     </div>
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:14%"></div>
-      <div class="prob-seg seg-draw" style="width:22.6%"></div>
-      <div class="prob-seg seg-away" style="width:63.4%"></div>
+      <div class="prob-seg seg-home" style="width:15.3%"></div>
+      <div class="prob-seg seg-draw" style="width:24.1%"></div>
+      <div class="prob-seg seg-away" style="width:60.6%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>14%</strong> Scotland</span>
-      <span class="pl-draw"><strong>22.6%</strong> 平局</span>
-      <span class="pl-away"><strong>63.4%</strong> Brazil</span>
+      <span class="pl-home"><strong>15.3%</strong> Scotland</span>
+      <span class="pl-draw"><strong>24.1%</strong> 平局</span>
+      <span class="pl-away"><strong>60.6%</strong> Brazil</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1197,9 +1000,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="weather-row">🌧️ 高溫潮濕 33°C 雷陣雨</div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">15.09%</div><span class="sres ra">Brazil</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">13.39%</div><span class="sres ra">Brazil</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">10.42%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-2</div><div class="spct">9.24%</div><span class="sres ra">Brazil</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-0</div><div class="spct">8.51%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">15.89%</div><span class="sres ra">Brazil</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">13.11%</div><span class="sres ra">Brazil</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">10.97%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">9.63%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-2</div><div class="spct">9.05%</div><span class="sres ra">Brazil</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Brazil xG 是主場 2.6 倍，模擬客勝率 63%。</div><div class="ai-item">📋 <b>積分態勢</b>：Scotland 現有 3 分（積分尚可），Brazil 現有 1 分（急需積分 ⚠️），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 7.65 / 客 1.38）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Dorival Júnior（Brazil） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Miami 場地 高溫潮濕 33°C 雷陣雨，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
+  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Brazil xG 是主場 2.4 倍，模擬客勝率 61%。</div><div class="ai-item">🚑 <b>Brazil 主力傷缺</b>：<b>Rodrygo</b>（FW，ACL傷缺全程）、<b>Éder Militão</b>（CB，腿筋傷缺全程）。攻擊力預估下降 7%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Scotland 現有 3 分（積分尚可），Brazil 現有 1 分（急需積分 ⚠️），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 7.65 / 客 1.38）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Dorival Júnior（Brazil） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Miami 場地 高溫潮濕 33°C 雷陣雨，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
 </div>
 
 <div class="card">
@@ -1214,7 +1017,7 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="team">
       <span class="flag">🇲🇦</span>
       <div class="tname">Morocco</div>
-      <div class="tform">xG 1.91</div>
+      <div class="tform">xG 1.85</div>
       <div class="form-row"><span class="fb-d">D</span></div>
     </div>
     <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
@@ -1227,14 +1030,14 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:74%"></div>
-      <div class="prob-seg seg-draw" style="width:19.1%"></div>
-      <div class="prob-seg seg-away" style="width:6.9%"></div>
+      <div class="prob-seg seg-home" style="width:72.9%"></div>
+      <div class="prob-seg seg-draw" style="width:19.9%"></div>
+      <div class="prob-seg seg-away" style="width:7.2%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>74%</strong> Morocco</span>
-      <span class="pl-draw"><strong>19.1%</strong> 平局</span>
-      <span class="pl-away"><strong>6.9%</strong> Haiti</span>
+      <span class="pl-home"><strong>72.9%</strong> Morocco</span>
+      <span class="pl-draw"><strong>19.9%</strong> 平局</span>
+      <span class="pl-away"><strong>7.2%</strong> Haiti</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1246,9 +1049,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="weather-row">⛅ 炎熱 32°C 多雲</div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">19%</div><span class="sres rh">Morocco</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">18.11%</div><span class="sres rh">Morocco</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">3-0</div><div class="spct">11.51%</div><span class="sres rh">Morocco</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">9.96%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.59%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">19.51%</div><span class="sres rh">Morocco</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">18.04%</div><span class="sres rh">Morocco</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">3-0</div><div class="spct">11.12%</div><span class="sres rh">Morocco</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">10.55%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.8%</div><span class="sres rd">平局</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Morocco xG 是對手 4.8 倍，模擬主勝率 74%，強弱差距明顯。</div><div class="ai-item">📋 <b>積分態勢</b>：Morocco 現有 1 分（急需積分 ⚠️），Haiti 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.20 / 客 15.84）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Walid Regragui（Morocco） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">☀️ <b>天氣影響</b>：Atlanta（炎熱 32°C 多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
+  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Morocco xG 是對手 4.6 倍，模擬主勝率 73%，強弱差距明顯。</div><div class="ai-item">📋 <b>積分態勢</b>：Morocco 現有 1 分（急需積分 ⚠️），Haiti 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.20 / 客 15.84）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Walid Regragui（Morocco） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">☀️ <b>天氣影響</b>：Atlanta（炎熱 32°C 多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
 </div></div>
 <div id="day-2026-06-25" class="day-section" style="display:none"><div class="day-label">6月25日 — Group D,E,F 末輪</div>
 <div class="card">
@@ -1361,27 +1164,27 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="team">
       <span class="flag">🇪🇨</span>
       <div class="tname">Ecuador</div>
-      <div class="tform">xG 0.91</div>
-      <div class="form-row"><span class="fb-l">L</span></div>
+      <div class="tform">xG 0.84</div>
+      <div class="form-row"><span class="fb-l">L</span><span class="fb-d">D</span></div>
     </div>
     <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
     <div class="team">
       <span class="flag">🇩🇪</span>
       <div class="tname">Germany</div>
-      <div class="tform">xG 2.87</div>
-      <div class="form-row"><span class="fb-w">W</span></div>
+      <div class="tform">xG 2.62</div>
+      <div class="form-row"><span class="fb-w">W</span><span class="fb-w">W</span></div>
     </div>
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:9%"></div>
-      <div class="prob-seg seg-draw" style="width:13.4%"></div>
-      <div class="prob-seg seg-away" style="width:77.6%"></div>
+      <div class="prob-seg seg-home" style="width:9.6%"></div>
+      <div class="prob-seg seg-draw" style="width:14.9%"></div>
+      <div class="prob-seg seg-away" style="width:75.5%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>9%</strong> Ecuador</span>
-      <span class="pl-draw"><strong>13.4%</strong> 平局</span>
-      <span class="pl-away"><strong>77.6%</strong> Germany</span>
+      <span class="pl-home"><strong>9.6%</strong> Ecuador</span>
+      <span class="pl-draw"><strong>14.9%</strong> 平局</span>
+      <span class="pl-away"><strong>75.5%</strong> Germany</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1393,9 +1196,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="weather-row">⛅ 溫暖 29°C 舒適</div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">9.39%</div><span class="sres ra">Germany</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-3</div><div class="spct">8.99%</div><span class="sres ra">Germany</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-2</div><div class="spct">8.54%</div><span class="sres ra">Germany</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-3</div><div class="spct">8.18%</div><span class="sres ra">Germany</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-1</div><div class="spct">6.54%</div><span class="sres ra">Germany</span></div></div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">10.81%</div><span class="sres ra">Germany</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-3</div><div class="spct">9.45%</div><span class="sres ra">Germany</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-2</div><div class="spct">9.05%</div><span class="sres ra">Germany</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-1</div><div class="spct">8.25%</div><span class="sres ra">Germany</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-3</div><div class="spct">7.91%</div><span class="sres ra">Germany</span></div></div>
   </div>
-  <div class="value-tip">💡 客勝有價值（模型78% vs 賠率隱含59%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Germany xG 是主場 3.2 倍，模擬客勝率 78%。</div><div class="ai-item">📋 <b>積分態勢</b>：Ecuador 現有 0 分（背水一戰 🔴），Germany 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>客勝具價值</b>：模型客勝 78% > 莊家隱含 59%，超額 18%，賠率偏低值得留意。</div><div class="ai-item">👔 <b>教練優勢</b>：Julian Nagelsmann（Germany，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
+  <div class="value-tip">💡 客勝有價值（模型76% vs 賠率隱含59%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Germany xG 是主場 3.1 倍，模擬客勝率 76%。</div><div class="ai-item">🚑 <b>Germany 主力傷缺</b>：<b>Serge Gnabry</b>（RW，大腿內收肌傷缺全程）。攻擊力預估下降 3%，模型已調整。</div><div class="ai-item">🔑 <b>生死壓力</b>：Ecuador（急需積分 ⚠️）已到背水一戰，激進打法可能帶來更多空間，比賽節奏預計激烈，也可能造成戰術失當。</div><div class="ai-item">💰 <b>客勝具價值</b>：模型客勝 76% > 莊家隱含 59%，超額 16%，賠率偏低值得留意。</div><div class="ai-item">🔵 <b>客隊狀態亮眼</b>：Germany 本屆戰績 WW 表現突出，莊家可能尚未完全反映在盤口，留意客勝賠率。</div><div class="ai-item">👔 <b>教練優勢</b>：Julian Nagelsmann（Germany，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
 </div>
 
 <div class="card">
@@ -1410,27 +1213,27 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="team">
       <span class="flag">🇨🇼</span>
       <div class="tname">Curacao</div>
-      <div class="tform">xG 0.44</div>
-      <div class="form-row"><span class="fb-l">L</span></div>
+      <div class="tform">xG 0.40</div>
+      <div class="form-row"><span class="fb-l">L</span><span class="fb-d">D</span></div>
     </div>
     <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
     <div class="team">
       <span class="flag">🇨🇮</span>
       <div class="tname">Ivory Coast</div>
-      <div class="tform">xG 0.97</div>
-      <div class="form-row"><span class="fb-w">W</span></div>
+      <div class="tform">xG 0.89</div>
+      <div class="form-row"><span class="fb-w">W</span><span class="fb-l">L</span></div>
     </div>
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:16.4%"></div>
-      <div class="prob-seg seg-draw" style="width:35.9%"></div>
-      <div class="prob-seg seg-away" style="width:47.7%"></div>
+      <div class="prob-seg seg-home" style="width:15.9%"></div>
+      <div class="prob-seg seg-draw" style="width:38.1%"></div>
+      <div class="prob-seg seg-away" style="width:46%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>16.4%</strong> Curacao</span>
-      <span class="pl-draw"><strong>35.9%</strong> 平局</span>
-      <span class="pl-away"><strong>47.7%</strong> Ivory Coast</span>
+      <span class="pl-home"><strong>15.9%</strong> Curacao</span>
+      <span class="pl-draw"><strong>38.1%</strong> 平局</span>
+      <span class="pl-away"><strong>46%</strong> Ivory Coast</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1442,9 +1245,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="weather-row">⛅ 溫熱 30°C 多雲</div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">24.29%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">23.64%</div><span class="sres ra">Ivory Coast</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-2</div><div class="spct">11.5%</div><span class="sres ra">Ivory Coast</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-0</div><div class="spct">10.74%</div><span class="sres rh">Curacao</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">10.45%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">27.41%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">24.49%</div><span class="sres ra">Ivory Coast</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">10.98%</div><span class="sres rh">Curacao</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-2</div><div class="spct">10.94%</div><span class="sres ra">Ivory Coast</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">9.81%</div><span class="sres rd">平局</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Ivory Coast xG 是主場 2.2 倍，模擬客勝率 48%。</div><div class="ai-item">📋 <b>積分態勢</b>：Curacao 現有 0 分（背水一戰 🔴），Ivory Coast 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">👔 <b>教練</b>：Remko Bicentini（Curacao）vs Emerse Faé（Ivory Coast），執教能力相當，戰術佈局成勝負關鍵。</div></div>
+  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Ivory Coast xG 是主場 2.2 倍，模擬客勝率 46%。</div><div class="ai-item">🔑 <b>生死壓力</b>：Curacao（急需積分 ⚠️）已到背水一戰，激進打法可能帶來更多空間，比賽節奏預計激烈，也可能造成戰術失當。</div><div class="ai-item">👔 <b>教練</b>：Remko Bicentini（Curacao）vs Emerse Faé（Ivory Coast），執教能力相當，戰術佈局成勝負關鍵。</div></div>
 </div>
 
 <div class="card">
@@ -1459,27 +1262,27 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="team">
       <span class="flag">🇯🇵</span>
       <div class="tname">Japan</div>
-      <div class="tform">xG 1.57</div>
-      <div class="form-row"><span class="fb-d">D</span></div>
+      <div class="tform">xG 1.49</div>
+      <div class="form-row"><span class="fb-d">D</span><span class="fb-w">W</span></div>
     </div>
     <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
     <div class="team">
       <span class="flag">🇸🇪</span>
       <div class="tname">Sweden</div>
-      <div class="tform">xG 1.31</div>
-      <div class="form-row"><span class="fb-w">W</span></div>
+      <div class="tform">xG 1.21</div>
+      <div class="form-row"><span class="fb-w">W</span><span class="fb-l">L</span></div>
     </div>
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:43.5%"></div>
-      <div class="prob-seg seg-draw" style="width:24.7%"></div>
-      <div class="prob-seg seg-away" style="width:31.8%"></div>
+      <div class="prob-seg seg-home" style="width:43.8%"></div>
+      <div class="prob-seg seg-draw" style="width:25.5%"></div>
+      <div class="prob-seg seg-away" style="width:30.7%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>43.5%</strong> Japan</span>
-      <span class="pl-draw"><strong>24.7%</strong> 平局</span>
-      <span class="pl-away"><strong>31.8%</strong> Sweden</span>
+      <span class="pl-home"><strong>43.8%</strong> Japan</span>
+      <span class="pl-draw"><strong>25.5%</strong> 平局</span>
+      <span class="pl-away"><strong>30.7%</strong> Sweden</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1491,9 +1294,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="weather-row">🌡️ 高溫 35°C 部分多雲</div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">11.57%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-1</div><div class="spct">9.07%</div><span class="sres rh">Japan</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">8.87%</div><span class="sres rh">Japan</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-2</div><div class="spct">7.55%</div><span class="sres ra">Sweden</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-1</div><div class="spct">7.38%</div><span class="sres ra">Sweden</span></div></div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">12.11%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">10.04%</div><span class="sres rh">Japan</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-1</div><div class="spct">9.04%</div><span class="sres rh">Japan</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-1</div><div class="spct">8.12%</div><span class="sres ra">Sweden</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">7.5%</div><span class="sres rh">Japan</span></div></div>
   </div>
-  <span class="upset-high">🔥 高爆冷風險 Sweden</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.26，平局率高達 25%，比賽走向難測。</div><div class="ai-item">📋 <b>積分態勢</b>：Japan 現有 1 分（急需積分 ⚠️），Sweden 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 2.15 / 客 3.34）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Hajime Moriyasu（Japan）vs Jon Dahl Tomasson（Sweden），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">☀️ <b>天氣影響</b>：Arlington（高溫 35°C 部分多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
+  <span class="upset-high">🔥 高爆冷風險 Sweden</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.28，平局率高達 26%，比賽走向難測。</div><div class="ai-item">🚑 <b>Japan 主力傷缺</b>：<b>三笘薰 (Mitoma)</b>（LW，腿筋傷缺全程）、<b>南野拓實 (Minamino)</b>（FW，ACL傷缺全程）。攻擊力預估下降 12%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Japan 現有 4 分（積分領先），Sweden 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 2.15 / 客 3.34）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Hajime Moriyasu（Japan）vs Jon Dahl Tomasson（Sweden），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">☀️ <b>天氣影響</b>：Arlington（高溫 35°C 部分多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
 </div>
 
 <div class="card">
@@ -1508,27 +1311,27 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="team">
       <span class="flag">🇹🇳</span>
       <div class="tname">Tunisia</div>
-      <div class="tform">xG 0.68</div>
-      <div class="form-row"><span class="fb-l">L</span></div>
+      <div class="tform">xG 0.58</div>
+      <div class="form-row"><span class="fb-l">L</span><span class="fb-l">L</span></div>
     </div>
     <div class="vs-badge"><span class="grp-sm">模擬</span>VS</div>
     <div class="team">
       <span class="flag">🇳🇱</span>
       <div class="tname">Netherlands</div>
-      <div class="tform">xG 2.23</div>
-      <div class="form-row"><span class="fb-d">D</span></div>
+      <div class="tform">xG 2.39</div>
+      <div class="form-row"><span class="fb-d">D</span><span class="fb-w">W</span></div>
     </div>
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:9.8%"></div>
-      <div class="prob-seg seg-draw" style="width:17.4%"></div>
-      <div class="prob-seg seg-away" style="width:72.8%"></div>
+      <div class="prob-seg seg-home" style="width:7.1%"></div>
+      <div class="prob-seg seg-draw" style="width:15.1%"></div>
+      <div class="prob-seg seg-away" style="width:77.8%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>9.8%</strong> Tunisia</span>
-      <span class="pl-draw"><strong>17.4%</strong> 平局</span>
-      <span class="pl-away"><strong>72.8%</strong> Netherlands</span>
+      <span class="pl-home"><strong>7.1%</strong> Tunisia</span>
+      <span class="pl-draw"><strong>15.1%</strong> 平局</span>
+      <span class="pl-away"><strong>77.8%</strong> Netherlands</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1540,9 +1343,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="weather-row">⛈️ 悶熱 30°C 雷雨風險</div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">13.53%</div><span class="sres ra">Netherlands</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">12.11%</div><span class="sres ra">Netherlands</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-3</div><div class="spct">10.07%</div><span class="sres ra">Netherlands</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-2</div><div class="spct">9.21%</div><span class="sres ra">Netherlands</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">8.25%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">14.69%</div><span class="sres ra">Netherlands</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">12.29%</div><span class="sres ra">Netherlands</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-3</div><div class="spct">11.71%</div><span class="sres ra">Netherlands</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-2</div><div class="spct">8.48%</div><span class="sres ra">Netherlands</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.09%</div><span class="sres rd">平局</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Netherlands xG 是主場 3.3 倍，模擬客勝率 73%。</div><div class="ai-item">📋 <b>積分態勢</b>：Tunisia 現有 0 分（背水一戰 🔴），Netherlands 現有 1 分（急需積分 ⚠️），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 9.66 / 客 1.30）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Ronald Koeman（Netherlands） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">☀️ <b>天氣影響</b>：Kansas City（悶熱 30°C 雷雨風險），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
+  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Netherlands xG 是主場 4.1 倍，模擬客勝率 78%。</div><div class="ai-item">🚑 <b>Netherlands 主力傷缺</b>：<b>Jurriën Timber</b>（CB，ACL傷缺全程）、<b>Xavi Simons</b>（MF，ACL傷缺全程）。攻擊力預估下降 7%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Tunisia 現有 0 分（背水一戰 🔴），Netherlands 現有 4 分（積分領先），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 9.66 / 客 1.30）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">⚠️ <b>主隊低迷</b>：Tunisia 本屆 LL，低迷狀態下主場優勢縮水，建議審慎看待主勝盤。</div><div class="ai-item">👔 <b>教練差距</b>：Ronald Koeman（Netherlands） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">☀️ <b>天氣影響</b>：Kansas City（悶熱 30°C 雷雨風險），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
 </div></div>
 <div id="day-2026-06-26" class="day-section" style="display:none"><div class="day-label">6月26日 — Group G,H,I 末輪</div>
 <div class="card">
@@ -1564,20 +1367,20 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="team">
       <span class="flag">🇫🇷</span>
       <div class="tname">France</div>
-      <div class="tform">xG 2.40</div>
+      <div class="tform">xG 2.33</div>
       <div class="form-row"><span class="fb-w">W</span></div>
     </div>
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:27.9%"></div>
-      <div class="prob-seg seg-draw" style="width:19.4%"></div>
-      <div class="prob-seg seg-away" style="width:52.7%"></div>
+      <div class="prob-seg seg-home" style="width:29%"></div>
+      <div class="prob-seg seg-draw" style="width:19.8%"></div>
+      <div class="prob-seg seg-away" style="width:51.2%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>27.9%</strong> Norway</span>
-      <span class="pl-draw"><strong>19.4%</strong> 平局</span>
-      <span class="pl-away"><strong>52.7%</strong> France</span>
+      <span class="pl-home"><strong>29%</strong> Norway</span>
+      <span class="pl-draw"><strong>19.8%</strong> 平局</span>
+      <span class="pl-away"><strong>51.2%</strong> France</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1589,9 +1392,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="weather-row">🌤️ 涼爽 26°C 適宜</div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">7.97%</div><span class="sres ra">France</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-2</div><div class="spct">6.94%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">6.63%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-3</div><div class="spct">6.39%</div><span class="sres ra">France</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-1</div><div class="spct">5.78%</div><span class="sres rh">Norway</span></div></div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">8.06%</div><span class="sres ra">France</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-2</div><div class="spct">7.02%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">6.92%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-3</div><div class="spct">6.26%</div><span class="sres ra">France</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-1</div><div class="spct">6.02%</div><span class="sres rh">Norway</span></div></div>
   </div>
-  <span class="upset-med">⚡ 爆冷可能 Norway</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客場佔優</b>：France xG 優勢 38%，客勝率 53%。</div><div class="ai-item">📋 <b>積分態勢</b>：Norway 現有 3 分（積分尚可），France 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 4.26 / 客 1.79）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Didier Deschamps（France，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Boston（涼爽 26°C 適宜），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
+  <span class="upset-med">⚡ 爆冷可能 Norway</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客場佔優</b>：France xG 優勢 34%，客勝率 51%。</div><div class="ai-item">🚑 <b>France 主力傷缺</b>：<b>Hugo Ekitike</b>（FW，備役前鋒未入選）。攻擊力預估下降 3%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Norway 現有 3 分（積分尚可），France 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 4.26 / 客 1.79）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Didier Deschamps（France，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Boston（涼爽 26°C 適宜），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
 </div>
 
 <div class="card">
@@ -1711,20 +1514,20 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="team">
       <span class="flag">🇪🇸</span>
       <div class="tname">Spain</div>
-      <div class="tform">xG 2.31</div>
+      <div class="tform">xG 2.24</div>
       <div class="form-row"><span class="fb-d">D</span></div>
     </div>
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:32.1%"></div>
-      <div class="prob-seg seg-draw" style="width:19.8%"></div>
-      <div class="prob-seg seg-away" style="width:48.1%"></div>
+      <div class="prob-seg seg-home" style="width:33.2%"></div>
+      <div class="prob-seg seg-draw" style="width:20.1%"></div>
+      <div class="prob-seg seg-away" style="width:46.7%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>32.1%</strong> Uruguay</span>
-      <span class="pl-draw"><strong>19.8%</strong> 平局</span>
-      <span class="pl-away"><strong>48.1%</strong> Spain</span>
+      <span class="pl-home"><strong>33.2%</strong> Uruguay</span>
+      <span class="pl-draw"><strong>20.1%</strong> 平局</span>
+      <span class="pl-away"><strong>46.7%</strong> Spain</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1736,9 +1539,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="weather-row">⛅ 溫熱 29°C 高海拔 1560m</div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">7.56%</div><span class="sres ra">Spain</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-2</div><div class="spct">7.14%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">6.54%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">6.17%</div><span class="sres rh">Uruguay</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-3</div><div class="spct">5.83%</div><span class="sres ra">Spain</span></div></div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">7.63%</div><span class="sres ra">Spain</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-2</div><div class="spct">7.2%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">6.8%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">6.42%</div><span class="sres rh">Uruguay</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-3</div><div class="spct">5.71%</div><span class="sres ra">Spain</span></div></div>
   </div>
-  <span class="upset-high">🔥 高爆冷風險 Uruguay</span><div class="value-tip">💡 主勝有價值（模型32% vs 賠率隱含17%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.42，平局率高達 20%，比賽走向難測。</div><div class="ai-item">⚔️ <b>戰術相剋</b>：（強硬防反）vs（tiki-taka控球）Uruguay 防反 vs Spain 控球，預計低節奏、Uruguay 少輸即贏。</div><div class="ai-item">📋 <b>積分態勢</b>：Uruguay 現有 1 分（急需積分 ⚠️），Spain 現有 1 分（急需積分 ⚠️），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 32% > 莊家隱含 17%，超額 15%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練優勢</b>：Luis de la Fuente（Spain，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
+  <span class="upset-high">🔥 高爆冷風險 Uruguay</span><div class="value-tip">💡 主勝有價值（模型33% vs 賠率隱含17%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.35，平局率高達 20%，比賽走向難測。</div><div class="ai-item">🚑 <b>Spain 主力傷缺</b>：<b>Fermín López</b>（MF，蹠骨骨折傷缺全程）。攻擊力預估下降 3%，模型已調整。</div><div class="ai-item">⚔️ <b>戰術相剋</b>：（強硬防反）vs（tiki-taka控球）Uruguay 防反 vs Spain 控球，預計低節奏、Uruguay 少輸即贏。</div><div class="ai-item">📋 <b>積分態勢</b>：Uruguay 現有 1 分（急需積分 ⚠️），Spain 現有 1 分（急需積分 ⚠️），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 33% > 莊家隱含 17%，超額 16%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練優勢</b>：Luis de la Fuente（Spain，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
 </div>
 
 <div class="card">
@@ -1907,20 +1710,20 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="team">
       <span class="flag">🇬🇭</span>
       <div class="tname">Ghana</div>
-      <div class="tform">xG 0.94</div>
+      <div class="tform">xG 0.79</div>
       <div class="form-row"><span class="fb-w">W</span></div>
     </div>
   </div>
   <div class="prob-section">
     <div class="prob-bar-wrap">
-      <div class="prob-seg seg-home" style="width:57.5%"></div>
-      <div class="prob-seg seg-draw" style="width:23%"></div>
-      <div class="prob-seg seg-away" style="width:19.5%"></div>
+      <div class="prob-seg seg-home" style="width:61.2%"></div>
+      <div class="prob-seg seg-draw" style="width:22.7%"></div>
+      <div class="prob-seg seg-away" style="width:16.1%"></div>
     </div>
     <div class="prob-labels">
-      <span class="pl-home"><strong>57.5%</strong> Croatia</span>
-      <span class="pl-draw"><strong>23%</strong> 平局</span>
-      <span class="pl-away"><strong>19.5%</strong> Ghana</span>
+      <span class="pl-home"><strong>61.2%</strong> Croatia</span>
+      <span class="pl-draw"><strong>22.7%</strong> 平局</span>
+      <span class="pl-away"><strong>16.1%</strong> Ghana</span>
     </div>
   </div>
   <div class="odds-row">
@@ -1932,9 +1735,9 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="weather-row">⛅ 溫熱 30°C 多雲</div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
-    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">11.66%</div><span class="sres rh">Croatia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">10.96%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-0</div><div class="spct">10.45%</div><span class="sres rh">Croatia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">9.83%</div><span class="sres rh">Croatia</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-0</div><div class="spct">6.5%</div><span class="sres rd">平局</span></div></div>
+    <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">13.55%</div><span class="sres rh">Croatia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">12.15%</div><span class="sres rh">Croatia</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">10.7%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">9.59%</div><span class="sres rh">Croatia</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-0</div><div class="spct">7.55%</div><span class="sres rd">平局</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>主場佔優</b>：Croatia xG 優勢 90%，主勝率 58%，但未到壓倒性。</div><div class="ai-item">📋 <b>積分態勢</b>：Croatia 現有 0 分（背水一戰 🔴），Ghana 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.60 / 客 5.73）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Zlatko Dalić（Croatia） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div></div>
+  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Croatia xG 是對手 2.3 倍，模擬主勝率 61%，強弱差距明顯。</div><div class="ai-item">🚑 <b>Ghana 主力傷缺</b>：<b>Mohammed Kudus</b>（FW，大腿/腿筋傷缺全程，最強進攻核心）、<b>Abdul Salisu</b>（CB，傷缺全程）。攻擊力預估下降 16%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Croatia 現有 0 分（背水一戰 🔴），Ghana 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.60 / 客 5.73）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Zlatko Dalić（Croatia） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div></div>
 </div>
 
 <div class="card">
@@ -2141,8 +1944,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <span class="ko-vs">VS</span>
     <div class="ko-team"><span class="ko-nm">Brazil</span><span class="ko-flag">🇧🇷</span></div>
   </div>
-  <div class="ko-probs"><span class="kph">主32.1%</span><span class="kpd">平22.2%</span><span class="kpa">客45.7%</span></div>
-               <div class="ko-xg">xG 1.56 – 1.89</div><div class="ko-coach">👔 Javier Aguirre  vs  Dorival Júnior</div>
+  <div class="ko-probs"><span class="kph">主34.4%</span><span class="kpd">平22.9%</span><span class="kpa">客42.7%</span></div>
+               <div class="ko-xg">xG 1.56 – 1.76</div><div class="ko-coach">👔 Javier Aguirre  vs  Dorival Júnior</div>
 </div>
 <div class="ko-card known">
   <div class="ko-meta">06/30 07:00 台灣 · 32強</div>
@@ -2151,8 +1954,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <span class="ko-vs">VS</span>
     <div class="ko-team"><span class="ko-nm">Australia</span><span class="ko-flag">🇦🇺</span></div>
   </div>
-  <div class="ko-probs"><span class="kph">主51.2%</span><span class="kpd">平23.5%</span><span class="kpa">客25.3%</span></div>
-               <div class="ko-xg">xG 1.75 – 1.16</div><div class="ko-coach">👔 Jesse Marsch  vs  Tony Popovic</div>
+  <div class="ko-probs"><span class="kph">主46.5%</span><span class="kpd">平25.7%</span><span class="kpa">客27.8%</span></div>
+               <div class="ko-xg">xG 1.51 – 1.11</div><div class="ko-coach">👔 Jesse Marsch  vs  Tony Popovic</div>
 </div>
 <div class="ko-card known">
   <div class="ko-meta">07/01 04:00 台灣 · 32強</div>
@@ -2181,8 +1984,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <span class="ko-vs">VS</span>
     <div class="ko-team"><span class="ko-nm">New Zealand</span><span class="ko-flag">🇳🇿</span></div>
   </div>
-  <div class="ko-probs"><span class="kph">主77.5%</span><span class="kpd">平12.9%</span><span class="kpa">客9.6%</span></div>
-               <div class="ko-xg">xG 3.04 – 1</div><div class="ko-coach">👔 Julian Nagelsmann  vs  Darren Bazeley</div>
+  <div class="ko-probs"><span class="kph">主74%</span><span class="kpd">平14.8%</span><span class="kpa">客11.2%</span></div>
+               <div class="ko-xg">xG 2.75 – 0.99</div><div class="ko-coach">👔 Julian Nagelsmann  vs  Darren Bazeley</div>
 </div>
 <div class="ko-card known">
   <div class="ko-meta">07/02 07:00 台灣 · 32強</div>
@@ -2191,8 +1994,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <span class="ko-vs">VS</span>
     <div class="ko-team"><span class="ko-nm">Uruguay</span><span class="ko-flag">🇺🇾</span></div>
   </div>
-  <div class="ko-probs"><span class="kph">主28.6%</span><span class="kpd">平21.1%</span><span class="kpa">客50.3%</span></div>
-               <div class="ko-xg">xG 1.54 – 2.08</div><div class="ko-coach">👔 Jon Dahl Tomasson  vs  Marcelo Bielsa</div>
+  <div class="ko-probs"><span class="kph">主25.1%</span><span class="kpd">平20.4%</span><span class="kpa">客54.5%</span></div>
+               <div class="ko-xg">xG 1.46 – 2.2</div><div class="ko-coach">👔 Jon Dahl Tomasson  vs  Marcelo Bielsa</div>
 </div>
 <div class="ko-card known">
   <div class="ko-meta">07/03 04:00 台灣 · 32強</div>
@@ -2201,8 +2004,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <span class="ko-vs">VS</span>
     <div class="ko-team"><span class="ko-nm">Ivory Coast</span><span class="ko-flag">🇨🇮</span></div>
   </div>
-  <div class="ko-probs"><span class="kph">主33.2%</span><span class="kpd">平31.1%</span><span class="kpa">客35.7%</span></div>
-               <div class="ko-xg">xG 0.96 – 1.01</div><div class="ko-coach">👔 Amir Ghalenoei  vs  Emerse Faé</div>
+  <div class="ko-probs"><span class="kph">主32.8%</span><span class="kpd">平31.3%</span><span class="kpa">客35.9%</span></div>
+               <div class="ko-xg">xG 0.95 – 1</div><div class="ko-coach">👔 Amir Ghalenoei  vs  Emerse Faé</div>
 </div>
 <div class="ko-card known">
   <div class="ko-meta">07/03 07:00 台灣 · 32強</div>
@@ -2211,8 +2014,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <span class="ko-vs">VS</span>
     <div class="ko-team"><span class="ko-nm">Netherlands</span><span class="ko-flag">🇳🇱</span></div>
   </div>
-  <div class="ko-probs"><span class="kph">主17.3%</span><span class="kpd">平21.2%</span><span class="kpa">客61.5%</span></div>
-               <div class="ko-xg">xG 0.94 – 1.98</div><div class="ko-coach">👔 Hervé Renard  vs  Ronald Koeman</div>
+  <div class="ko-probs"><span class="kph">主15.1%</span><span class="kpd">平19.9%</span><span class="kpa">客65%</span></div>
+               <div class="ko-xg">xG 0.9 – 2.1</div><div class="ko-coach">👔 Hervé Renard  vs  Ronald Koeman</div>
 </div>
 <div class="ko-card known">
   <div class="ko-meta">07/04 04:00 台灣 · 32強</div>
@@ -2231,8 +2034,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <span class="ko-vs">VS</span>
     <div class="ko-team"><span class="ko-nm">Ghana</span><span class="ko-flag">🇬🇭</span></div>
   </div>
-  <div class="ko-probs"><span class="kph">主70.9%</span><span class="kpd">平17.2%</span><span class="kpa">客11.9%</span></div>
-               <div class="ko-xg">xG 2.36 – 0.86</div><div class="ko-coach">👔 Lionel Scaloni  vs  Otto Addo</div>
+  <div class="ko-probs"><span class="kph">主74%</span><span class="kpd">平16.4%</span><span class="kpa">客9.6%</span></div>
+               <div class="ko-xg">xG 2.36 – 0.72</div><div class="ko-coach">👔 Lionel Scaloni  vs  Otto Addo</div>
 </div>
 <div class="ko-card known">
   <div class="ko-meta">07/05 04:00 台灣 · 32強</div>
@@ -2241,8 +2044,8 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <span class="ko-vs">VS</span>
     <div class="ko-team"><span class="ko-nm">France</span><span class="ko-flag">🇫🇷</span></div>
   </div>
-  <div class="ko-probs"><span class="kph">主24.9%</span><span class="kpd">平19.4%</span><span class="kpa">客55.7%</span></div>
-               <div class="ko-xg">xG 1.57 – 2.38</div><div class="ko-coach">👔 Néstor Lorenzo  vs  Didier Deschamps</div>
+  <div class="ko-probs"><span class="kph">主25.8%</span><span class="kpd">平19.8%</span><span class="kpa">客54.4%</span></div>
+               <div class="ko-xg">xG 1.57 – 2.31</div><div class="ko-coach">👔 Néstor Lorenzo  vs  Didier Deschamps</div>
 </div>
 <div class="ko-card known">
   <div class="ko-meta">07/05 07:00 台灣 · 32強</div>
@@ -2456,7 +2259,7 @@ function showKO(btn){
   document.getElementById("ko-section").style.display="block";
 }
 const UPCOMING =
-[{"date":"2026-06-20","home":"Netherlands","away":"Sweden","ts":1781974800000},{"date":"2026-06-20","home":"Germany","away":"Ivory Coast","ts":1781985600000},{"date":"2026-06-20","home":"Ecuador","away":"Curacao","ts":1782000000000},{"date":"2026-06-20","home":"Japan","away":"Tunisia","ts":1782014400000},{"date":"2026-06-21","home":"Spain","away":"Saudi Arabia","ts":1782057600000},{"date":"2026-06-21","home":"Belgium","away":"Iran","ts":1782068400000},{"date":"2026-06-21","home":"Uruguay","away":"Cape Verde","ts":1782079200000},{"date":"2026-06-21","home":"New Zealand","away":"Egypt","ts":1782090000000},{"date":"2026-06-22","home":"Argentina","away":"Austria","ts":1782147600000},{"date":"2026-06-22","home":"France","away":"Iraq","ts":1782162000000},{"date":"2026-06-22","home":"Norway","away":"Senegal","ts":1782172800000},{"date":"2026-06-22","home":"Jordan","away":"Algeria","ts":1782183600000},{"date":"2026-06-23","home":"Portugal","away":"Uzbekistan","ts":1782234000000},{"date":"2026-06-23","home":"England","away":"Ghana","ts":1782244800000},{"date":"2026-06-23","home":"Panama","away":"Croatia","ts":1782255600000},{"date":"2026-06-23","home":"Colombia","away":"DR Congo","ts":1782266400000},{"date":"2026-06-24","home":"Switzerland","away":"Canada","ts":1782327600000},{"date":"2026-06-24","home":"Bosnia","away":"Qatar","ts":1782327600000},{"date":"2026-06-24","home":"Scotland","away":"Brazil","ts":1782338400000},{"date":"2026-06-24","home":"Morocco","away":"Haiti","ts":1782338400000},{"date":"2026-06-24","home":"Czechia","away":"Mexico","ts":1782349200000},{"date":"2026-06-24","home":"South Africa","away":"South Korea","ts":1782349200000},{"date":"2026-06-25","home":"Ecuador","away":"Germany","ts":1782417600000},{"date":"2026-06-25","home":"Curacao","away":"Ivory Coast","ts":1782417600000},{"date":"2026-06-25","home":"Japan","away":"Sweden","ts":1782428400000},{"date":"2026-06-25","home":"Tunisia","away":"Netherlands","ts":1782428400000},{"date":"2026-06-25","home":"Turkey","away":"USA","ts":1782439200000},{"date":"2026-06-25","home":"Paraguay","away":"Australia","ts":1782439200000},{"date":"2026-06-26","home":"Norway","away":"France","ts":1782500400000},{"date":"2026-06-26","home":"Senegal","away":"Iraq","ts":1782500400000},{"date":"2026-06-26","home":"Cape Verde","away":"Saudi Arabia","ts":1782518400000},{"date":"2026-06-26","home":"Uruguay","away":"Spain","ts":1782518400000},{"date":"2026-06-26","home":"Egypt","away":"Iran","ts":1782529200000},{"date":"2026-06-26","home":"New Zealand","away":"Belgium","ts":1782529200000},{"date":"2026-06-27","home":"Panama","away":"England","ts":1782594000000},{"date":"2026-06-27","home":"Croatia","away":"Ghana","ts":1782594000000},{"date":"2026-06-27","home":"Colombia","away":"Portugal","ts":1782602100000},{"date":"2026-06-27","home":"DR Congo","away":"Uzbekistan","ts":1782602100000},{"date":"2026-06-27","home":"Algeria","away":"Austria","ts":1782612000000},{"date":"2026-06-27","home":"Jordan","away":"Argentina","ts":1782612000000}]
+[{"date":"2026-06-21","home":"Spain","away":"Saudi Arabia","ts":1782057600000},{"date":"2026-06-21","home":"Belgium","away":"Iran","ts":1782068400000},{"date":"2026-06-21","home":"Uruguay","away":"Cape Verde","ts":1782079200000},{"date":"2026-06-21","home":"New Zealand","away":"Egypt","ts":1782090000000},{"date":"2026-06-22","home":"Argentina","away":"Austria","ts":1782147600000},{"date":"2026-06-22","home":"France","away":"Iraq","ts":1782162000000},{"date":"2026-06-22","home":"Norway","away":"Senegal","ts":1782172800000},{"date":"2026-06-22","home":"Jordan","away":"Algeria","ts":1782183600000},{"date":"2026-06-23","home":"Portugal","away":"Uzbekistan","ts":1782234000000},{"date":"2026-06-23","home":"England","away":"Ghana","ts":1782244800000},{"date":"2026-06-23","home":"Panama","away":"Croatia","ts":1782255600000},{"date":"2026-06-23","home":"Colombia","away":"DR Congo","ts":1782266400000},{"date":"2026-06-24","home":"Switzerland","away":"Canada","ts":1782327600000},{"date":"2026-06-24","home":"Bosnia","away":"Qatar","ts":1782327600000},{"date":"2026-06-24","home":"Scotland","away":"Brazil","ts":1782338400000},{"date":"2026-06-24","home":"Morocco","away":"Haiti","ts":1782338400000},{"date":"2026-06-24","home":"Czechia","away":"Mexico","ts":1782349200000},{"date":"2026-06-24","home":"South Africa","away":"South Korea","ts":1782349200000},{"date":"2026-06-25","home":"Ecuador","away":"Germany","ts":1782417600000},{"date":"2026-06-25","home":"Curacao","away":"Ivory Coast","ts":1782417600000},{"date":"2026-06-25","home":"Japan","away":"Sweden","ts":1782428400000},{"date":"2026-06-25","home":"Tunisia","away":"Netherlands","ts":1782428400000},{"date":"2026-06-25","home":"Turkey","away":"USA","ts":1782439200000},{"date":"2026-06-25","home":"Paraguay","away":"Australia","ts":1782439200000},{"date":"2026-06-26","home":"Norway","away":"France","ts":1782500400000},{"date":"2026-06-26","home":"Senegal","away":"Iraq","ts":1782500400000},{"date":"2026-06-26","home":"Cape Verde","away":"Saudi Arabia","ts":1782518400000},{"date":"2026-06-26","home":"Uruguay","away":"Spain","ts":1782518400000},{"date":"2026-06-26","home":"Egypt","away":"Iran","ts":1782529200000},{"date":"2026-06-26","home":"New Zealand","away":"Belgium","ts":1782529200000},{"date":"2026-06-27","home":"Panama","away":"England","ts":1782594000000},{"date":"2026-06-27","home":"Croatia","away":"Ghana","ts":1782594000000},{"date":"2026-06-27","home":"Colombia","away":"Portugal","ts":1782602100000},{"date":"2026-06-27","home":"DR Congo","away":"Uzbekistan","ts":1782602100000},{"date":"2026-06-27","home":"Algeria","away":"Austria","ts":1782612000000},{"date":"2026-06-27","home":"Jordan","away":"Argentina","ts":1782612000000}]
 ;
 function nextMs(){
   var n=Date.now(), f=UPCOMING.filter(function(m){return m.ts>n;});

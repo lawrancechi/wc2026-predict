@@ -82,9 +82,10 @@ get_weather <- function(venue) {
   else list(emoji="🌤️", desc="氣候適中", impact=0.00)
 }
 
-cfg      <- fromJSON("data/teams.json", simplifyVector = FALSE)
-base_lam <- setNames(as.numeric(unlist(cfg$base_lambda)), names(cfg$base_lambda))
-matches  <- cfg$matches
+cfg          <- fromJSON("data/teams.json", simplifyVector = FALSE)
+base_lam     <- setNames(as.numeric(unlist(cfg$base_lambda)), names(cfg$base_lambda))
+matches      <- cfg$matches
+lineup_factor <- if (!is.null(cfg$lineup_factor)) cfg$lineup_factor else list()
 
 # ── 近期戰績追蹤 ──────────────────────────────────────────
 recent_form <- setNames(vector("list", length(base_lam)), names(base_lam))
@@ -117,6 +118,40 @@ for (m in matches) {
 
 # ── 主辦國加成 ────────────────────────────────────────────
 HOST_TEAMS <- c("USA", "Mexico", "Canada")
+
+# ── 主力缺陣名單（影響 xG 係數）────────────────────────────
+MISSING_PLAYERS <- list(
+  Netherlands = list(
+    list(name="Jurriën Timber",  pos="CB",  note="ACL傷缺全程"),
+    list(name="Xavi Simons",     pos="MF",  note="ACL傷缺全程")
+  ),
+  Japan = list(
+    list(name="三笘薰 (Mitoma)", pos="LW",  note="腿筋傷缺全程"),
+    list(name="南野拓實 (Minamino)", pos="FW", note="ACL傷缺全程")
+  ),
+  Ghana = list(
+    list(name="Mohammed Kudus",  pos="FW",  note="大腿/腿筋傷缺全程，最強進攻核心"),
+    list(name="Abdul Salisu",    pos="CB",  note="傷缺全程")
+  ),
+  Brazil = list(
+    list(name="Rodrygo",         pos="FW",  note="ACL傷缺全程"),
+    list(name="Éder Militão",    pos="CB",  note="腿筋傷缺全程")
+  ),
+  Germany = list(
+    list(name="Serge Gnabry",    pos="RW",  note="大腿內收肌傷缺全程")
+  ),
+  Spain = list(
+    list(name="Fermín López",    pos="MF",  note="蹠骨骨折傷缺全程")
+  ),
+  Canada = list(
+    list(name="Alphonso Davies", pos="LB",  note="傷缺全程，主力左翼衛")
+  ),
+  France = list(
+    list(name="Hugo Ekitike",    pos="FW",  note="備役前鋒未入選")
+  )
+)
+
+get_missing <- function(t) if (!is.null(MISSING_PLAYERS[[t]])) MISSING_PLAYERS[[t]] else list()
 
 # ── 歷史爆冷強隊（世界盃常見黑馬）────────────────────────
 GIANT_KILLERS <- c("Japan", "Morocco", "Switzerland", "Senegal",
@@ -189,6 +224,11 @@ simulate_match <- function(home, away, heat, altitude=FALSE, h_played=0, a_playe
     xg_h <- xg_h * 0.85 + mid * 0.15
     xg_a <- xg_a * 0.85 + mid * 0.15
   }
+
+  # 主力缺陣調整（lineup_factor）
+  lf_h <- if (!is.null(lineup_factor[[home]])) lineup_factor[[home]] else 1.0
+  lf_a <- if (!is.null(lineup_factor[[away]])) lineup_factor[[away]] else 1.0
+  xg_h <- xg_h * lf_h; xg_a <- xg_a * lf_a
 
   # 黑馬加成
   ratio <- xg_h / max(0.1, xg_a)
@@ -326,6 +366,21 @@ expert_analysis <- function(m, sim) {
     notes <- c(notes, sprintf('📊 <b>客場佔優</b>：%s xG 優勢 %.0f%%，客勝率 %.0f%%。', at, (1/ratio-1)*100, sim$aw))
   else
     notes <- c(notes, sprintf('📊 <b>勢均力敵</b>：雙方 xG 差距僅 %.2f，平局率高達 %.0f%%，比賽走向難測。', abs(sim$xg_h - sim$xg_a), sim$dr))
+
+  # 1.5 主力缺陣分析
+  miss_h <- get_missing(ht); miss_a <- get_missing(at)
+  lf_h <- if (!is.null(lineup_factor[[ht]])) lineup_factor[[ht]] else 1.0
+  lf_a <- if (!is.null(lineup_factor[[at]])) lineup_factor[[at]] else 1.0
+  if (length(miss_h) > 0) {
+    plist <- paste(sapply(miss_h, function(p) sprintf('<b>%s</b>（%s，%s）', p$name, p$pos, p$note)), collapse="、")
+    pct   <- round((1 - lf_h) * 100)
+    notes <- c(notes, sprintf('🚑 <b>%s 主力傷缺</b>：%s。攻擊力預估下降 %d%%，模型已調整。', ht, plist, pct))
+  }
+  if (length(miss_a) > 0) {
+    plist <- paste(sapply(miss_a, function(p) sprintf('<b>%s</b>（%s，%s）', p$name, p$pos, p$note)), collapse="、")
+    pct   <- round((1 - lf_a) * 100)
+    notes <- c(notes, sprintf('🚑 <b>%s 主力傷缺</b>：%s。攻擊力預估下降 %d%%，模型已調整。', at, plist, pct))
+  }
 
   # 2. 戰術相剋分析
   ht_tac <- if (!is.na(TACTICAL[ht])) TACTICAL[[ht]] else "均衡型"
