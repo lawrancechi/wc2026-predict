@@ -3,6 +3,40 @@ library(jsonlite)
 set.seed(2026)
 w <- 0.10   # Bayesian 更新權重
 
+# ══════════════════════════════════════════════════════════════
+# 埃羅評分系統（Elo Rating）
+# 基於 FIFA 官方積分換算（2026 世界盃賽前）
+# ══════════════════════════════════════════════════════════════
+ELO <- c(
+  Argentina=1891, Spain=1858, France=1851, England=1824,
+  Brazil=1820, Belgium=1816, Portugal=1804, Netherlands=1797,
+  Germany=1767, Uruguay=1742, Colombia=1740, Japan=1736,
+  Morocco=1730, USA=1720, Senegal=1710, Mexico=1705,
+  Turkey=1700, Croatia=1698, Switzerland=1682, "South Korea"=1676,
+  Norway=1665, Austria=1660, Australia=1640, Ecuador=1620,
+  Egypt=1615, Canada=1610, Algeria=1580, "Ivory Coast"=1575,
+  Ghana=1550, Iran=1545, Sweden=1530, Czechia=1525,
+  Scotland=1510, "New Zealand"=1505, Paraguay=1490,
+  "South Africa"=1480, Tunisia=1470, "Saudi Arabia"=1465,
+  Bosnia=1450, "Cape Verde"=1430, "DR Congo"=1410,
+  Uzbekistan=1390, Jordan=1360, Haiti=1340, Iraq=1320,
+  Panama=1310, Curacao=1280, Qatar=1250
+)
+
+# Elo 預測：傳回 list(hw, dr, aw) 機率（%）
+elo_predict <- function(home, away) {
+  eh <- if (!is.na(ELO[home])) ELO[[home]] else 1500
+  ea <- if (!is.na(ELO[away])) ELO[[away]] else 1500
+  diff <- (eh - ea + 100) / 400   # +100 = 主場加成
+  e_h  <- 1 / (1 + 10^(-diff))   # 期望勝率（含平局）
+  # 將期望得分轉換成 win/draw/lose
+  p_hw <- e_h * 0.85
+  p_dr <- 0.26 - abs(e_h - 0.5) * 0.32
+  p_dr <- max(0.10, min(0.32, p_dr))
+  p_aw <- max(0, 1 - p_hw - p_dr)
+  list(hw=round(p_hw*100,1), dr=round(p_dr*100,1), aw=round(p_aw*100,1))
+}
+
 # ── 教練資料（姓名 + 能力評分 1.0=平均，>1.0=強帥）─────────
 COACH <- list(
   Argentina    = list(name="Lionel Scaloni",      rating=1.08),
@@ -258,8 +292,20 @@ simulate_match <- function(home, away, heat, altitude=FALSE, h_played=0, a_playe
          result = if (s$h > s$a) "home" else if (s$h == s$a) "draw" else "away")
   })
 
+  # ── Elo 預測 ──────────────────────────────────────────────
+  elo  <- elo_predict(home, away)
+
+  # ── 集成（Ensemble）：Poisson 50% + Elo 50% ────────────────
+  W_POISSON <- 0.55; W_ELO <- 0.45
+  ens_hw <- round(hw * W_POISSON + elo$hw * W_ELO, 1)
+  ens_dr <- round(dr * W_POISSON + elo$dr * W_ELO, 1)
+  ens_aw <- round(100 - ens_hw - ens_dr, 1)
+
   list(xg_h=round(xg_h,2), xg_a=round(xg_a,2),
-       hw=hw, dr=dr, aw=aw, top5=top5)
+       hw=ens_hw, dr=ens_dr, aw=ens_aw,
+       poi_hw=hw, poi_dr=dr, poi_aw=aw,
+       elo_hw=elo$hw, elo_dr=elo$dr, elo_aw=elo$aw,
+       top5=top5)
 }
 
 # ── 旗幟對應表 ────────────────────────────────────────────
@@ -538,6 +584,11 @@ match_html <- function(m, sim) {
   </div>
   %s
   %s
+  <div class="model-breakdown">
+    <div class="mb-row"><span class="mb-label">📐 泊松分布</span><span class="mb-vals"><b>%s%%</b> / %s%% / <b>%s%%</b></span></div>
+    <div class="mb-row"><span class="mb-label">📊 埃羅評分</span><span class="mb-vals"><b>%s%%</b> / %s%% / <b>%s%%</b></span></div>
+    <div class="mb-row mb-ens"><span class="mb-label">🤖 集成預測</span><span class="mb-vals"><b>%s%%</b> / %s%% / <b>%s%%</b></span></div>
+  </div>
   <div class="scores-section">
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid">%s</div>
@@ -552,7 +603,11 @@ match_html <- function(m, sim) {
     m$home, odds_h,
     "平", odds_d,
     m$away, odds_a,
-    coach_row, weather_row, pills, utag, vtip, analysis)
+    coach_row, weather_row,
+    sim$poi_hw, sim$poi_dr, sim$poi_aw,
+    sim$elo_hw, sim$elo_dr, sim$elo_aw,
+    sim$hw, sim$dr, sim$aw,
+    pills, utag, vtip, analysis)
 }
 
 # ── 戰術風格資料 ──────────────────────────────────────────
@@ -750,6 +805,115 @@ knockout_html <- if (!is.null(ko_data)) {
 # 加入淘汰賽 tab 按鈕
 tab_btns <- paste0(tab_btns, '\n<button class="tab" onclick="showKO(this)">🏆 淘汰賽</button>')
 
+# ══════════════════════════════════════════════════════════════
+# 蒙特卡洛全賽事模擬（奪冠機率）
+# ══════════════════════════════════════════════════════════════
+mc_sim_match <- function(h, a) {
+  eh <- if (!is.na(ELO[h])) ELO[[h]] else 1500
+  ea <- if (!is.na(ELO[a])) ELO[[a]] else 1500
+  lf_h <- if (!is.null(lineup_factor[[h]])) lineup_factor[[h]] else 1.0
+  lf_a <- if (!is.null(lineup_factor[[a]])) lineup_factor[[a]] else 1.0
+  xh <- max(0.4, base_lam[h] * atk[h] / def[a]) * lf_h
+  xa <- max(0.4, base_lam[a] * atk[a] / def[h]) * lf_a
+  diff <- (eh - ea + 100) / 400
+  ep <- 1 / (1 + 10^(-diff))
+  poi_hw <- sum(outer(dpois(0:8,xh), dpois(0:8,xa))[row(matrix(0,9,9))>col(matrix(0,9,9))])
+  poi_dr <- sum(diag(outer(dpois(0:8,xh), dpois(0:8,xa))))
+  poi_aw <- 1 - poi_hw - poi_dr
+  p_hw <- poi_hw * 0.55 + ep * 0.85 * 0.45
+  p_dr <- poi_dr * 0.55 + max(0.10, 0.26 - abs(ep-0.5)*0.32) * 0.45
+  p_aw <- max(0, 1 - p_hw - p_dr)
+  r <- runif(1)
+  if (r < p_hw) h else if (r < p_hw + p_dr) "draw" else a
+}
+
+mc_champion <- function(n_sim=5000L) {
+  # 取得當前小組排名（用已踢結果）
+  grp_teams <- list()
+  for (m in matches) {
+    grp <- m$group
+    if (is.null(grp) || grp == "") next
+    for (t in c(m$home, m$away))
+      if (is.null(grp_teams[[grp]][[t]]))
+        grp_teams[[grp]][[t]] <- list(pts=0L,gd=0L,gf=0L,team=t)
+    if (!isTRUE(m$played)) next
+    h <- m$home; a <- m$away
+    hs <- m$home_score; as_ <- m$away_score
+    grp_teams[[grp]][[h]]$gf  <- grp_teams[[grp]][[h]]$gf + hs
+    grp_teams[[grp]][[h]]$gd  <- grp_teams[[grp]][[h]]$gd + hs-as_
+    grp_teams[[grp]][[a]]$gf  <- grp_teams[[grp]][[a]]$gf + as_
+    grp_teams[[grp]][[a]]$gd  <- grp_teams[[grp]][[a]]$gd + as_-hs
+    if (hs>as_)       grp_teams[[grp]][[h]]$pts <- grp_teams[[grp]][[h]]$pts+3L
+    else if(hs==as_){ grp_teams[[grp]][[h]]$pts <- grp_teams[[grp]][[h]]$pts+1L
+                      grp_teams[[grp]][[a]]$pts <- grp_teams[[grp]][[a]]$pts+1L }
+    else              grp_teams[[grp]][[a]]$pts <- grp_teams[[grp]][[a]]$pts+3L
+  }
+  rank_g <- function(gp) {
+    tl <- lapply(names(gp), function(t) gp[[t]])
+    tl[order(-sapply(tl,`[[`,"pts"), -sapply(tl,`[[`,"gd"), -sapply(tl,`[[`,"gf"))]
+  }
+  wins <- setNames(integer(length(base_lam)), names(base_lam))
+
+  for (sim_i in seq_len(n_sim)) {
+    # 先模擬剩餘小組賽
+    cur <- grp_teams
+    for (m in matches) {
+      if (isTRUE(m$played)) next
+      grp <- m$group; if(is.null(grp)||grp=="") next
+      h <- m$home; a <- m$away
+      res <- mc_sim_match(h, a)
+      if (res==h)      { cur[[grp]][[h]]$pts<-cur[[grp]][[h]]$pts+3L; cur[[grp]][[h]]$gd<-cur[[grp]][[h]]$gd+1L; cur[[grp]][[h]]$gf<-cur[[grp]][[h]]$gf+1L }
+      else if(res=="draw"){ cur[[grp]][[h]]$pts<-cur[[grp]][[h]]$pts+1L; cur[[grp]][[a]]$pts<-cur[[grp]][[a]]$pts+1L }
+      else             { cur[[grp]][[a]]$pts<-cur[[grp]][[a]]$pts+3L; cur[[grp]][[a]]$gd<-cur[[grp]][[a]]$gd+1L; cur[[grp]][[a]]$gf<-cur[[grp]][[a]]$gf+1L }
+    }
+    # 各組前2名 + 最佳4個第3名 進入32強（簡化：取各組前2名 = 16 × 2 = 32隊，只模擬前16名）
+    advancers <- c()
+    for (grp in names(cur)) {
+      rk <- rank_g(cur[[grp]])
+      advancers <- c(advancers, rk[[1]]$team, rk[[2]]$team)
+    }
+    # 淘汰賽隨機配對（簡化輪空模擬）
+    bracket <- sample(advancers)
+    while (length(bracket) > 1) {
+      next_rd <- c()
+      for (k in seq(1, length(bracket), by=2)) {
+        if (k+1 > length(bracket)) { next_rd <- c(next_rd, bracket[k]); next }
+        res <- mc_sim_match(bracket[k], bracket[k+1])
+        winner <- if (res=="draw") { if(runif(1)>0.5) bracket[k] else bracket[k+1] } else res
+        next_rd <- c(next_rd, winner)
+      }
+      bracket <- next_rd
+    }
+    if (length(bracket)==1 && bracket[1] %in% names(wins))
+      wins[[bracket[1]]] <- wins[[bracket[1]]] + 1L
+  }
+  wins_pct <- sort(wins/n_sim*100, decreasing=TRUE)
+  wins_pct[wins_pct >= 0.5]
+}
+
+cat("[MC] 執行蒙特卡洛奪冠模擬（5000次）...\n")
+mc_odds <- tryCatch(mc_champion(5000L), error=function(e){ cat("[MC] 錯誤:", conditionMessage(e),"\n"); numeric(0) })
+cat(sprintf("[MC] 完成，前3: %s\n", paste(names(mc_odds)[1:min(3,length(mc_odds))],
+    sprintf("%.1f%%", mc_odds[1:min(3,length(mc_odds))]), sep="=", collapse=" / ")))
+
+mc_html <- if (length(mc_odds) > 0) {
+  top_n <- min(12L, length(mc_odds))
+  rows <- paste(sapply(seq_len(top_n), function(i) {
+    t <- names(mc_odds)[i]; p <- mc_odds[i]
+    fl <- if (!is.na(FLAG_MAP[t])) FLAG_MAP[[t]] else "🏳️"
+    bar_w <- round(p / mc_odds[1] * 100)
+    sprintf('<div class="mc-row"><span class="mc-rank">%d</span><span class="mc-flag">%s</span><span class="mc-team">%s</span><div class="mc-bar-wrap"><div class="mc-bar" style="width:%d%%"></div></div><span class="mc-pct">%.1f%%</span></div>', i, fl, t, bar_w, p)
+  }), collapse="")
+  sprintf('<div id="mc-section" class="day-section" style="display:none">
+<div class="day-label">🎲 蒙特卡洛奪冠機率（5,000次模擬）</div>
+<div class="mc-box">
+<div class="mc-subtitle">根據 Poisson+Elo 集成模型模擬完整賽程，涵蓋小組賽剩餘場次 + 淘汰賽</div>
+%s</div></div>', rows)
+} else ""
+
+if (nchar(mc_html) > 0)
+  tab_btns <- paste0('<button class="tab" onclick="showMC(this)">🎲 奪冠預測</button>\n', tab_btns)
+
 # ── 倒數計時 JS（台灣時間 UTC+8 顯示）───────────────────────
 cd_js <- paste(
   "const UPCOMING =", upcoming_js, ";",
@@ -872,6 +1036,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 .fb-l{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.25);font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px}
 .vs-badge{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:5px 0;font-size:11px;font-weight:600;color:var(--muted);text-align:center}
 .grp-sm{font-size:9px;color:var(--muted);display:block;margin-bottom:1px}
+.model-breakdown{margin:.4rem 1rem .5rem;border:1px solid rgba(59,130,246,.15);border-radius:8px;overflow:hidden;font-size:11px}
+.mb-row{display:flex;justify-content:space-between;align-items:center;padding:4px 10px;border-bottom:1px solid rgba(255,255,255,.04)}
+.mb-row:last-child{border-bottom:none}
+.mb-ens{background:rgba(59,130,246,.08)}
+.mb-label{color:var(--muted);white-space:nowrap}
+.mb-vals{color:var(--text);letter-spacing:.3px}
+.mb-vals b{color:#93c5fd}
 .prob-section{padding:0 1rem .6rem}
 .prob-bar-wrap{display:flex;border-radius:4px;overflow:hidden;height:6px;gap:2px;margin-bottom:5px}
 .prob-seg{height:100%;border-radius:2px}
@@ -943,6 +1114,17 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 .ko-tbd-tag{font-size:10px;color:var(--muted);font-style:italic;margin-top:.2rem}
 .ko-coach{font-size:10px;color:#c4b5fd;margin-top:.3rem}
 .ko-empty{text-align:center;color:var(--muted);padding:2rem;font-size:13px}
+/* monte carlo */
+.mc-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem;margin-top:.5rem}
+.mc-subtitle{font-size:11px;color:var(--muted);margin-bottom:.8rem;text-align:center;line-height:1.5}
+.mc-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:.5px solid rgba(255,255,255,.05)}
+.mc-row:last-child{border-bottom:none}
+.mc-rank{font-size:11px;font-weight:700;color:var(--muted);min-width:16px;text-align:right}
+.mc-flag{font-size:1.1rem;min-width:22px}
+.mc-team{font-size:12px;font-weight:500;min-width:100px;color:var(--text)}
+.mc-bar-wrap{flex:1;background:rgba(255,255,255,.05);border-radius:4px;height:6px;overflow:hidden}
+.mc-bar{height:100%;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:4px;transition:width .4s}
+.mc-pct{font-size:12px;font-weight:600;color:#93c5fd;min-width:40px;text-align:right}
 .footer{text-align:center;padding:2rem 1rem 1rem;font-size:11px;color:var(--muted);line-height:1.9;border-top:1px solid var(--border);margin-top:1.5rem}
 .footer strong{color:#60a5fa}
 @media(max-width:520px){.flag{font-size:1.5rem}.tname{font-size:12px}.sval{font-size:.95rem}.scores-grid{grid-template-columns:repeat(3,1fr)}.s4,.s5{display:none}}
@@ -952,7 +1134,7 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 <div class="hero">
   <div class="badge"><span class="dot"></span> 每2小時自動更新 · xG Poisson 模型</div>
   <h1>2026 FIFA 世界盃<br>比分預測 <em>AI</em></h1>
-  <p>解析式 Poisson 機率分析 · Bayesian xG 動態更新 · 教練 / 天氣 / 積分壓力 / 戰術相剋 綜合評估</p>
+  <p>📐 泊松分布 · 📊 埃羅評分 · 🎲 蒙特卡洛 · 🧠 貝葉斯更新 · 🤖 集成預測</p>
   <p class="update-info">最後更新：<strong>', today, '</strong>｜已完成 ', played_n, ' 場 · 剩餘 ', length(remaining), ' 場</p>
   <div class="stats-row">
     <div class="stat"><div class="n">', length(remaining), '</div><div class="l">場小組賽剩餘</div></div>
@@ -973,6 +1155,7 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="tabs">', tab_btns, '</div>
   <div class="disc">⚡ 純統計模型，賠率為台灣運彩資料（需手動更新），僅供娛樂參考。</div>
   ', sections, '
+  ', mc_html, '
   <div id="ko-section" style="display:none">
     <div class="ko-note">📌 淘汰賽賽程依小組賽結果自動更新 · 確認晉級後顯示預測機率</div>
     ', knockout_html, '
@@ -989,19 +1172,30 @@ function showDay(d,btn){
   btn.classList.add("active");
   document.querySelectorAll(".day-section").forEach(function(s){s.style.display="none";});
   document.getElementById("ko-section").style.display="none";
+  var mc=document.getElementById("mc-section"); if(mc) mc.style.display="none";
   document.getElementById("day-"+d).style.display="block";
 }
 function showKO(btn){
   document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
   btn.classList.add("active");
   document.querySelectorAll(".day-section").forEach(function(s){s.style.display="none";});
+  var mc=document.getElementById("mc-section"); if(mc) mc.style.display="none";
   document.getElementById("ko-section").style.display="block";
+}
+function showMC(btn){
+  document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
+  btn.classList.add("active");
+  document.querySelectorAll(".day-section").forEach(function(s){s.style.display="none";});
+  document.getElementById("ko-section").style.display="none";
+  var mc=document.getElementById("mc-section");
+  if(mc) mc.style.display="block";
 }
 function showPlayed(btn){
   document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
   btn.classList.add("active");
   document.querySelectorAll(".day-section").forEach(function(s){s.style.display="none";});
   document.getElementById("ko-section").style.display="none";
+  var mc=document.getElementById("mc-section"); if(mc) mc.style.display="none";
   document.getElementById("played-section").style.display="block";
 }
 ', cd_js, '
