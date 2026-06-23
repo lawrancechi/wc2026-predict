@@ -382,14 +382,61 @@ upset_tag <- function(sim, home, away) {
 }
 
 value_tip <- function(sim, m) {
-  if (is.null(m$odds_h) || is.null(m$odds_a)) return("")
-  implied_h <- 1 / m$odds_h; implied_a <- 1 / m$odds_a
-  model_h   <- sim$hw / 100; model_a <- sim$aw / 100
-  tips <- c()
-  if (model_h - implied_h >  0.08) tips <- c(tips, sprintf('主勝有價值（模型%.0f%% vs 賠率隱含%.0f%%）', model_h*100, implied_h*100))
-  if (model_a - implied_a >  0.08) tips <- c(tips, sprintf('客勝有價值（模型%.0f%% vs 賠率隱含%.0f%%）', model_a*100, implied_a*100))
-  if (length(tips) == 0) return("")
-  sprintf('<div class="value-tip">💡 %s</div>', paste(tips, collapse="｜"))
+  if (is.null(m$odds_h) || is.null(m$odds_d) || is.null(m$odds_a)) return("")
+
+  # 莊家隱含機率（含抽水）
+  raw_h <- 1/m$odds_h; raw_d <- 1/m$odds_d; raw_a <- 1/m$odds_a
+  overround <- raw_h + raw_d + raw_a          # 抽水率（>1 = 莊家優勢）
+  vig_pct <- round((overround - 1) * 100, 1)  # 抽水 %
+
+  # 去除抽水後的公允隱含機率
+  fair_h <- raw_h / overround
+  fair_d <- raw_d / overround
+  fair_a <- raw_a / overround
+
+  # 模型機率
+  mod_h <- sim$hw / 100; mod_d <- sim$dr / 100; mod_a <- sim$aw / 100
+
+  # 期望值 EV = model_p * odds - 1（正 = 正期望值）
+  ev_h <- round((mod_h * m$odds_h - 1) * 100, 1)
+  ev_d <- round((mod_d * m$odds_d - 1) * 100, 1)
+  ev_a <- round((mod_a * m$odds_a - 1) * 100, 1)
+
+  # 優勢差（模型 - 公允隱含）
+  edge_h <- round((mod_h - fair_h) * 100, 1)
+  edge_d <- round((mod_d - fair_d) * 100, 1)
+  edge_a <- round((mod_a - fair_a) * 100, 1)
+
+  ev_row <- function(label, odds, model_p, fair_p, ev, edge) {
+    ev_cls  <- if (ev > 5) "ev-pos" else if (ev > 0) "ev-slight" else "ev-neg"
+    ev_sign <- if (ev > 0) "+" else ""
+    edge_cls <- if (edge > 5) "edge-pos" else if (edge > 0) "edge-slight" else "edge-neg"
+    sprintf('<tr><td class="ev-label">%s</td><td>%.2f</td><td>%.0f%%</td><td class="%s">%.0f%%</td><td class="%s">%s%.1f%%</td><td class="%s">%s%.1f%%</td></tr>',
+            label, odds, model_p*100, edge_cls, fair_p*100, ev_cls, ev_sign, ev, ev_cls, ev_sign, edge)
+  }
+
+  best_ev <- max(ev_h, ev_d, ev_a)
+  verdict <- if (best_ev > 8) {
+    best_label <- c("主勝","平局","客勝")[which.max(c(ev_h,ev_d,ev_a))]
+    sprintf('<div class="ev-verdict ev-good">✅ <b>%s</b> 有正期望值（EV %+.1f%%），模型認為賠率低估此結果</div>', best_label, best_ev)
+  } else if (best_ev > 0) {
+    sprintf('<div class="ev-verdict ev-neutral">⚠️ 正期望值偏低（最高 EV %+.1f%%），台彩抽水 %.1f%% 侵蝕獲利空間</div>', best_ev, vig_pct)
+  } else {
+    sprintf('<div class="ev-verdict ev-bad">❌ 三種結果均為負期望值，台彩抽水 %.1f%% 過高，不建議下注</div>', vig_pct)
+  }
+
+  sprintf('<div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>%.1f%%</b>（下注 100 元平均損失 %.1f 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody>%s%s%s</tbody>
+</table>%s</div>',
+    vig_pct, vig_pct,
+    ev_row("主勝", m$odds_h, mod_h, fair_h, ev_h, edge_h),
+    ev_row("平局", m$odds_d, mod_d, fair_d, ev_d, edge_d),
+    ev_row("客勝", m$odds_a, mod_a, fair_a, ev_a, edge_a),
+    verdict)
 }
 
 expert_analysis <- function(m, sim) {
@@ -1079,6 +1126,27 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 .upset-high{display:block;margin:.1rem 1rem .3rem;padding:4px 10px;border-radius:6px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);font-size:11px;color:#f87171;font-weight:600}
 .upset-med{display:block;margin:.1rem 1rem .3rem;padding:4px 10px;border-radius:6px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);font-size:11px;color:#fcd34d;font-weight:600}
 .value-tip{margin:.1rem 1rem .3rem;padding:5px 10px;border-radius:6px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);font-size:11px;color:#34d399}
+/* EV Analysis */
+.ev-box{margin:.4rem 1rem .6rem;border:1px solid rgba(139,92,246,.2);border-radius:10px;overflow:hidden;font-size:11px}
+.ev-title{background:rgba(139,92,246,.1);padding:5px 10px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c4b5fd}
+.ev-vig{padding:4px 10px;font-size:11px;color:var(--muted);border-bottom:1px solid rgba(255,255,255,.05)}
+.ev-vig b{color:#f87171}
+.ev-table{width:100%;border-collapse:collapse;font-size:11px}
+.ev-table thead tr{background:rgba(0,0,0,.2)}
+.ev-table th{padding:4px 6px;color:var(--muted);font-weight:500;text-align:right;font-size:10px}
+.ev-table th:first-child{text-align:left}
+.ev-table td{padding:4px 6px;text-align:right;border-top:.5px solid rgba(255,255,255,.04);color:var(--text)}
+.ev-table td.ev-label{text-align:left;color:var(--muted);font-weight:500}
+.ev-pos{color:#34d399;font-weight:700}
+.ev-slight{color:#fcd34d;font-weight:600}
+.ev-neg{color:#f87171}
+.edge-pos{color:#34d399;font-weight:600}
+.edge-slight{color:#fcd34d}
+.edge-neg{color:#6b7280}
+.ev-verdict{padding:6px 10px;font-size:11px;line-height:1.5}
+.ev-good{background:rgba(16,185,129,.08);color:#34d399}
+.ev-neutral{background:rgba(251,191,36,.07);color:#fcd34d}
+.ev-bad{background:rgba(239,68,68,.07);color:#f87171}
 .coach-row{display:flex;justify-content:space-between;align-items:center;margin:.2rem 1rem .1rem;padding:5px 10px;border-radius:6px;background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.2);font-size:11px;color:#c4b5fd}
 .weather-row{margin:.1rem 1rem .3rem;padding:5px 10px;border-radius:6px;background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.18);font-size:11px;color:#7dd3fc;text-align:center}
 .sporttery-bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:1rem}

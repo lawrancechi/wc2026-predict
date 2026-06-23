@@ -119,6 +119,27 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
 .upset-high{display:block;margin:.1rem 1rem .3rem;padding:4px 10px;border-radius:6px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);font-size:11px;color:#f87171;font-weight:600}
 .upset-med{display:block;margin:.1rem 1rem .3rem;padding:4px 10px;border-radius:6px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);font-size:11px;color:#fcd34d;font-weight:600}
 .value-tip{margin:.1rem 1rem .3rem;padding:5px 10px;border-radius:6px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);font-size:11px;color:#34d399}
+/* EV Analysis */
+.ev-box{margin:.4rem 1rem .6rem;border:1px solid rgba(139,92,246,.2);border-radius:10px;overflow:hidden;font-size:11px}
+.ev-title{background:rgba(139,92,246,.1);padding:5px 10px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c4b5fd}
+.ev-vig{padding:4px 10px;font-size:11px;color:var(--muted);border-bottom:1px solid rgba(255,255,255,.05)}
+.ev-vig b{color:#f87171}
+.ev-table{width:100%;border-collapse:collapse;font-size:11px}
+.ev-table thead tr{background:rgba(0,0,0,.2)}
+.ev-table th{padding:4px 6px;color:var(--muted);font-weight:500;text-align:right;font-size:10px}
+.ev-table th:first-child{text-align:left}
+.ev-table td{padding:4px 6px;text-align:right;border-top:.5px solid rgba(255,255,255,.04);color:var(--text)}
+.ev-table td.ev-label{text-align:left;color:var(--muted);font-weight:500}
+.ev-pos{color:#34d399;font-weight:700}
+.ev-slight{color:#fcd34d;font-weight:600}
+.ev-neg{color:#f87171}
+.edge-pos{color:#34d399;font-weight:600}
+.edge-slight{color:#fcd34d}
+.edge-neg{color:#6b7280}
+.ev-verdict{padding:6px 10px;font-size:11px;line-height:1.5}
+.ev-good{background:rgba(16,185,129,.08);color:#34d399}
+.ev-neutral{background:rgba(251,191,36,.07);color:#fcd34d}
+.ev-bad{background:rgba(239,68,68,.07);color:#f87171}
 .coach-row{display:flex;justify-content:space-between;align-items:center;margin:.2rem 1rem .1rem;padding:5px 10px;border-radius:6px;background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.2);font-size:11px;color:#c4b5fd}
 .weather-row{margin:.1rem 1rem .3rem;padding:5px 10px;border-radius:6px;background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.18);font-size:11px;color:#7dd3fc;text-align:center}
 .sporttery-bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:1rem}
@@ -175,7 +196,7 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
   <div class="badge"><span class="dot"></span> 每2小時自動更新 · xG Poisson 模型</div>
   <h1>2026 FIFA 世界盃<br>比分預測 <em>AI</em></h1>
   <p>📐 泊松分布 · 📊 埃羅評分 · 🎲 蒙特卡洛 · 🧠 貝葉斯更新 · 🤖 集成預測</p>
-  <p class="update-info">最後更新：<strong>2026-06-22</strong>｜已完成 35 場 · 剩餘 32 場</p>
+  <p class="update-info">最後更新：<strong>2026-06-23</strong>｜已完成 35 場 · 剩餘 32 場</p>
   <div class="stats-row">
     <div class="stat"><div class="n">32</div><div class="l">場小組賽剩餘</div></div>
     <div class="stat"><div class="n">32強</div><div class="l">淘汰賽賽程</div></div>
@@ -1059,7 +1080,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-1</div><div class="spct">9.8%</div><span class="sres rh">Argentina</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">9.59%</div><span class="sres rh">Argentina</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">8.65%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-0</div><div class="spct">8.47%</div><span class="sres rh">Argentina</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">3-1</div><div class="spct">7.4%</div><span class="sres rh">Argentina</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Argentina xG 是對手 2.2 倍，模擬主勝率 69%，強弱差距明顯。</div><div class="ai-item">📋 <b>積分態勢</b>：Argentina 現有 3 分（積分尚可），Austria 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.58 / 客 6.19）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Lionel Scaloni（Argentina，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">☀️ <b>天氣影響</b>：Arlington（高溫 35°C 部分多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>4.6%</b>（下注 100 元平均損失 4.6 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>1.58</td><td>69%</td><td class="edge-pos">61%</td><td class="ev-pos">+9.3%</td><td class="ev-pos">+8.7%</td></tr><tr><td class="ev-label">平局</td><td>3.98</td><td>17%</td><td class="edge-neg">24%</td><td class="ev-neg">-33.5%</td><td class="ev-neg">-7.3%</td></tr><tr><td class="ev-label">客勝</td><td>6.19</td><td>14%</td><td class="edge-neg">15%</td><td class="ev-neg">-12.7%</td><td class="ev-neg">-1.3%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +9.3%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Argentina xG 是對手 2.2 倍，模擬主勝率 69%，強弱差距明顯。</div><div class="ai-item">📋 <b>積分態勢</b>：Argentina 現有 3 分（積分尚可），Austria 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.58 / 客 6.19）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Lionel Scaloni（Argentina，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">☀️ <b>天氣影響</b>：Arlington（高溫 35°C 部分多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
 </div>
 
 <div class="card">
@@ -1113,7 +1140,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">14.95%</div><span class="sres rh">France</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">12.95%</div><span class="sres rh">France</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">3-0</div><div class="spct">11.5%</div><span class="sres rh">France</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">8.55%</div><span class="sres rh">France</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.41%</div><span class="sres rd">平局</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：France xG 是對手 4.1 倍，模擬主勝率 79%，強弱差距明顯。</div><div class="ai-item">🚑 <b>France 主力傷缺</b>：<b>Hugo Ekitike</b>（FW，備役前鋒未入選）。攻擊力預估下降 3%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：France 現有 3 分（積分尚可），Iraq 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.08 / 客 30.61）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Didier Deschamps（France，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>4.5%</b>（下注 100 元平均損失 4.5 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>1.08</td><td>79%</td><td class="edge-neg">89%</td><td class="ev-neg">-14.2%</td><td class="ev-neg">-9.2%</td></tr><tr><td class="ev-label">平局</td><td>11.57</td><td>14%</td><td class="edge-pos">8%</td><td class="ev-pos">+57.4%</td><td class="ev-pos">+5.3%</td></tr><tr><td class="ev-label">客勝</td><td>30.61</td><td>7%</td><td class="edge-slight">3%</td><td class="ev-pos">+114.3%</td><td class="ev-pos">+3.9%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>客勝</b> 有正期望值（EV +114.3%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：France xG 是對手 4.1 倍，模擬主勝率 79%，強弱差距明顯。</div><div class="ai-item">🚑 <b>France 主力傷缺</b>：<b>Hugo Ekitike</b>（FW，備役前鋒未入選）。攻擊力預估下降 3%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：France 現有 3 分（積分尚可），Iraq 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.08 / 客 30.61）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Didier Deschamps（France，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
 </div>
 
 <div class="card">
@@ -1167,7 +1200,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">7.9%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-2</div><div class="spct">7.63%</div><span class="sres ra">Senegal</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-1</div><div class="spct">7.56%</div><span class="sres rh">Norway</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-2</div><div class="spct">7.3%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-3</div><div class="spct">4.91%</div><span class="sres ra">Senegal</span></div></div>
   </div>
-  <span class="upset-high">🔥 高爆冷風險 Norway</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.02，平局率高達 22%，比賽走向難測。</div><div class="ai-item">📋 <b>積分態勢</b>：Norway 現有 3 分（積分尚可），Senegal 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 2.26 / 客 3.17）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Ståle Solbakken（Norway）vs Aliou Cissé（Senegal），執教能力相當，戰術佈局成勝負關鍵。</div></div>
+  <span class="upset-high">🔥 高爆冷風險 Norway</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>4.5%</b>（下注 100 元平均損失 4.5 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>2.26</td><td>44%</td><td class="edge-slight">42%</td><td class="ev-neg">-1.5%</td><td class="ev-neg">1.3%</td></tr><tr><td class="ev-label">平局</td><td>3.48</td><td>22%</td><td class="edge-neg">27%</td><td class="ev-neg">-22.7%</td><td class="ev-neg">-5.3%</td></tr><tr><td class="ev-label">客勝</td><td>3.17</td><td>34%</td><td class="edge-slight">30%</td><td class="ev-pos">+8.4%</td><td class="ev-pos">+4.0%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>客勝</b> 有正期望值（EV +8.4%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.02，平局率高達 22%，比賽走向難測。</div><div class="ai-item">📋 <b>積分態勢</b>：Norway 現有 3 分（積分尚可），Senegal 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 2.26 / 客 3.17）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Ståle Solbakken（Norway）vs Aliou Cissé（Senegal），執教能力相當，戰術佈局成勝負關鍵。</div></div>
 </div>
 
 <div class="card">
@@ -1221,7 +1260,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">17.38%</div><span class="sres ra">Algeria</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">14.7%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">12.78%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-0</div><div class="spct">10.81%</div><span class="sres rh">Jordan</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-2</div><div class="spct">10.27%</div><span class="sres ra">Algeria</span></div></div>
   </div>
-  <span class="upset-med">⚡ 爆冷可能 Jordan</span><div class="value-tip">💡 主勝有價值（模型25% vs 賠率隱含17%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客場佔優</b>：Algeria xG 優勢 59%，客勝率 48%。</div><div class="ai-item">📋 <b>積分態勢</b>：Jordan 現有 0 分（背水一戰 🔴），Algeria 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 25% > 莊家隱含 17%，超額 9%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練</b>：Hussein Ammouta（Jordan）vs Vladimir Petković（Algeria），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌤️ <b>天氣有利</b>：San Francisco（涼爽 19°C 霧），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
+  <span class="upset-med">⚡ 爆冷可能 Jordan</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>4.7%</b>（下注 100 元平均損失 4.7 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>6.04</td><td>25%</td><td class="edge-pos">16%</td><td class="ev-pos">+53.4%</td><td class="ev-pos">+9.6%</td></tr><tr><td class="ev-label">平局</td><td>4.16</td><td>26%</td><td class="edge-slight">23%</td><td class="ev-pos">+8.6%</td><td class="ev-pos">+3.1%</td></tr><tr><td class="ev-label">客勝</td><td>1.56</td><td>48%</td><td class="edge-neg">61%</td><td class="ev-neg">-24.3%</td><td class="ev-neg">-12.7%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +53.4%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客場佔優</b>：Algeria xG 優勢 59%，客勝率 48%。</div><div class="ai-item">📋 <b>積分態勢</b>：Jordan 現有 0 分（背水一戰 🔴），Algeria 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 25% > 莊家隱含 17%，超額 9%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練</b>：Hussein Ammouta（Jordan）vs Vladimir Petković（Algeria），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌤️ <b>天氣有利</b>：San Francisco（涼爽 19°C 霧），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
 </div></div>
 <div id="day-2026-06-23" class="day-section" style="display:none"><div class="day-label">6月23日 — Group K,L 第二輪</div>
 <div class="card">
@@ -1275,7 +1320,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">16.29%</div><span class="sres rh">Portugal</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">13.95%</div><span class="sres rh">Portugal</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">10.43%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">9.51%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-1</div><div class="spct">8.93%</div><span class="sres rh">Portugal</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Portugal xG 是對手 2.7 倍，模擬主勝率 71%，強弱差距明顯。</div><div class="ai-item">📋 <b>積分態勢</b>：Portugal 現有 1 分（急需積分 ⚠️），Uzbekistan 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.20 / 客 15.36）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Roberto Martínez（Portugal） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Houston 場地 高溫潮濕 35°C，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>4.3%</b>（下注 100 元平均損失 4.3 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>1.20</td><td>71%</td><td class="edge-neg">80%</td><td class="ev-neg">-14.6%</td><td class="ev-neg">-8.7%</td></tr><tr><td class="ev-label">平局</td><td>6.94</td><td>18%</td><td class="edge-slight">14%</td><td class="ev-pos">+24.9%</td><td class="ev-pos">+4.2%</td></tr><tr><td class="ev-label">客勝</td><td>15.36</td><td>11%</td><td class="edge-slight">6%</td><td class="ev-pos">+65.9%</td><td class="ev-pos">+4.6%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>客勝</b> 有正期望值（EV +65.9%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Portugal xG 是對手 2.7 倍，模擬主勝率 71%，強弱差距明顯。</div><div class="ai-item">📋 <b>積分態勢</b>：Portugal 現有 1 分（急需積分 ⚠️），Uzbekistan 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.20 / 客 15.36）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Roberto Martínez（Portugal） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Houston 場地 高溫潮濕 35°C，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
 </div>
 
 <div class="card">
@@ -1329,7 +1380,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">11.71%</div><span class="sres rh">England</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">9.62%</div><span class="sres rh">England</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">3-0</div><div class="spct">9.49%</div><span class="sres rh">England</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">9.33%</div><span class="sres rh">England</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.67%</div><span class="sres rd">平局</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：England xG 是對手 3.0 倍，模擬主勝率 75%，強弱差距明顯。</div><div class="ai-item">🚑 <b>Ghana 主力傷缺</b>：<b>Mohammed Kudus</b>（FW，大腿/腿筋傷缺全程，最強進攻核心）、<b>Abdul Salisu</b>（CB，傷缺全程）。攻擊力預估下降 16%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：England 現有 3 分（積分尚可），Ghana 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.22 / 客 14.44）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Thomas Tuchel（England，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Boston（涼爽 26°C 適宜），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>4.2%</b>（下注 100 元平均損失 4.2 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>1.22</td><td>75%</td><td class="edge-neg">79%</td><td class="ev-neg">-9.0%</td><td class="ev-neg">-4.1%</td></tr><tr><td class="ev-label">平局</td><td>6.55</td><td>15%</td><td class="edge-slight">15%</td><td class="ev-neg">-1.8%</td><td class="ev-neg">0.3%</td></tr><tr><td class="ev-label">客勝</td><td>14.44</td><td>10%</td><td class="edge-slight">7%</td><td class="ev-pos">+50.2%</td><td class="ev-pos">+3.8%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>客勝</b> 有正期望值（EV +50.2%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：England xG 是對手 3.0 倍，模擬主勝率 75%，強弱差距明顯。</div><div class="ai-item">🚑 <b>Ghana 主力傷缺</b>：<b>Mohammed Kudus</b>（FW，大腿/腿筋傷缺全程，最強進攻核心）、<b>Abdul Salisu</b>（CB，傷缺全程）。攻擊力預估下降 16%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：England 現有 3 分（積分尚可），Ghana 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.22 / 客 14.44）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Thomas Tuchel（England，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Boston（涼爽 26°C 適宜），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
 </div>
 
 <div class="card">
@@ -1383,7 +1440,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">14.59%</div><span class="sres ra">Croatia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">14.22%</div><span class="sres ra">Croatia</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">9.38%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-3</div><div class="spct">9.24%</div><span class="sres ra">Croatia</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-2</div><div class="spct">9.14%</div><span class="sres ra">Croatia</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Croatia xG 是主場 3.0 倍，模擬客勝率 70%。</div><div class="ai-item">📋 <b>積分態勢</b>：Panama 現有 0 分（背水一戰 🔴），Croatia 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 6.76 / 客 1.54）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Zlatko Dalić（Croatia） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Toronto（涼爽 24°C 晴），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>4.7%</b>（下注 100 元平均損失 4.7 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>6.76</td><td>12%</td><td class="edge-neg">14%</td><td class="ev-neg">-16.2%</td><td class="ev-neg">-1.7%</td></tr><tr><td class="ev-label">平局</td><td>4.00</td><td>18%</td><td class="edge-neg">24%</td><td class="ev-neg">-28.4%</td><td class="ev-neg">-6.0%</td></tr><tr><td class="ev-label">客勝</td><td>1.54</td><td>70%</td><td class="edge-pos">62%</td><td class="ev-pos">+7.3%</td><td class="ev-pos">+7.7%</td></tr></tbody>
+</table><div class="ev-verdict ev-neutral">⚠️ 正期望值偏低（最高 EV +7.3%），台彩抽水 4.7% 侵蝕獲利空間</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Croatia xG 是主場 3.0 倍，模擬客勝率 70%。</div><div class="ai-item">📋 <b>積分態勢</b>：Panama 現有 0 分（背水一戰 🔴），Croatia 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 6.76 / 客 1.54）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Zlatko Dalić（Croatia） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Toronto（涼爽 24°C 晴），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
 </div>
 
 <div class="card">
@@ -1437,7 +1500,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">14.39%</div><span class="sres rh">Colombia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">12.1%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-0</div><div class="spct">10.86%</div><span class="sres rh">Colombia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">9.53%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-1</div><div class="spct">9.13%</div><span class="sres rh">Colombia</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>主場佔優</b>：Colombia xG 優勢 80%，主勝率 64%，但未到壓倒性。</div><div class="ai-item">📋 <b>積分態勢</b>：Colombia 現有 3 分（積分尚可），DR Congo 現有 1 分（急需積分 ⚠️），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.49 / 客 7.14）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Néstor Lorenzo（Colombia）vs Sébastien Desabre（DR Congo），執教能力相當，戰術佈局成勝負關鍵。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>4.9%</b>（下注 100 元平均損失 4.9 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>1.49</td><td>64%</td><td class="edge-slight">64%</td><td class="ev-neg">-4.0%</td><td class="ev-neg">0.4%</td></tr><tr><td class="ev-label">平局</td><td>4.21</td><td>20%</td><td class="edge-neg">23%</td><td class="ev-neg">-15.8%</td><td class="ev-neg">-2.6%</td></tr><tr><td class="ev-label">客勝</td><td>7.14</td><td>16%</td><td class="edge-slight">13%</td><td class="ev-pos">+11.4%</td><td class="ev-pos">+2.2%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>客勝</b> 有正期望值（EV +11.4%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>主場佔優</b>：Colombia xG 優勢 80%，主勝率 64%，但未到壓倒性。</div><div class="ai-item">📋 <b>積分態勢</b>：Colombia 現有 3 分（積分尚可），DR Congo 現有 1 分（急需積分 ⚠️），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.49 / 客 7.14）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Néstor Lorenzo（Colombia）vs Sébastien Desabre（DR Congo），執教能力相當，戰術佈局成勝負關鍵。</div></div>
 </div></div>
 <div id="day-2026-06-24" class="day-section" style="display:none"><div class="day-label">6月24日 — Group A,B,C 末輪</div>
 <div class="card">
@@ -1491,7 +1560,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">11.1%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-2</div><div class="spct">9.17%</div><span class="sres ra">Mexico</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">8.28%</div><span class="sres ra">Mexico</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">7.45%</div><span class="sres rh">Czechia</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-2</div><div class="spct">6.84%</div><span class="sres ra">Mexico</span></div></div>
   </div>
-  <span class="upset-high">🔥 高爆冷風險 Czechia</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.31，平局率高達 23%，比賽走向難測。</div><div class="ai-item">🔥 <b>爆冷警示</b>：Czechia 是世界盃傳統黑馬，歷史上多次爆冷擊敗強隊，本場勝率 32%，不可輕視。</div><div class="ai-item">📋 <b>積分態勢</b>：Czechia 現有 0 分（背水一戰 🔴），Mexico 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 3.51 / 客 2.01）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Ivan Hašek（Czechia）vs Javier Aguirre（Mexico），執教能力相當，戰術佈局成勝負關鍵。</div></div>
+  <span class="upset-high">🔥 高爆冷風險 Czechia</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>4.8%</b>（下注 100 元平均損失 4.8 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>3.51</td><td>32%</td><td class="edge-slight">27%</td><td class="ev-pos">+12.3%</td><td class="ev-pos">+4.8%</td></tr><tr><td class="ev-label">平局</td><td>3.76</td><td>23%</td><td class="edge-neg">25%</td><td class="ev-neg">-12.4%</td><td class="ev-neg">-2.1%</td></tr><tr><td class="ev-label">客勝</td><td>2.01</td><td>45%</td><td class="edge-neg">47%</td><td class="ev-neg">-10.2%</td><td class="ev-neg">-2.8%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +12.3%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.31，平局率高達 23%，比賽走向難測。</div><div class="ai-item">🔥 <b>爆冷警示</b>：Czechia 是世界盃傳統黑馬，歷史上多次爆冷擊敗強隊，本場勝率 32%，不可輕視。</div><div class="ai-item">📋 <b>積分態勢</b>：Czechia 現有 0 分（背水一戰 🔴），Mexico 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 3.51 / 客 2.01）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Ivan Hašek（Czechia）vs Javier Aguirre（Mexico），執教能力相當，戰術佈局成勝負關鍵。</div></div>
 </div>
 
 <div class="card">
@@ -1545,7 +1620,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">19.92%</div><span class="sres ra">South Korea</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-0</div><div class="spct">15.51%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-2</div><div class="spct">12.78%</div><span class="sres ra">South Korea</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">11.54%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-0</div><div class="spct">8.99%</div><span class="sres rh">South Africa</span></div></div>
   </div>
-  <span class="upset-med">⚡ 爆冷可能 South Africa</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：South Korea xG 是主場 2.2 倍，模擬客勝率 51%。</div><div class="ai-item">📋 <b>積分態勢</b>：South Africa 現有 0 分（背水一戰 🔴），South Korea 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 5.70 / 客 1.61）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Hugo Broos（South Africa）vs Hong Myung-bo（South Korea），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Guadalupe 場地 極熱 38°C，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
+  <span class="upset-med">⚡ 爆冷可能 South Africa</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>4.8%</b>（下注 100 元平均損失 4.8 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>5.70</td><td>23%</td><td class="edge-pos">17%</td><td class="ev-pos">+32.2%</td><td class="ev-pos">+6.5%</td></tr><tr><td class="ev-label">平局</td><td>3.98</td><td>26%</td><td class="edge-slight">24%</td><td class="ev-slight">+3.1%</td><td class="ev-slight">+1.9%</td></tr><tr><td class="ev-label">客勝</td><td>1.61</td><td>51%</td><td class="edge-neg">59%</td><td class="ev-neg">-18.1%</td><td class="ev-neg">-8.4%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +32.2%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：South Korea xG 是主場 2.2 倍，模擬客勝率 51%。</div><div class="ai-item">📋 <b>積分態勢</b>：South Africa 現有 0 分（背水一戰 🔴），South Korea 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 5.70 / 客 1.61）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Hugo Broos（South Africa）vs Hong Myung-bo（South Korea），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Guadalupe 場地 極熱 38°C，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
 </div>
 
 <div class="card">
@@ -1599,7 +1680,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">8.72%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-1</div><div class="spct">8.1%</div><span class="sres rh">Switzerland</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-2</div><div class="spct">7.74%</div><span class="sres ra">Canada</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-2</div><div class="spct">7.19%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">3-1</div><div class="spct">5.01%</div><span class="sres rh">Switzerland</span></div></div>
   </div>
-  <span class="upset-med">⚡ 爆冷可能 Canada</span><div class="value-tip">💡 主勝有價值（模型50% vs 賠率隱含41%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.08，平局率高達 20%，比賽走向難測。</div><div class="ai-item">🚑 <b>Canada 主力傷缺</b>：<b>Alphonso Davies</b>（LB，傷缺全程，主力左翼衛）。攻擊力預估下降 14%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Switzerland 現有 4 分（積分領先），Canada 現有 4 分（積分領先），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 50% > 莊家隱含 41%，超額 9%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練</b>：Murat Yakin（Switzerland）vs Jesse Marsch（Canada），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Vancouver（涼爽 21°C 小雨），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
+  <span class="upset-med">⚡ 爆冷可能 Canada</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>4.6%</b>（下注 100 元平均損失 4.6 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>2.44</td><td>50%</td><td class="edge-pos">39%</td><td class="ev-pos">+22.7%</td><td class="ev-pos">+11.1%</td></tr><tr><td class="ev-label">平局</td><td>3.08</td><td>20%</td><td class="edge-neg">31%</td><td class="ev-neg">-37.2%</td><td class="ev-neg">-10.6%</td></tr><tr><td class="ev-label">客勝</td><td>3.21</td><td>29%</td><td class="edge-neg">30%</td><td class="ev-neg">-5.9%</td><td class="ev-neg">-0.5%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +22.7%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.08，平局率高達 20%，比賽走向難測。</div><div class="ai-item">🚑 <b>Canada 主力傷缺</b>：<b>Alphonso Davies</b>（LB，傷缺全程，主力左翼衛）。攻擊力預估下降 14%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Switzerland 現有 4 分（積分領先），Canada 現有 4 分（積分領先），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 50% > 莊家隱含 41%，超額 9%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練</b>：Murat Yakin（Switzerland）vs Jesse Marsch（Canada），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Vancouver（涼爽 21°C 小雨），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
 </div>
 
 <div class="card">
@@ -1707,7 +1794,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">15.89%</div><span class="sres ra">Brazil</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-2</div><div class="spct">13.11%</div><span class="sres ra">Brazil</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">10.97%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">9.63%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-2</div><div class="spct">9.05%</div><span class="sres ra">Brazil</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Brazil xG 是主場 2.4 倍，模擬客勝率 62%。</div><div class="ai-item">🚑 <b>Brazil 主力傷缺</b>：<b>Rodrygo</b>（FW，ACL傷缺全程）、<b>Éder Militão</b>（CB，腿筋傷缺全程）。攻擊力預估下降 7%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Scotland 現有 3 分（積分尚可），Brazil 現有 1 分（急需積分 ⚠️），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 7.65 / 客 1.38）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Dorival Júnior（Brazil） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Miami 場地 高溫潮濕 33°C 雷陣雨，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>4.8%</b>（下注 100 元平均損失 4.8 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>7.65</td><td>17%</td><td class="edge-slight">12%</td><td class="ev-pos">+31.6%</td><td class="ev-pos">+4.7%</td></tr><tr><td class="ev-label">平局</td><td>5.19</td><td>21%</td><td class="edge-slight">18%</td><td class="ev-pos">+9.5%</td><td class="ev-pos">+2.7%</td></tr><tr><td class="ev-label">客勝</td><td>1.38</td><td>62%</td><td class="edge-neg">69%</td><td class="ev-neg">-14.9%</td><td class="ev-neg">-7.4%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +31.6%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Brazil xG 是主場 2.4 倍，模擬客勝率 62%。</div><div class="ai-item">🚑 <b>Brazil 主力傷缺</b>：<b>Rodrygo</b>（FW，ACL傷缺全程）、<b>Éder Militão</b>（CB，腿筋傷缺全程）。攻擊力預估下降 7%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Scotland 現有 3 分（積分尚可），Brazil 現有 1 分（急需積分 ⚠️），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 7.65 / 客 1.38）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Dorival Júnior（Brazil） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Miami 場地 高溫潮濕 33°C 雷陣雨，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
 </div>
 
 <div class="card">
@@ -1761,7 +1854,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">19.51%</div><span class="sres rh">Morocco</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">18.04%</div><span class="sres rh">Morocco</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">3-0</div><div class="spct">11.12%</div><span class="sres rh">Morocco</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">10.55%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">7.8%</div><span class="sres rd">平局</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Morocco xG 是對手 4.6 倍，模擬主勝率 76%，強弱差距明顯。</div><div class="ai-item">📋 <b>積分態勢</b>：Morocco 現有 1 分（急需積分 ⚠️），Haiti 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.20 / 客 15.84）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Walid Regragui（Morocco） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">☀️ <b>天氣影響</b>：Atlanta（炎熱 32°C 多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>4.3%</b>（下注 100 元平均損失 4.3 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>1.20</td><td>76%</td><td class="edge-neg">80%</td><td class="ev-neg">-8.6%</td><td class="ev-neg">-3.7%</td></tr><tr><td class="ev-label">平局</td><td>6.84</td><td>16%</td><td class="edge-slight">14%</td><td class="ev-pos">+11.5%</td><td class="ev-pos">+2.3%</td></tr><tr><td class="ev-label">客勝</td><td>15.84</td><td>8%</td><td class="edge-slight">6%</td><td class="ev-pos">+18.8%</td><td class="ev-pos">+1.4%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>客勝</b> 有正期望值（EV +18.8%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Morocco xG 是對手 4.6 倍，模擬主勝率 76%，強弱差距明顯。</div><div class="ai-item">📋 <b>積分態勢</b>：Morocco 現有 1 分（急需積分 ⚠️），Haiti 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.20 / 客 15.84）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Walid Regragui（Morocco） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">☀️ <b>天氣影響</b>：Atlanta（炎熱 32°C 多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
 </div></div>
 <div id="day-2026-06-25" class="day-section" style="display:none"><div class="day-label">6月25日 — Group D,E,F 末輪</div>
 <div class="card">
@@ -1815,7 +1914,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">10.38%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-2</div><div class="spct">9.55%</div><span class="sres ra">USA</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">8.05%</div><span class="sres ra">USA</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-2</div><div class="spct">7.4%</div><span class="sres ra">USA</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-1</div><div class="spct">6.69%</div><span class="sres rh">Turkey</span></div></div>
   </div>
-  <span class="upset-high">🔥 高爆冷風險 Turkey</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客場佔優</b>：USA xG 優勢 43%，客勝率 39%。</div><div class="ai-item">📋 <b>積分態勢</b>：Turkey 現有 0 分（背水一戰 🔴），USA 現有 6 分（幾乎晉級 ✅），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 3.05 / 客 2.12）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">🔵 <b>客隊狀態亮眼</b>：USA 本屆戰績 WW 表現突出，莊家可能尚未完全反映在盤口，留意客勝賠率。</div><div class="ai-item">👔 <b>教練</b>：Vincenzo Montella（Turkey）vs Mauricio Pochettino（USA），執教能力相當，戰術佈局成勝負關鍵。</div></div>
+  <span class="upset-high">🔥 高爆冷風險 Turkey</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>5.2%</b>（下注 100 元平均損失 5.2 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>3.05</td><td>38%</td><td class="edge-pos">31%</td><td class="ev-pos">+16.5%</td><td class="ev-pos">+7.0%</td></tr><tr><td class="ev-label">平局</td><td>3.96</td><td>23%</td><td class="edge-neg">24%</td><td class="ev-neg">-10.5%</td><td class="ev-neg">-1.4%</td></tr><tr><td class="ev-label">客勝</td><td>2.12</td><td>39%</td><td class="edge-neg">45%</td><td class="ev-neg">-16.9%</td><td class="ev-neg">-5.6%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +16.5%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客場佔優</b>：USA xG 優勢 43%，客勝率 39%。</div><div class="ai-item">📋 <b>積分態勢</b>：Turkey 現有 0 分（背水一戰 🔴），USA 現有 6 分（幾乎晉級 ✅），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 3.05 / 客 2.12）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">🔵 <b>客隊狀態亮眼</b>：USA 本屆戰績 WW 表現突出，莊家可能尚未完全反映在盤口，留意客勝賠率。</div><div class="ai-item">👔 <b>教練</b>：Vincenzo Montella（Turkey）vs Mauricio Pochettino（USA），執教能力相當，戰術佈局成勝負關鍵。</div></div>
 </div>
 
 <div class="card">
@@ -1869,7 +1974,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-1</div><div class="spct">15.15%</div><span class="sres ra">Australia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">13.22%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-0</div><div class="spct">12.84%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-0</div><div class="spct">11.2%</div><span class="sres rh">Paraguay</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-2</div><div class="spct">8.94%</div><span class="sres ra">Australia</span></div></div>
   </div>
-  <span class="upset-high">🔥 高爆冷風險 Paraguay</span><div class="value-tip">💡 客勝有價值（模型42% vs 賠率隱含26%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客場佔優</b>：Australia xG 優勢 36%，客勝率 42%。</div><div class="ai-item">📋 <b>積分態勢</b>：Paraguay 現有 0 分（背水一戰 🔴），Australia 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>客勝具價值</b>：模型客勝 42% > 莊家隱含 26%，超額 16%，賠率偏低值得留意。</div><div class="ai-item">👔 <b>教練</b>：Gustavo Alfaro（Paraguay）vs Tony Popovic（Australia），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌤️ <b>天氣有利</b>：San Francisco（涼爽 19°C 霧），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
+  <span class="upset-high">🔥 高爆冷風險 Paraguay</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>5.4%</b>（下注 100 元平均損失 5.4 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>2.79</td><td>31%</td><td class="edge-neg">34%</td><td class="ev-neg">-12.7%</td><td class="ev-neg">-2.7%</td></tr><tr><td class="ev-label">平局</td><td>2.29</td><td>27%</td><td class="edge-neg">41%</td><td class="ev-neg">-37.9%</td><td class="ev-neg">-14.3%</td></tr><tr><td class="ev-label">客勝</td><td>3.86</td><td>42%</td><td class="edge-pos">25%</td><td class="ev-pos">+60.6%</td><td class="ev-pos">+17.0%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>客勝</b> 有正期望值（EV +60.6%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客場佔優</b>：Australia xG 優勢 36%，客勝率 42%。</div><div class="ai-item">📋 <b>積分態勢</b>：Paraguay 現有 0 分（背水一戰 🔴），Australia 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>客勝具價值</b>：模型客勝 42% > 莊家隱含 26%，超額 16%，賠率偏低值得留意。</div><div class="ai-item">👔 <b>教練</b>：Gustavo Alfaro（Paraguay）vs Tony Popovic（Australia），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌤️ <b>天氣有利</b>：San Francisco（涼爽 19°C 霧），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
 </div>
 
 <div class="card">
@@ -1923,7 +2034,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">10.81%</div><span class="sres ra">Germany</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-3</div><div class="spct">9.45%</div><span class="sres ra">Germany</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-2</div><div class="spct">9.05%</div><span class="sres ra">Germany</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-1</div><div class="spct">8.25%</div><span class="sres ra">Germany</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-3</div><div class="spct">7.91%</div><span class="sres ra">Germany</span></div></div>
   </div>
-  <span class="upset-med">⚡ 爆冷可能 Ecuador</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Germany xG 是主場 3.1 倍，模擬客勝率 59%。</div><div class="ai-item">🚑 <b>Germany 主力傷缺</b>：<b>Serge Gnabry</b>（RW，大腿內收肌傷缺全程）。攻擊力預估下降 3%，模型已調整。</div><div class="ai-item">🔑 <b>生死壓力</b>：Ecuador（急需積分 ⚠️）已到背水一戰，激進打法可能帶來更多空間，比賽節奏預計激烈，也可能造成戰術失當。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 4.95 / 客 1.69）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">🔵 <b>客隊狀態亮眼</b>：Germany 本屆戰績 WW 表現突出，莊家可能尚未完全反映在盤口，留意客勝賠率。</div><div class="ai-item">👔 <b>教練優勢</b>：Julian Nagelsmann（Germany，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
+  <span class="upset-med">⚡ 爆冷可能 Ecuador</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>5.6%</b>（下注 100 元平均損失 5.6 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>4.95</td><td>22%</td><td class="edge-slight">19%</td><td class="ev-pos">+7.9%</td><td class="ev-pos">+2.7%</td></tr><tr><td class="ev-label">平局</td><td>3.81</td><td>19%</td><td class="edge-neg">25%</td><td class="ev-neg">-28.0%</td><td class="ev-neg">-6.0%</td></tr><tr><td class="ev-label">客勝</td><td>1.69</td><td>59%</td><td class="edge-slight">56%</td><td class="ev-slight">+0.2%</td><td class="ev-slight">+3.3%</td></tr></tbody>
+</table><div class="ev-verdict ev-neutral">⚠️ 正期望值偏低（最高 EV +7.9%），台彩抽水 5.6% 侵蝕獲利空間</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Germany xG 是主場 3.1 倍，模擬客勝率 59%。</div><div class="ai-item">🚑 <b>Germany 主力傷缺</b>：<b>Serge Gnabry</b>（RW，大腿內收肌傷缺全程）。攻擊力預估下降 3%，模型已調整。</div><div class="ai-item">🔑 <b>生死壓力</b>：Ecuador（急需積分 ⚠️）已到背水一戰，激進打法可能帶來更多空間，比賽節奏預計激烈，也可能造成戰術失當。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 4.95 / 客 1.69）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">🔵 <b>客隊狀態亮眼</b>：Germany 本屆戰績 WW 表現突出，莊家可能尚未完全反映在盤口，留意客勝賠率。</div><div class="ai-item">👔 <b>教練優勢</b>：Julian Nagelsmann（Germany，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
 </div>
 
 <div class="card">
@@ -2031,7 +2148,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">11.32%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-1</div><div class="spct">9.49%</div><span class="sres rh">Japan</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">9.38%</div><span class="sres rh">Japan</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-0</div><div class="spct">7.87%</div><span class="sres rh">Japan</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-2</div><div class="spct">6.83%</div><span class="sres ra">Sweden</span></div></div>
   </div>
-  <span class="upset-med">⚡ 爆冷可能 Sweden</span><div class="value-tip">💡 主勝有價值（模型59% vs 賠率隱含47%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>主場佔優</b>：Japan xG 優勢 39%，主勝率 59%，但未到壓倒性。</div><div class="ai-item">🚑 <b>Japan 主力傷缺</b>：<b>三笘薰 (Mitoma)</b>（LW，腿筋傷缺全程）、<b>南野拓實 (Minamino)</b>（FW，ACL傷缺全程）。攻擊力預估下降 12%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Japan 現有 4 分（積分領先），Sweden 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 59% > 莊家隱含 46%，超額 13%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練</b>：Hajime Moriyasu（Japan）vs Jon Dahl Tomasson（Sweden），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">☀️ <b>天氣影響</b>：Arlington（高溫 35°C 部分多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
+  <span class="upset-med">⚡ 爆冷可能 Sweden</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>5.9%</b>（下注 100 元平均損失 5.9 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>2.15</td><td>59%</td><td class="edge-pos">44%</td><td class="ev-pos">+27.3%</td><td class="ev-pos">+15.3%</td></tr><tr><td class="ev-label">平局</td><td>3.40</td><td>20%</td><td class="edge-neg">28%</td><td class="ev-neg">-32.3%</td><td class="ev-neg">-7.9%</td></tr><tr><td class="ev-label">客勝</td><td>3.34</td><td>21%</td><td class="edge-neg">28%</td><td class="ev-neg">-30.2%</td><td class="ev-neg">-7.4%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +27.3%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>主場佔優</b>：Japan xG 優勢 39%，主勝率 59%，但未到壓倒性。</div><div class="ai-item">🚑 <b>Japan 主力傷缺</b>：<b>三笘薰 (Mitoma)</b>（LW，腿筋傷缺全程）、<b>南野拓實 (Minamino)</b>（FW，ACL傷缺全程）。攻擊力預估下降 12%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Japan 現有 4 分（積分領先），Sweden 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 59% > 莊家隱含 46%，超額 13%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練</b>：Hajime Moriyasu（Japan）vs Jon Dahl Tomasson（Sweden），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">☀️ <b>天氣影響</b>：Arlington（高溫 35°C 部分多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
 </div>
 
 <div class="card">
@@ -2085,7 +2208,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">14.37%</div><span class="sres ra">Netherlands</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-3</div><div class="spct">12.02%</div><span class="sres ra">Netherlands</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">11.46%</div><span class="sres ra">Netherlands</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-2</div><div class="spct">8.3%</div><span class="sres ra">Netherlands</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-4</div><div class="spct">7.54%</div><span class="sres ra">Netherlands</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Netherlands xG 是主場 4.3 倍，模擬客勝率 73%。</div><div class="ai-item">🚑 <b>Netherlands 主力傷缺</b>：<b>Jurriën Timber</b>（CB，ACL傷缺全程）、<b>Xavi Simons</b>（MF，ACL傷缺全程）。攻擊力預估下降 7%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Tunisia 現有 0 分（背水一戰 🔴），Netherlands 現有 4 分（積分領先），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 9.66 / 客 1.30）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">⚠️ <b>主隊低迷</b>：Tunisia 本屆 LL，低迷狀態下主場優勢縮水，建議審慎看待主勝盤。</div><div class="ai-item">👔 <b>教練差距</b>：Ronald Koeman（Netherlands） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">☀️ <b>天氣影響</b>：Kansas City（悶熱 30°C 雷雨風險），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>5.9%</b>（下注 100 元平均損失 5.9 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>9.66</td><td>12%</td><td class="edge-slight">10%</td><td class="ev-pos">+13.0%</td><td class="ev-pos">+1.9%</td></tr><tr><td class="ev-label">平局</td><td>5.37</td><td>15%</td><td class="edge-neg">18%</td><td class="ev-neg">-17.8%</td><td class="ev-neg">-2.3%</td></tr><tr><td class="ev-label">客勝</td><td>1.30</td><td>73%</td><td class="edge-slight">73%</td><td class="ev-neg">-5.1%</td><td class="ev-neg">0.4%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +13.0%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Netherlands xG 是主場 4.3 倍，模擬客勝率 73%。</div><div class="ai-item">🚑 <b>Netherlands 主力傷缺</b>：<b>Jurriën Timber</b>（CB，ACL傷缺全程）、<b>Xavi Simons</b>（MF，ACL傷缺全程）。攻擊力預估下降 7%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Tunisia 現有 0 分（背水一戰 🔴），Netherlands 現有 4 分（積分領先），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 9.66 / 客 1.30）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">⚠️ <b>主隊低迷</b>：Tunisia 本屆 LL，低迷狀態下主場優勢縮水，建議審慎看待主勝盤。</div><div class="ai-item">👔 <b>教練差距</b>：Ronald Koeman（Netherlands） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">☀️ <b>天氣影響</b>：Kansas City（悶熱 30°C 雷雨風險），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
 </div></div>
 <div id="day-2026-06-26" class="day-section" style="display:none"><div class="day-label">6月26日 — Group G,H,I 末輪</div>
 <div class="card">
@@ -2139,7 +2268,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">8.06%</div><span class="sres ra">France</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-2</div><div class="spct">7.02%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">6.92%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-3</div><div class="spct">6.26%</div><span class="sres ra">France</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-1</div><div class="spct">6.02%</div><span class="sres rh">Norway</span></div></div>
   </div>
-  <span class="upset-high">🔥 高爆冷風險 Norway</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客場佔優</b>：France xG 優勢 34%，客勝率 49%。</div><div class="ai-item">🚑 <b>France 主力傷缺</b>：<b>Hugo Ekitike</b>（FW，備役前鋒未入選）。攻擊力預估下降 3%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Norway 現有 3 分（積分尚可），France 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 4.26 / 客 1.79）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Didier Deschamps（France，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Boston（涼爽 26°C 適宜），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
+  <span class="upset-high">🔥 高爆冷風險 Norway</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>6.1%</b>（下注 100 元平均損失 6.1 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>4.26</td><td>30%</td><td class="edge-pos">22%</td><td class="ev-pos">+29.5%</td><td class="ev-pos">+8.3%</td></tr><tr><td class="ev-label">平局</td><td>3.73</td><td>21%</td><td class="edge-neg">25%</td><td class="ev-neg">-22.4%</td><td class="ev-neg">-4.5%</td></tr><tr><td class="ev-label">客勝</td><td>1.79</td><td>49%</td><td class="edge-neg">53%</td><td class="ev-neg">-12.6%</td><td class="ev-neg">-3.8%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +29.5%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客場佔優</b>：France xG 優勢 34%，客勝率 49%。</div><div class="ai-item">🚑 <b>France 主力傷缺</b>：<b>Hugo Ekitike</b>（FW，備役前鋒未入選）。攻擊力預估下降 3%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Norway 現有 3 分（積分尚可），France 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 4.26 / 客 1.79）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Didier Deschamps（France，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Boston（涼爽 26°C 適宜），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
 </div>
 
 <div class="card">
@@ -2193,7 +2328,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">2-0</div><div class="spct">13.47%</div><span class="sres rh">Senegal</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">13.33%</div><span class="sres rh">Senegal</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-1</div><div class="spct">9.4%</div><span class="sres rh">Senegal</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">9.3%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">3-0</div><div class="spct">9.07%</div><span class="sres rh">Senegal</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Senegal xG 是對手 2.9 倍，模擬主勝率 74%，強弱差距明顯。</div><div class="ai-item">📋 <b>積分態勢</b>：Senegal 現有 0 分（背水一戰 🔴），Iraq 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.29 / 客 10.45）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Aliou Cissé（Senegal） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Toronto（涼爽 24°C 晴），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>5.9%</b>（下注 100 元平均損失 5.9 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>1.29</td><td>74%</td><td class="edge-slight">73%</td><td class="ev-neg">-4.9%</td><td class="ev-neg">0.5%</td></tr><tr><td class="ev-label">平局</td><td>5.32</td><td>16%</td><td class="edge-neg">18%</td><td class="ev-neg">-14.3%</td><td class="ev-neg">-1.7%</td></tr><tr><td class="ev-label">客勝</td><td>10.45</td><td>10%</td><td class="edge-slight">9%</td><td class="ev-pos">+6.6%</td><td class="ev-pos">+1.2%</td></tr></tbody>
+</table><div class="ev-verdict ev-neutral">⚠️ 正期望值偏低（最高 EV +6.6%），台彩抽水 5.9% 侵蝕獲利空間</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Senegal xG 是對手 2.9 倍，模擬主勝率 74%，強弱差距明顯。</div><div class="ai-item">📋 <b>積分態勢</b>：Senegal 現有 0 分（背水一戰 🔴），Iraq 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.29 / 客 10.45）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Aliou Cissé（Senegal） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Toronto（涼爽 24°C 晴），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
 </div>
 
 <div class="card">
@@ -2247,7 +2388,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">29.92%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">19.25%</div><span class="sres rh">Cape Verde</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">16.86%</div><span class="sres ra">Saudi Arabia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">10.84%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">6.19%</div><span class="sres rh">Cape Verde</span></div></div>
   </div>
-  <span class="upset-med">⚡ 爆冷可能 Saudi Arabia</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.08，平局率高達 33%，比賽走向難測。</div><div class="ai-item">🔑 <b>生死壓力</b>：Saudi Arabia（急需積分 ⚠️）已到背水一戰，激進打法可能帶來更多空間，比賽節奏預計激烈，也可能造成戰術失當。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 2.73 / 客 2.39）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Bubista（Cape Verde）vs Hervé Renard（Saudi Arabia），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Houston 場地 高溫潮濕 35°C，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
+  <span class="upset-med">⚡ 爆冷可能 Saudi Arabia</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>6.2%</b>（下注 100 元平均損失 6.2 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>2.73</td><td>40%</td><td class="edge-pos">34%</td><td class="ev-pos">+9.5%</td><td class="ev-pos">+5.6%</td></tr><tr><td class="ev-label">平局</td><td>3.60</td><td>33%</td><td class="edge-pos">26%</td><td class="ev-pos">+19.9%</td><td class="ev-pos">+7.2%</td></tr><tr><td class="ev-label">客勝</td><td>2.39</td><td>27%</td><td class="edge-neg">39%</td><td class="ev-neg">-36.4%</td><td class="ev-neg">-12.8%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>平局</b> 有正期望值（EV +19.9%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.08，平局率高達 33%，比賽走向難測。</div><div class="ai-item">🔑 <b>生死壓力</b>：Saudi Arabia（急需積分 ⚠️）已到背水一戰，激進打法可能帶來更多空間，比賽節奏預計激烈，也可能造成戰術失當。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 2.73 / 客 2.39）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Bubista（Cape Verde）vs Hervé Renard（Saudi Arabia），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Houston 場地 高溫潮濕 35°C，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
 </div>
 
 <div class="card">
@@ -2301,7 +2448,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-2</div><div class="spct">6.99%</div><span class="sres ra">Spain</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-2</div><div class="spct">6.55%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-3</div><div class="spct">6.36%</div><span class="sres ra">Spain</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-3</div><div class="spct">5.96%</div><span class="sres ra">Spain</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-1</div><div class="spct">5.12%</div><span class="sres rd">平局</span></div></div>
   </div>
-  <span class="upset-high">🔥 高爆冷風險 Uruguay</span><div class="value-tip">💡 主勝有價值（模型32% vs 賠率隱含17%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客場佔優</b>：Spain xG 優勢 46%，客勝率 46%。</div><div class="ai-item">🚑 <b>Spain 主力傷缺</b>：<b>Fermín López</b>（MF，蹠骨骨折傷缺全程）。攻擊力預估下降 3%，模型已調整。</div><div class="ai-item">⚔️ <b>戰術相剋</b>：（強硬防反）vs（tiki-taka控球）Uruguay 防反 vs Spain 控球，預計低節奏、Uruguay 少輸即贏。</div><div class="ai-item">📋 <b>積分態勢</b>：Uruguay 現有 2 分（背水一戰 🔴），Spain 現有 4 分（積分領先），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 32% > 莊家隱含 17%，超額 16%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練優勢</b>：Luis de la Fuente（Spain，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
+  <span class="upset-high">🔥 高爆冷風險 Uruguay</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>6.1%</b>（下注 100 元平均損失 6.1 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>5.92</td><td>32%</td><td class="edge-pos">16%</td><td class="ev-pos">+92.4%</td><td class="ev-pos">+16.6%</td></tr><tr><td class="ev-label">平局</td><td>4.19</td><td>21%</td><td class="edge-neg">22%</td><td class="ev-neg">-11.2%</td><td class="ev-neg">-1.3%</td></tr><tr><td class="ev-label">客勝</td><td>1.53</td><td>46%</td><td class="edge-neg">62%</td><td class="ev-neg">-29.2%</td><td class="ev-neg">-15.3%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +92.4%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客場佔優</b>：Spain xG 優勢 46%，客勝率 46%。</div><div class="ai-item">🚑 <b>Spain 主力傷缺</b>：<b>Fermín López</b>（MF，蹠骨骨折傷缺全程）。攻擊力預估下降 3%，模型已調整。</div><div class="ai-item">⚔️ <b>戰術相剋</b>：（強硬防反）vs（tiki-taka控球）Uruguay 防反 vs Spain 控球，預計低節奏、Uruguay 少輸即贏。</div><div class="ai-item">📋 <b>積分態勢</b>：Uruguay 現有 2 分（背水一戰 🔴），Spain 現有 4 分（積分領先），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 32% > 莊家隱含 17%，超額 16%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練優勢</b>：Luis de la Fuente（Spain，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
 </div>
 
 <div class="card">
@@ -2355,7 +2508,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">15.28%</div><span class="sres rh">Egypt</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-1</div><div class="spct">13.1%</div><span class="sres rd">平局</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-0</div><div class="spct">12.5%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-1</div><div class="spct">10.71%</div><span class="sres ra">Iran</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">9.34%</div><span class="sres rh">Egypt</span></div></div>
   </div>
-  <span class="upset-med">⚡ 爆冷可能 Iran</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>主場佔優</b>：Egypt xG 優勢 42%，主勝率 52%，但未到壓倒性。</div><div class="ai-item">🔥 <b>爆冷警示</b>：Iran 是世界盃傳統黑馬，歷史上多次爆冷擊敗強隊，本場勝率 23%，不可輕視。</div><div class="ai-item">📋 <b>積分態勢</b>：Egypt 現有 4 分（積分領先），Iran 現有 2 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 2.07 / 客 3.86）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Hossam El-Badry（Egypt）vs Amir Ghalenoei（Iran），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Seattle（溫涼 22°C 陰雨），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
+  <span class="upset-med">⚡ 爆冷可能 Iran</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>6.3%</b>（下注 100 元平均損失 6.3 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>2.07</td><td>52%</td><td class="edge-pos">45%</td><td class="ev-pos">+8.3%</td><td class="ev-pos">+6.8%</td></tr><tr><td class="ev-label">平局</td><td>3.12</td><td>25%</td><td class="edge-neg">30%</td><td class="ev-neg">-23.2%</td><td class="ev-neg">-5.6%</td></tr><tr><td class="ev-label">客勝</td><td>3.86</td><td>23%</td><td class="edge-neg">24%</td><td class="ev-neg">-10.8%</td><td class="ev-neg">-1.3%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +8.3%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>主場佔優</b>：Egypt xG 優勢 42%，主勝率 52%，但未到壓倒性。</div><div class="ai-item">🔥 <b>爆冷警示</b>：Iran 是世界盃傳統黑馬，歷史上多次爆冷擊敗強隊，本場勝率 23%，不可輕視。</div><div class="ai-item">📋 <b>積分態勢</b>：Egypt 現有 4 分（積分領先），Iran 現有 2 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 2.07 / 客 3.86）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Hossam El-Badry（Egypt）vs Amir Ghalenoei（Iran），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Seattle（溫涼 22°C 陰雨），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
 </div>
 
 <div class="card">
@@ -2409,7 +2568,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">10.79%</div><span class="sres ra">Belgium</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">9.99%</div><span class="sres ra">Belgium</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-2</div><div class="spct">9.86%</div><span class="sres ra">Belgium</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">9.13%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-3</div><div class="spct">7.76%</div><span class="sres ra">Belgium</span></div></div>
   </div>
-  <div class="value-tip">💡 主勝有價值（模型17% vs 賠率隱含8%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Belgium xG 是主場 2.4 倍，模擬客勝率 65%。</div><div class="ai-item">🔑 <b>生死壓力</b>：New Zealand（急需積分 ⚠️）已到背水一戰，激進打法可能帶來更多空間，比賽節奏預計激烈，也可能造成戰術失當。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 17% > 莊家隱含 8%，超額 9%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練差距</b>：Domenico Tedesco（Belgium） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Vancouver（涼爽 21°C 小雨），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>6.4%</b>（下注 100 元平均損失 6.4 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>12.04</td><td>17%</td><td class="edge-pos">8%</td><td class="ev-pos">+103.5%</td><td class="ev-pos">+9.1%</td></tr><tr><td class="ev-label">平局</td><td>6.19</td><td>18%</td><td class="edge-slight">15%</td><td class="ev-pos">+14.5%</td><td class="ev-pos">+3.3%</td></tr><tr><td class="ev-label">客勝</td><td>1.22</td><td>65%</td><td class="edge-neg">77%</td><td class="ev-neg">-21.2%</td><td class="ev-neg">-12.4%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +103.5%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Belgium xG 是主場 2.4 倍，模擬客勝率 65%。</div><div class="ai-item">🔑 <b>生死壓力</b>：New Zealand（急需積分 ⚠️）已到背水一戰，激進打法可能帶來更多空間，比賽節奏預計激烈，也可能造成戰術失當。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 17% > 莊家隱含 8%，超額 9%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練差距</b>：Domenico Tedesco（Belgium） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div><div class="ai-item">🌤️ <b>天氣有利</b>：Vancouver（涼爽 21°C 小雨），氣候涼爽適宜，有利技術足球發揮，場面預計較為開放。</div></div>
 </div></div>
 <div id="day-2026-06-27" class="day-section" style="display:none"><div class="day-label">6月27日 — Group J,K,L 末輪</div>
 <div class="card">
@@ -2463,7 +2628,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">14.29%</div><span class="sres ra">England</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-3</div><div class="spct">11.89%</div><span class="sres ra">England</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">11.45%</div><span class="sres ra">England</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-2</div><div class="spct">8.37%</div><span class="sres ra">England</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-4</div><div class="spct">7.42%</div><span class="sres ra">England</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：England xG 是主場 4.2 倍，模擬客勝率 80%。</div><div class="ai-item">📋 <b>積分態勢</b>：Panama 現有 0 分（背水一戰 🔴），England 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 10.74 / 客 1.23）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Thomas Tuchel（England，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>6.3%</b>（下注 100 元平均損失 6.3 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>10.74</td><td>7%</td><td class="edge-neg">9%</td><td class="ev-neg">-25.9%</td><td class="ev-neg">-1.9%</td></tr><tr><td class="ev-label">平局</td><td>6.38</td><td>14%</td><td class="edge-neg">15%</td><td class="ev-neg">-13.9%</td><td class="ev-neg">-1.2%</td></tr><tr><td class="ev-label">客勝</td><td>1.23</td><td>80%</td><td class="edge-slight">76%</td><td class="ev-neg">-2.1%</td><td class="ev-neg">3.1%</td></tr></tbody>
+</table><div class="ev-verdict ev-bad">❌ 三種結果均為負期望值，台彩抽水 6.3% 過高，不建議下注</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：England xG 是主場 4.2 倍，模擬客勝率 80%。</div><div class="ai-item">📋 <b>積分態勢</b>：Panama 現有 0 分（背水一戰 🔴），England 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 10.74 / 客 1.23）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Thomas Tuchel（England，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div></div>
 </div>
 
 <div class="card">
@@ -2517,7 +2688,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-0</div><div class="spct">13.55%</div><span class="sres rh">Croatia</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">2-0</div><div class="spct">12.15%</div><span class="sres rh">Croatia</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-1</div><div class="spct">10.7%</div><span class="sres rd">平局</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">2-1</div><div class="spct">9.59%</div><span class="sres rh">Croatia</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-0</div><div class="spct">7.55%</div><span class="sres rd">平局</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Croatia xG 是對手 2.3 倍，模擬主勝率 64%，強弱差距明顯。</div><div class="ai-item">🚑 <b>Ghana 主力傷缺</b>：<b>Mohammed Kudus</b>（FW，大腿/腿筋傷缺全程，最強進攻核心）、<b>Abdul Salisu</b>（CB，傷缺全程）。攻擊力預估下降 16%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Croatia 現有 0 分（背水一戰 🔴），Ghana 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.60 / 客 5.73）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Zlatko Dalić（Croatia） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>6.3%</b>（下注 100 元平均損失 6.3 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>1.60</td><td>64%</td><td class="edge-pos">59%</td><td class="ev-slight">+3.2%</td><td class="ev-slight">+5.7%</td></tr><tr><td class="ev-label">平局</td><td>3.79</td><td>20%</td><td class="edge-neg">25%</td><td class="ev-neg">-25.0%</td><td class="ev-neg">-5.0%</td></tr><tr><td class="ev-label">客勝</td><td>5.73</td><td>16%</td><td class="edge-neg">16%</td><td class="ev-neg">-10.0%</td><td class="ev-neg">-0.7%</td></tr></tbody>
+</table><div class="ev-verdict ev-neutral">⚠️ 正期望值偏低（最高 EV +3.2%），台彩抽水 6.3% 侵蝕獲利空間</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>實力懸殊</b>：Croatia xG 是對手 2.3 倍，模擬主勝率 64%，強弱差距明顯。</div><div class="ai-item">🚑 <b>Ghana 主力傷缺</b>：<b>Mohammed Kudus</b>（FW，大腿/腿筋傷缺全程，最強進攻核心）、<b>Abdul Salisu</b>（CB，傷缺全程）。攻擊力預估下降 16%，模型已調整。</div><div class="ai-item">📋 <b>積分態勢</b>：Croatia 現有 0 分（背水一戰 🔴），Ghana 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 1.60 / 客 5.73）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練差距</b>：Zlatko Dalić（Croatia） 執教能力略勝一籌，策略部署上佔有微幅優勢。</div></div>
 </div>
 
 <div class="card">
@@ -2571,7 +2748,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">10.33%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-2</div><div class="spct">8.68%</div><span class="sres ra">Portugal</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">2-1</div><div class="spct">7.96%</div><span class="sres rh">Colombia</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-1</div><div class="spct">6.7%</div><span class="sres ra">Portugal</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-2</div><div class="spct">6.69%</div><span class="sres rd">平局</span></div></div>
   </div>
-  <span class="upset-high">🔥 高爆冷風險 Colombia</span><div class="value-tip">💡 主勝有價值（模型41% vs 賠率隱含28%）</div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.14，平局率高達 24%，比賽走向難測。</div><div class="ai-item">⚔️ <b>戰術相剋</b>：（快速反擊）vs（控球+個人能力）Colombia 防反 vs Portugal 控球，預計低節奏、Colombia 少輸即贏。</div><div class="ai-item">📋 <b>積分態勢</b>：Colombia 現有 3 分（積分尚可），Portugal 現有 1 分（急需積分 ⚠️），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 41% > 莊家隱含 28%，超額 13%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練</b>：Néstor Lorenzo（Colombia）vs Roberto Martínez（Portugal），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Miami 場地 高溫潮濕 33°C 雷陣雨，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
+  <span class="upset-high">🔥 高爆冷風險 Colombia</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>6.6%</b>（下注 100 元平均損失 6.6 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>3.57</td><td>41%</td><td class="edge-pos">26%</td><td class="ev-pos">+44.9%</td><td class="ev-pos">+14.3%</td></tr><tr><td class="ev-label">平局</td><td>3.41</td><td>24%</td><td class="edge-neg">28%</td><td class="ev-neg">-18.8%</td><td class="ev-neg">-3.7%</td></tr><tr><td class="ev-label">客勝</td><td>2.03</td><td>36%</td><td class="edge-neg">46%</td><td class="ev-neg">-27.7%</td><td class="ev-neg">-10.6%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +44.9%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.14，平局率高達 24%，比賽走向難測。</div><div class="ai-item">⚔️ <b>戰術相剋</b>：（快速反擊）vs（控球+個人能力）Colombia 防反 vs Portugal 控球，預計低節奏、Colombia 少輸即贏。</div><div class="ai-item">📋 <b>積分態勢</b>：Colombia 現有 3 分（積分尚可），Portugal 現有 1 分（急需積分 ⚠️），本場積分直接影響小組排名。</div><div class="ai-item">💰 <b>主勝具價值</b>：模型主勝 41% > 莊家隱含 28%，超額 13%，建議關注主勝或讓球盤。</div><div class="ai-item">👔 <b>教練</b>：Néstor Lorenzo（Colombia）vs Roberto Martínez（Portugal），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">🌡️ <b>極端天氣警示</b>：Miami 場地 高溫潮濕 33°C 雷陣雨，高溫潮濕嚴重消耗體力，體能較差或陣容深度不足的球隊後半場失球風險大幅提升，比賽節奏預計放慢、下半場進球偏多。</div></div>
 </div>
 
 <div class="card">
@@ -2625,7 +2808,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-0</div><div class="spct">23.08%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">1-0</div><div class="spct">19.15%</div><span class="sres rh">DR Congo</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-1</div><div class="spct">14.68%</div><span class="sres ra">Uzbekistan</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-1</div><div class="spct">12.19%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">2-0</div><div class="spct">7.95%</div><span class="sres rh">DR Congo</span></div></div>
   </div>
-  <span class="upset-med">⚡ 爆冷可能 Uzbekistan</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.19，平局率高達 30%，比賽走向難測。</div><div class="ai-item">📋 <b>積分態勢</b>：DR Congo 現有 1 分（急需積分 ⚠️），Uzbekistan 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 2.07 / 客 3.34）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Sébastien Desabre（DR Congo）vs Srecko Katanec（Uzbekistan），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">☀️ <b>天氣影響</b>：Atlanta（炎熱 32°C 多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
+  <span class="upset-med">⚡ 爆冷可能 Uzbekistan</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>6.5%</b>（下注 100 元平均損失 6.5 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>2.07</td><td>46%</td><td class="edge-slight">45%</td><td class="ev-neg">-5.0%</td><td class="ev-neg">0.5%</td></tr><tr><td class="ev-label">平局</td><td>3.54</td><td>30%</td><td class="edge-slight">27%</td><td class="ev-pos">+5.1%</td><td class="ev-pos">+3.2%</td></tr><tr><td class="ev-label">客勝</td><td>3.34</td><td>24%</td><td class="edge-neg">28%</td><td class="ev-neg">-18.5%</td><td class="ev-neg">-3.7%</td></tr></tbody>
+</table><div class="ev-verdict ev-neutral">⚠️ 正期望值偏低（最高 EV +5.1%），台彩抽水 6.5% 侵蝕獲利空間</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.19，平局率高達 30%，比賽走向難測。</div><div class="ai-item">📋 <b>積分態勢</b>：DR Congo 現有 1 分（急需積分 ⚠️），Uzbekistan 現有 0 分（背水一戰 🔴），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 2.07 / 客 3.34）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Sébastien Desabre（DR Congo）vs Srecko Katanec（Uzbekistan），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">☀️ <b>天氣影響</b>：Atlanta（炎熱 32°C 多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
 </div>
 
 <div class="card">
@@ -2679,7 +2868,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">1-1</div><div class="spct">13.02%</div><span class="sres rd">平局</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">12.38%</div><span class="sres ra">Austria</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">1-0</div><div class="spct">10.01%</div><span class="sres rh">Algeria</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">0-0</div><div class="spct">9.52%</div><span class="sres rd">平局</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">1-2</div><div class="spct">8.46%</div><span class="sres ra">Austria</span></div></div>
   </div>
-  <span class="upset-high">🔥 高爆冷風險 Algeria</span><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.25，平局率高達 26%，比賽走向難測。</div><div class="ai-item">📋 <b>積分態勢</b>：Algeria 現有 0 分（背水一戰 🔴），Austria 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 3.02 / 客 2.46）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Vladimir Petković（Algeria）vs Ralf Rangnick（Austria），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">☀️ <b>天氣影響</b>：Kansas City（悶熱 30°C 雷雨風險），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
+  <span class="upset-high">🔥 高爆冷風險 Algeria</span><div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>6.8%</b>（下注 100 元平均損失 6.8 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>3.02</td><td>37%</td><td class="edge-pos">31%</td><td class="ev-pos">+11.1%</td><td class="ev-pos">+5.8%</td></tr><tr><td class="ev-label">平局</td><td>3.03</td><td>26%</td><td class="edge-neg">31%</td><td class="ev-neg">-19.7%</td><td class="ev-neg">-4.4%</td></tr><tr><td class="ev-label">客勝</td><td>2.46</td><td>37%</td><td class="edge-neg">38%</td><td class="ev-neg">-9.7%</td><td class="ev-neg">-1.4%</td></tr></tbody>
+</table><div class="ev-verdict ev-good">✅ <b>主勝</b> 有正期望值（EV +11.1%），模型認為賠率低估此結果</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>勢均力敵</b>：雙方 xG 差距僅 0.25，平局率高達 26%，比賽走向難測。</div><div class="ai-item">📋 <b>積分態勢</b>：Algeria 現有 0 分（背水一戰 🔴），Austria 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 3.02 / 客 2.46）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練</b>：Vladimir Petković（Algeria）vs Ralf Rangnick（Austria），執教能力相當，戰術佈局成勝負關鍵。</div><div class="ai-item">☀️ <b>天氣影響</b>：Kansas City（悶熱 30°C 雷雨風險），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
 </div>
 
 <div class="card">
@@ -2733,7 +2928,13 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,san
     <div class="scores-title">Poisson 機率分析 — 最可能比分</div>
     <div class="scores-grid"><div class="spill s1"><div class="rbadge">#1</div><div class="sval">0-2</div><div class="spct">16.6%</div><span class="sres ra">Argentina</span></div><div class="spill s2"><div class="rbadge">#2</div><div class="sval">0-1</div><div class="spct">14.21%</div><span class="sres ra">Argentina</span></div><div class="spill s3"><div class="rbadge">#3</div><div class="sval">0-3</div><div class="spct">12.93%</div><span class="sres ra">Argentina</span></div><div class="spill s4"><div class="rbadge">#4</div><div class="sval">1-2</div><div class="spct">7.69%</div><span class="sres ra">Argentina</span></div><div class="spill s5"><div class="rbadge">#5</div><div class="sval">0-4</div><div class="spct">7.55%</div><span class="sres ra">Argentina</span></div></div>
   </div>
-  <div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Argentina xG 是主場 5.1 倍，模擬客勝率 80%。</div><div class="ai-item">📋 <b>積分態勢</b>：Jordan 現有 0 分（背水一戰 🔴），Argentina 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 13.39 / 客 1.19）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Lionel Scaloni（Argentina，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">☀️ <b>天氣影響</b>：Arlington（高溫 35°C 部分多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
+  <div class="ev-box">
+<div class="ev-title">📈 期望值分析（EV Analysis）</div>
+<div class="ev-vig">台彩抽水率：<b>6.4%</b>（下注 100 元平均損失 6.4 元）</div>
+<table class="ev-table">
+<thead><tr><th></th><th>賠率</th><th>模型機率</th><th>公允隱含</th><th>EV</th><th>優勢差</th></tr></thead>
+<tbody><tr><td class="ev-label">主勝</td><td>13.39</td><td>6%</td><td class="edge-neg">7%</td><td class="ev-neg">-18.3%</td><td class="ev-neg">-0.9%</td></tr><tr><td class="ev-label">平局</td><td>6.73</td><td>14%</td><td class="edge-neg">14%</td><td class="ev-neg">-7.8%</td><td class="ev-neg">-0.3%</td></tr><tr><td class="ev-label">客勝</td><td>1.19</td><td>80%</td><td class="edge-slight">79%</td><td class="ev-neg">-4.6%</td><td class="ev-neg">1.2%</td></tr></tbody>
+</table><div class="ev-verdict ev-bad">❌ 三種結果均為負期望值，台彩抽水 6.4% 過高，不建議下注</div></div><div class="ai-box"><div class="ai-title">🧠 運彩投資專家綜合分析</div><div class="ai-item">📊 <b>客隊壓制</b>：Argentina xG 是主場 5.1 倍，模擬客勝率 80%。</div><div class="ai-item">📋 <b>積分態勢</b>：Jordan 現有 0 分（背水一戰 🔴），Argentina 現有 3 分（積分尚可），本場積分直接影響小組排名。</div><div class="ai-item">⚖️ <b>賠率合理</b>：莊家賠率（主 13.39 / 客 1.19）與模型機率吻合，無明顯套利空間。</div><div class="ai-item">👔 <b>教練優勢</b>：Lionel Scaloni（Argentina，頂級名帥） 執教評分顯著偏高，世界盃大賽經驗豐富，臨場調整能力強，面對膠著局面更能扭轉戰局。</div><div class="ai-item">☀️ <b>天氣影響</b>：Arlington（高溫 35°C 部分多雲），中等程度高溫，對身體對抗型球隊較為不利，建議留意 60-90 分鐘的體能表現。</div></div>
 </div></div>
   <div id="mc-section" class="day-section" style="display:none">
 <div class="day-label">🎲 蒙特卡洛奪冠機率（5,000次模擬）</div>
